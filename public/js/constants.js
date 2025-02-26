@@ -1,0 +1,36 @@
+export const CONSTANTS = {
+    SELECTORS: {
+        chatMessages: '#chat-messages',
+        chatInput: '#chat-input',
+        sendButton: '#send-button',
+        chatButtonsContainer: '#chat-buttons',
+        chatButtons: '.chat-button',
+        micButton: '.chat-microphone',
+        avatarContainer: '.avatar',
+        elevenLabsConvai: 'elevenlabs-convai'
+    },
+    MESSAGES: {
+        ERROR: 'Sorry, there was an error processing your message.',
+        VOICE_ERROR: 'Voice recognition is not supported in your browser. Please use a modern browser like Chrome, Edge, or Safari for voice features.'
+    },
+    CLASSES: {
+        LISTENING: 'listening',
+        LOADING: 'message-loading'
+    },
+    // Disabled for now
+    // STORAGE_KEYS: {
+    //     CHAT_HISTORY: 'chatHistory'
+    // },
+    // MAX_HISTORY: 50,
+    TYPING_DELAY: 1000,
+    VOICE_TIMEOUT: 10000,
+    API: {
+        CHAT_ENDPOINT: 'http://localhost:3001/api/chat'
+    },
+    MESSAGE_LENGTH_LIMIT: 100
+};
+
+export const RESPONSE_TYPES = {
+    TEXT: 'text',
+    ERROR: 'error'
+};

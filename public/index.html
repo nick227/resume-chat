@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick's AI Resume Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
+
+</head>
+
+<body>
+    <div class="header-section">
+
+        <div class="social-bar">
+            <img title="Nick Rios" alt="Nick" src="images/nickai.png" alt="AI Assistant Avatar" class="avatar">
+            <a href="https://github.com/nick227" target="_blank"><img src="images/github.png" /></a>
+            <a href="https://www.linkedin.com/in/nick-rios/" target="_blank"><img src="images/linkedin.png" /></a>
+            <a href="https://x.com/ai_super_lizard" target="_blank"><img src="images/twitter.png" /></a>
+        </div>
+
+    </div>
+
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-container">
+        <div id="chat-buttons" class="chat-buttons"></div>
+
+        <div class="chat-input-section">
+            <textarea id="chat-input" class="chat-input" placeholder="Type your message..."></textarea>
+            <div class="chat-input-buttons">
+                <button class="chat-microphone">
+                        <span class="material-icons">mic</span>
+                    </button>
+                <button id="send-button" class="chat-send">
+                        <span class="material-icons">send</span>
+                    </button>
+            </div>
+        </div>
+    </div>
+    <div class="elevenlabs-section">
+        <elevenlabs-convai agent-id="vPAutX7qYW7jpzSBTTIK"></elevenlabs-convai>
+    </div>
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

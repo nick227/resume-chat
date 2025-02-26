@@ -4,8 +4,6 @@ import { InputHandler } from './handlers/InputHandler.js';
 import { VoiceHandler } from './handlers/VoiceHandler.js';
 import { ChatButtons } from './handlers/ChatButtons.js';
 import { SocketHandler } from './handlers/SocketHandler.js';
-import { AvatarHandler } from './handlers/AvatarHandler.js';
-
 
 const initializeChat = () => {
     try {
@@ -14,7 +12,6 @@ const initializeChat = () => {
         // Initialize core components first
         MessageHandler.init();
         ChatButtons.init();
-        AvatarHandler.init();
 
         // Initialize handlers that depend on UI elements
         const input = new InputHandler();

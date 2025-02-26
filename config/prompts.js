@@ -25,7 +25,7 @@ Portfolio: tinyurl.com/nickrios
 EXPERIENCE
 
 DIGITAL HARBOR — Team Lead / AI Developer
-Nov 2020 – Recently laid off
+Nov 2020 – Recently (laid off)
 
     Led development teams in building Set Forms, a scalable, feature-rich WYSIWYG platform for form creation. Managed and streamlined cross-functional teams, successfully launching a product that had previously stalled.
     Initiated and led AI innovation team, driving AI integrations into core products, including chat, voice, and UI generation.

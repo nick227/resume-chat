@@ -61,7 +61,12 @@ export class InputHandler {
 
             // Update chat buttons if available
             if (response.options) {
-                ChatButtons.updateButtons(response.options);
+                ChatButtons.insertButtons(response.options);
+            }
+
+            // Update chat buttons if available
+            if (response.buttons) {
+                ChatButtons.updateButtons(response.buttons);
             }
 
         } catch (error) {

@@ -7,7 +7,8 @@ export const CONSTANTS = {
         chatButtons: '.chat-button',
         micButton: '.chat-microphone',
         avatarContainer: '.avatar',
-        elevenLabsConvai: 'elevenlabs-convai'
+        elevenLabsConvai: 'elevenlabs-convai',
+        avatarDropdown: '.avatar-dropdown'
     },
     MESSAGES: {
         ERROR: 'Sorry, there was an error processing your message.',
@@ -25,7 +26,7 @@ export const CONSTANTS = {
     TYPING_DELAY: 1000,
     VOICE_TIMEOUT: 10000,
     API: {
-        CHAT_ENDPOINT: 'http://localhost:3001/api/chat'
+        CHAT_ENDPOINT: '/api/chat'
     },
     MESSAGE_LENGTH_LIMIT: 100
 };

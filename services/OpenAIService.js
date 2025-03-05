@@ -1,5 +1,6 @@
 const { OpenAI } = require('openai');
 const { buildConfig } = require('../config/prompts');
+const { AUTO_MESSAGES } = require('../config/AUTO_MESSAGES');
 
 class OpenAIService {
     constructor() {
@@ -9,6 +10,8 @@ class OpenAIService {
         this.requestCount = 0;
         this.requestLimit = 50;
         this.resetInterval = 60000; // 1 minute
+        this.autoMessages = AUTO_MESSAGES;
+        this.autoMessageIndex = 0;
 
         // Use a more precise rate limiting mechanism
         this.requestTimes = [];
@@ -26,6 +29,54 @@ class OpenAIService {
             includeHistory: false, // Toggle chat history
             maxHistoryLength: 5 // Max number of previous messages to include
         };
+    }
+
+    async getMessageByIndex(startIndex = 0) {
+        const now = Date.now();
+        this.requestTimes = this.requestTimes.filter(time =>
+            now - time < this.windowSize
+        );
+
+        if (this.requestTimes.length >= this.requestLimit) {
+            throw new Error('Rate limit exceeded. Please try again later.');
+        }
+
+        // Validate index
+        if (startIndex < 0 || startIndex >= this.autoMessages.length) {
+            throw new Error('Invalid message index');
+        }
+
+        const message = this.autoMessages[startIndex];
+        if (!message) {
+            throw new Error('Message not found');
+        }
+
+        return message;
+    }
+
+    async getRandomFact() {
+        const now = Date.now();
+        this.requestTimes = this.requestTimes.filter(time =>
+            now - time < this.windowSize
+        );
+
+        if (this.requestTimes.length >= this.requestLimit) {
+            throw new Error('Rate limit exceeded. Please try again later.');
+        }
+
+        this.requestTimes.push(now);
+        // Should use the same message config and processing as normal chat
+        const message = 'Write a short fact about Nick. Be humble and low-key. Keep it short and concise. Wrap the entire response in a <div class="panel"> tag.';
+        const history = []; // Empty history for random facts
+
+        const config = this.buildMessageConfig(message, history);
+        const completion = await this.client.chat.completions.create(config);
+
+        if (!completion.choices || !completion.choices[0]) {
+            throw new Error('No response from OpenAI');
+        }
+
+        return this.parseResponse(completion);
     }
 
     async generateResponse(message, history) {
@@ -47,7 +98,6 @@ class OpenAIService {
         }
 
         const config = this.buildMessageConfig(message, history);
-        //console.log(config);
         const completion = await this.client.chat.completions.create(config);
 
         if (!completion.choices || !completion.choices[0]) {
@@ -103,27 +153,21 @@ class OpenAIService {
 
     parseResponse(completion) {
         const choice = completion.choices[0];
-        let aiMessage, aiOptions;
-
+        let aiMessage, aiOptions, aiButtons;
         if (choice.message.function_call) {
             try {
                 const parsed = JSON.parse(choice.message.function_call.arguments);
                 aiMessage = parsed.message;
                 aiOptions = parsed.options;
+                aiButtons = parsed.buttons;
             } catch (error) {
                 console.error('Error parsing function call arguments:', error);
                 throw new Error('Invalid response format from OpenAI');
             }
         } else if (choice.message.content) {
             aiMessage = choice.message.content;
-            // Default options might not be appropriate for all contexts
-            aiOptions = [
-                "Tell me more about that",
-                "Can you explain that differently?",
-                "What else should I know?"
-            ];
-        } else {
-            throw new Error('Unexpected response format from OpenAI');
+            aiOptions = [];
+            aiButtons = [];
         }
 
         if (!aiMessage) {
@@ -132,7 +176,8 @@ class OpenAIService {
 
         return {
             message: aiMessage,
-            options: aiOptions || [], // Ensure options is always an array
+            options: aiOptions || [],
+            buttons: aiButtons || [],
             completion
         };
     }

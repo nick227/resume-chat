@@ -69,15 +69,6 @@ class Message {
         );
     }
 
-    static async getSuggestions(query, limit = 5) {
-        if (!query) throw new Error('Query is required');
-        const safeLimit = parseInt(limit, 10);
-        const [rows] = await db.execute(
-            'SELECT DISTINCT message FROM chat_messages WHERE message LIKE ? LIMIT ?', [`%${query}%`, safeLimit]
-        );
-        return rows.map(row => row.message);
-    }
-
     static async deleteMessage(messageId, userId) {
         if (!messageId) throw new Error('Message ID is required');
         if (!userId) throw new Error('User ID is required');

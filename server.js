@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const http = require('http');
-const SocketServer = require('./socketServer');
+//const SocketServer = require('./socketServer');
 
 const app = express();
 const server = http.createServer(app);
@@ -20,14 +20,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 const routes = require('./routes');
 
 // Initialize WebSocket server
-const socketServer = new SocketServer(server);
-
+//const socketServer = new SocketServer(server);
+/*
 // Add socket server to route context
 app.use((req, res, next) => {
     req.socketServer = socketServer;
     next();
 });
-
+*/
 // Load routes dynamically
 routes.forEach(route => {
     app[route.method.toLowerCase()](route.endpoint, async(req, res) => {

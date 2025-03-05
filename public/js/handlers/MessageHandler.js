@@ -2,6 +2,7 @@ import { CONSTANTS } from '../constants.js';
 import { utils } from '../utils.js';
 import { RESPONSE_TYPES } from '../schema.js';
 import { LoadingHandler } from './LoadingHandler.js';
+import { scrollService } from '../services/ScrollService.js';
 // Commented out for now, easy to re-enable later
 // import { ChatStorageManager } from '../storage/ChatStorageManager.js';
 
@@ -18,6 +19,9 @@ export class MessageHandler {
     static init() {
         const container = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
         if (!container) return;
+
+        // Initialize scroll service
+        scrollService.init('chat-messages');
 
         // Add permanent loading indicator using shared LoadingHandler
         container.insertAdjacentHTML('beforeend', LoadingHandler.getLoadingHTML('AI is typing'));
@@ -126,24 +130,7 @@ export class MessageHandler {
      * Scrolls the chat to the bottom
      */
     static scrollToBottom(container) {
-        if (!container) {
-            container = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
-            if (!container) return;
-        }
-
-        // Use double requestAnimationFrame to ensure DOM is fully updated
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                try {
-                    container.scrollTo({
-                        top: container.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                } catch (error) {
-                    container.scrollTop = container.scrollHeight;
-                }
-            });
-        });
+        scrollService.scrollToBottom();
     }
 
     // ============= Event Handlers =============

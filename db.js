@@ -31,7 +31,6 @@ const initializeDatabase = async() => {
         if (rows.length === 0) {
             // Create database if it doesn't exist - using backticks for database name
             await tempPool.query(`CREATE DATABASE IF NOT EXISTS \`${dbConfig.database}\``);
-            console.log(`Database ${dbConfig.database} created.`);
         }
 
         // Close temporary connection
@@ -52,8 +51,6 @@ const initializeDatabase = async() => {
                 INDEX idx_created_at (created_at)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         `);
-
-        console.log('Database connected successfully');
         connection.release();
 
     } catch (err) {

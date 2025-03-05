@@ -1,11 +1,19 @@
 import { CONSTANTS } from '../constants.js';
+import { requestInterceptor } from '../services/RequestInterceptorService.js';
+import { MessageHandler } from '../handlers/MessageHandler.js';
 
 /**
  * Handles all chat API interactions
  */
 export class ChatAPI {
-    // Change back to the actual API server URL
-    static BASE_URL = 'http://localhost:3001/api';
+    /**
+     * Get the base URL for API requests
+     */
+    static get BASE_URL() {
+        // Use window.location to get current origin
+        const origin = window.location.origin;
+        return `${origin}/api`;
+    }
 
     /**
      * Validates API response structure
@@ -23,7 +31,8 @@ export class ChatAPI {
             return {
                 success: false,
                 message: response.error,
-                options: []
+                options: [],
+                buttons: []
             };
         }
 
@@ -32,11 +41,12 @@ export class ChatAPI {
             throw new Error('Invalid response: missing message');
         }
 
-        // Ensure consistent response format
+        // Ensure consistent response format with separate handling
         return {
             success: true,
             message: response.message,
-            options: Array.isArray(response.options) ? response.options : []
+            options: Array.isArray(response.options) ? response.options : [],
+            buttons: Array.isArray(response.buttons) ? response.buttons : [] // Keep buttons separate
         };
     }
 
@@ -71,7 +81,8 @@ export class ChatAPI {
             return {
                 success: false,
                 message: CONSTANTS.MESSAGES.ERROR,
-                options: []
+                options: [],
+                buttons: []
             };
         }
     }
@@ -102,3 +113,20 @@ export class ChatAPI {
         return userId;
     }
 }
+
+// Add a listener for loading states
+requestInterceptor.addListener((event, data) => {
+    // Check if URL string contains '/api/chat'
+    const urlString = data.url.toString();
+    if (urlString.includes('/api/chat')) {
+        switch (event) {
+            case 'before':
+                MessageHandler.toggleLoading(true);
+                break;
+            case 'after':
+            case 'error':
+                MessageHandler.toggleLoading(false);
+                break;
+        }
+    }
+});

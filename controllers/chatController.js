@@ -2,20 +2,65 @@ const Message = require('../models/Message');
 const OpenAIService = require('../services/OpenAIService');
 
 const chatController = {
-    // Get suggestions based on query
-    async getSuggestions(query) {
+    async getRandomMessage(userId, sessionId, req) {
         try {
-            const suggestions = await Message.getSuggestions(query);
+            if (!sessionId) {
+                sessionId = 'default-session';
+                console.warn('No sessionId provided, using default');
+            }
+
+            const { message: aiMessage, options: aiOptions, completion } =
+            await OpenAIService.getRandomFact();
+
+            // Reset socket messages for this session
+            if (req.socketServer) {
+                await req.socketServer.handleApiRequest(sessionId);
+            }
+
             return {
                 success: true,
-                suggestions,
-                error: null
+                message: aiMessage,
+                options: aiOptions,
+                sessionId
             };
         } catch (error) {
+            console.error('Chat error:', error);
             return {
                 success: false,
-                suggestions: [],
-                error: error.message
+                error: error.message,
+                options: []
+            };
+        }
+    },
+
+    async getAutoMessage(userId, sessionId, startIndex = 0, req) {
+        try {
+            if (!sessionId) {
+                sessionId = 'default-session';
+                console.warn('No sessionId provided, using default');
+            }
+            startIndex = parseInt(startIndex) || 0;
+
+            const message = await OpenAIService.getMessageByIndex(startIndex);
+            if (!message) {
+                throw new Error('No message found');
+            }
+
+            return {
+                success: true,
+                message: message.message,
+                options: message.options || [],
+                buttons: message.buttons || [],
+                sessionId
+            };
+
+        } catch (error) {
+            console.error('Chat error:', error);
+            return {
+                success: false,
+                error: error.message,
+                options: [],
+                buttons: []
             };
         }
     },

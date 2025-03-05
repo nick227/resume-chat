@@ -2,6 +2,7 @@ import { CONSTANTS } from '../constants.js';
 import { MessageHandler } from './MessageHandler.js';
 import { ChatButtons } from './ChatButtons.js';
 import { utils } from '../utils.js';
+import { scrollService } from '../services/ScrollService.js';
 
 /**
  * Handles WebSocket connections and real-time messages
@@ -52,7 +53,6 @@ export class SocketHandler {
         if (!this.socket) return;
 
         this.socket.addEventListener('open', () => {
-            console.log('Socket connected');
             this.reconnectAttempts = 0;
             this.isConnecting = false;
         });
@@ -71,7 +71,6 @@ export class SocketHandler {
         });
 
         this.socket.addEventListener('close', () => {
-            console.log('Socket disconnected');
             this.handleConnectionFailure();
         });
 
@@ -90,22 +89,11 @@ export class SocketHandler {
         // Handle different message types
         if (data.type === 'chat') {
             try {
-                const container = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
-                if (!container) return;
-
-                // Display the message and wait for it to complete
+                // Display the message
                 await MessageHandler.addMessage('bot', data.message);
 
-                // Force a reflow and ensure message is in DOM
-                container.offsetHeight;
-
-                // Scroll after a short delay to ensure DOM is updated
-                setTimeout(() => {
-                    container.scrollTo({
-                        top: container.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                }, 100);
+                // Use scroll service
+                scrollService.scrollToBottom();
 
                 // Update chat buttons if options are available
                 if (Array.isArray(data.options)) {

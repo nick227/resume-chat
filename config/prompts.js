@@ -21,7 +21,7 @@ Role: Senior Solutions Architect | Generative AI | Full-Stack Engineer
 Email: nicholas.jay.rios@gmail.com
 Phone: (737) 207-2022
 GitHub: github.com/nick227
-Portfolio: tinyurl.com/nickrios
+
 EXPERIENCE
 
 DIGITAL HARBOR — Team Lead / AI Developer
@@ -218,11 +218,11 @@ const functions = {
             properties: {
                 message: {
                     type: 'string',
-                    description: 'The specific html h2-h6, p, table or ul tagged response to the user prompt.'
+                    description: 'The specific html h2-h6, p, table or ul tagged response to the user prompt. Use padding to make the response more readable.'
                 },
                 options: {
                     type: 'array',
-                    description: 'Array of 3 predicted follow-up questions. Max eight words each.',
+                    description: 'Array of 3 simple follow-up questions. Max eight words each.',
                     items: {
                         type: 'string',
                         description: 'Short follow-up question. Max eight words.'

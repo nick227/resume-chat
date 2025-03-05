@@ -4,6 +4,7 @@ import { InputHandler } from './handlers/InputHandler.js';
 import { VoiceHandler } from './handlers/VoiceHandler.js';
 import { ChatButtons } from './handlers/ChatButtons.js';
 import { SocketHandler } from './handlers/SocketHandler.js';
+import { autoMessageLoader } from './services/AutoMessageLoader.js';
 
 const initializeChat = () => {
     try {
@@ -21,11 +22,41 @@ const initializeChat = () => {
 
         // Initialize optional components
         new VoiceHandler();
-        new SocketHandler();
+        //new SocketHandler();
+
+        // Initialize auto message loader with custom configuration
+
+        autoMessageLoader.init({
+            messages: [{
+                type: 'AUTO',
+                delay: 0,
+                maxRuns: 1,
+                startIndex: 0
+            }]
+        });
+        let messageIndex = 1;
+        const messageInterval = setInterval(() => {
+            if (messageIndex >= 2) {
+                clearInterval(messageInterval);
+                return;
+            }
+
+            autoMessageLoader.init({
+                messages: [{
+                    type: 'AUTO',
+                    delay: 0,
+                    maxRuns: 1,
+                    startIndex: messageIndex
+                }]
+            });
+            messageIndex++;
+        }, 20);
 
         // Setup cleanup
         window.addEventListener('unload', () => {
             utils.elements.clear();
+            autoMessageLoader.destroy();
+            clearInterval(messageInterval);
         });
 
     } catch (error) {

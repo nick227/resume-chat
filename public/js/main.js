@@ -24,48 +24,80 @@ const initializeChat = () => {
         new VoiceHandler();
         //new SocketHandler();
 
-        // Initialize auto message loader with custom configuration
-
-        autoMessageLoader.init({
-            messages: [{
-                type: 'AUTO',
-                delay: 0,
-                maxRuns: 1,
-                startIndex: 0
-            }]
-        });
-        let messageIndex = 1;
-        const messageInterval = setInterval(() => {
-            if (messageIndex >= 2) {
-                clearInterval(messageInterval);
-                return;
-            }
-
-            autoMessageLoader.init({
-                messages: [{
-                    type: 'AUTO',
-                    delay: 0,
-                    maxRuns: 1,
-                    startIndex: messageIndex
-                }]
-            });
-            messageIndex++;
-        }, 20);
+        // Setup message intervals
+        const intervals = setupMessageIntervals();
 
         // Setup cleanup
         window.addEventListener('unload', () => {
             utils.elements.clear();
             autoMessageLoader.destroy();
-            clearInterval(messageInterval);
+            intervals.forEach(clearInterval);
         });
 
     } catch (error) {
         console.error('Initialization error:', error);
-        // Show error in chat if MessageHandler was initialized
         if (MessageHandler.isInitialized) {
             MessageHandler.addMessage('bot', 'An error occurred while initializing the chat.', 'error');
         }
     }
+};
+
+const createMessageInterval = (config) => {
+    const { type, startIndex = 0, maxIndex, delay, initialDelay = 0 } = config;
+    let messageIndex = startIndex;
+
+    // Initial message if needed
+    if (initialDelay === 0) {
+        loadMessage(type, messageIndex);
+    }
+
+    // Setup interval
+    return setInterval(() => {
+        if (messageIndex >= maxIndex) {
+            clearInterval(interval);
+            return;
+        }
+        loadMessage(type, messageIndex);
+        messageIndex++;
+    }, delay);
+};
+
+const loadMessage = (type, startIndex) => {
+    autoMessageLoader.init({
+        messages: [{
+            type,
+            delay: 0,
+            maxRuns: 1,
+            startIndex
+        }]
+    });
+};
+
+const setupMessageIntervals = () => {
+    // Initial auto message
+    loadMessage('AUTO', 0);
+
+    // Setup intervals for different message types
+    const intervals = [
+        createMessageInterval({
+            type: 'AUTO',
+            startIndex: 2,
+            maxIndex: 20,
+            delay: 90 * 1000
+        }),
+        createMessageInterval({
+            type: 'RANDOM',
+            maxIndex: 6,
+            delay: 2 * 60 * 1000 // 1.5 minutes
+        }),
+        createMessageInterval({
+            type: 'RANDOM',
+            maxIndex: 1,
+            delay: 1.5 * 1000 // 1.5 minutes
+        })
+    ];
+
+    return intervals;
 };
 
 // Initialize when DOM is ready

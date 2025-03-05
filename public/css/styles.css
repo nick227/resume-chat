@@ -22,7 +22,7 @@
     --white: #ffffff;
     --green: #09c009;
     --light-gray: #f8f9fa;
-    --mid-gray: #f5f5f5;
+    --mid-gray: hsla(0, 0%, 50%, 0.592);
     --border-color: rgba(0, 0, 0, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.1);
     --shadow-color-strong: rgba(0, 0, 0, 0.15);
@@ -138,8 +138,9 @@ img {
 
 .panel {
     background: var(--light-gray);
-    padding: 15px;
+    padding: var(--spacing-base);
     width: fit-content;
+    margin-bottom: 30px;
 }
 
 
@@ -257,6 +258,17 @@ img {
 .chat-send:active,
 .chat-button:active {
     background-color: var(--active-color);
+}
+
+.chat-link {
+    text-decoration: underline;
+    color: var(--black);
+    padding: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
 }
 
 

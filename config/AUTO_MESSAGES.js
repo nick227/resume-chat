@@ -1,7 +1,6 @@
-const AUTO_MESSAGES = [
-    /*{
-            type: 'chat',
-            message: `<div>
+const AUTO_MESSAGES = [{
+        type: 'chat',
+        message: `<div>
 
       <!-- Single Column Section -->
       <div class="panel">
@@ -35,34 +34,34 @@ const AUTO_MESSAGES = [
     </div>
     <p class="">I am seeking a company that embraces AI as a new part of their integrated systems. </p>
     `,
-            options: [],
-            options: ['I am hiring for an amazing opportunity!'],
-            buttons: ['Tell me about Nick', 'What are his strengths?', 'What is his favorite tech stack?'],
-        },
-        {
-            type: 'chat',
-            message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
+        options: [],
+        options: ['I am hiring for an amazing opportunity!'],
+        buttons: ['Tell me about Nick', 'What are his strengths?', 'What is his favorite tech stack?'],
+    },
+    {
+        type: 'chat',
+        message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
             <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
                 <path fill="#dc3545" d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"/>
             </svg>
                 Email Me
         </div>
             </a>`,
-            options: []
-        },
-        {
-            type: 'chat',
-            message: `<div class="row">
+        options: []
+    },
+    {
+        type: 'chat',
+        message: `<div class="row">
         <div class="col col-25"><img src="https://picsum.photos/200/200" /></div>
         <div class="col col-75">Amazing UI/UX design is simple. User experiences should be intuitive and fast. Reducing clicks and prioritizing core functionality is key to success. Great projects need great support. Ambiguity in the designs shows up in the code. Usability, alignment and consistency is my priority. I like using low-fidelity tools like Google Slides. A website is a tool to do something.</div>
         </div>`,
-            options: []
-        },
-        {
-            type: 'chat',
-            message: '<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>',
-            options: []
-        },*/
+        options: []
+    },
+    {
+        type: 'chat',
+        message: '<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>',
+        options: []
+    },
     {
         type: 'chat',
         message: `<h2>Some of my AI content projects:</h2><div class="panel row">

@@ -99,23 +99,24 @@ When Nick started the <strong>AI team</strong>, they began with a bare-bones <st
         type: 'chat',
         message: `<h2>Some of my AI content projects:</h2><div class="panel row">
         <ul class="col-50">
-<li><a href="https://ai-delphi.com">ai-delphi.com</a></li>
-<li><a href="https://ai-super-lizard.com">ai-super-lizard.com</a></li>
-<li><a href="https://ai-webdev.com">ai-webdev.com</a></li>
-<li><a href="https://ai-workflows.net">ai-workflows.net</a></li>
-<li><a href="https://autocontentstudio.com">autocontentstudio.com</a></li>
-<li><a href="https://backslash.cash">backslash.cash</a></li>
-<li><a href="https://dollar-stocks.com">dollar-stocks.com</a></li>
+<li><a target="_blank" href="https://ai-delphi.com">ai-delphi.com</a></li>
+<li><a target="_blank" href="https://ai-super-lizard.com">ai-super-lizard.com</a></li>
+<li><a target="_blank" href="https://ai-webdev.com">ai-webdev.com</a></li>
+<li><a target="_blank" href="https://ai-workflows.net">ai-workflows.net</a></li>
+<li><a target="_blank" href="https://autocontentstudio.com">autocontentstudio.com</a></li>
+<li><a target="_blank" href="https://backslash.cash">backslash.cash</a></li>
+<li><a target="_blank" href="https://dollar-stocks.com">dollar-stocks.com</a></li>
+<li><a target="_blank" href="https://promptgeometry.com">promptgeometry.com</a></li>
 </ul>
 <ul class="col-50">
-<li><a href="https://fanfic-history.com">fanfic-history.com</a></li>
-<li><a href="https://gizm0s.com">gizm0s.com</a></li>
-<li><a href="https://hatsyshirtsy.com">hatsyshirtsy.com</a></li>
-<li><a href="https://loikos.com">loikos.com</a></li>
-<li><a href="https://nicksprompts.com">nicksprompts.com</a></li>
-<li><a href="https://smartycourses.com">smartycourses.com</a></li>
-<li><a href="https://songdeconstruct.com">songdeconstruct.com</a></li>
-<li><a href="https://spoiledscripts.com">spoiledscripts.com</a></li>
+<li><a target="_blank" href="https://fanfic-history.com">fanfic-history.com</a></li>
+<li><a target="_blank" href="https://gizm0s.com">gizm0s.com</a></li>
+<li><a target="_blank" href="https://hatsyshirtsy.com">hatsyshirtsy.com</a></li>
+<li><a target="_blank" href="https://loikos.com">loikos.com</a></li>
+<li><a target="_blank" href="https://nicksprompts.com">nicksprompts.com</a></li>
+<li><a target="_blank" href="https://smartycourses.com">smartycourses.com</a></li>
+<li><a target="_blank" href="https://songdeconstruct.com">songdeconstruct.com</a></li>
+<li><a target="_blank" href="https://spoiledscripts.com">spoiledscripts.com</a></li>
 </ul>
         </div>`,
         options: []

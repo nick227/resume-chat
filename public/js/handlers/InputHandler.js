@@ -30,15 +30,17 @@ export class InputHandler {
      */
     async submitMessage(text) {
         if (!text.trim() || this.isProcessing) return;
+        console.log('Submitting message:', text);
 
         try {
             this.isProcessing = true;
             this.updateUIState(true);
             MessageHandler.toggleLoading(true);
 
-            // Send user message first
-            text = text.trim();
-            await MessageHandler.addMessage('user', text);
+            // Force scroll on user message
+            await MessageHandler.addMessage('user', text.trim(), RESPONSE_TYPES.TEXT, true);
+            console.log('User message added');
+
             this.inputElement.value = '';
 
             // Get API response
@@ -113,11 +115,20 @@ export class InputHandler {
         this.sendButton.addEventListener('click', submitHandler);
 
         // Listen for chat button clicks
-        document.addEventListener('chatButtonClick', (e) => {
+        document.addEventListener('chatButtonClick', async(e) => {
+            console.log('ChatButtonClick received:', e.detail.text);
+
             this.inputElement.value = e.detail.text;
             this.inputElement.dispatchEvent(new Event('input'));
             this.inputElement.focus();
-            this.submitMessage(e.detail.text);
+
+            try {
+                // Wait for message to be submitted
+                await this.submitMessage(e.detail.text);
+                console.log('Message submitted successfully');
+            } catch (error) {
+                console.error('Error submitting message:', error);
+            }
         });
     }
 }

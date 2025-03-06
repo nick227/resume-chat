@@ -20,13 +20,19 @@ export class ChatButtons {
         }
     }
 
-    static handleButtonClick(e) {
-        const button = e.target.closest(CONSTANTS.SELECTORS.chatButtons);
+    static handleButtonClick(event) {
+        const button = event.target.closest('.chat-button');
         if (!button) return;
 
-        document.dispatchEvent(new CustomEvent('chatButtonClick', {
-            detail: { text: button.textContent }
-        }));
+        const text = button.textContent.trim();
+        console.log('ChatButton clicked:', text);
+
+        // Dispatch chat button click event
+        const clickEvent = new CustomEvent('chatButtonClick', {
+            detail: { text },
+            bubbles: true // Make sure event bubbles up
+        });
+        document.dispatchEvent(clickEvent);
     }
 
     static createButtonSet(options) {

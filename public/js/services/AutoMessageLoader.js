@@ -2,6 +2,7 @@ import { CONSTANTS } from '../constants.js';
 import { MessageHandler } from '../handlers/MessageHandler.js';
 import { ChatButtons } from '../handlers/ChatButtons.js';
 import { ChatAPI } from '../api/ChatAPI.js';
+import { RESPONSE_TYPES } from '../schema.js';
 
 /**
  * Service to automatically load messages after period of inactivity
@@ -31,6 +32,8 @@ export class AutoMessageLoader {
             return null;
         }
 
+        let currentIndex = startIndex; // Track index for this task
+
         return async() => {
             if (this.isLoading) return;
 
@@ -41,14 +44,16 @@ export class AutoMessageLoader {
                 const url = new URL(`/api/chat/${config.endpoint}`, window.location.origin);
                 url.searchParams.append('userId', ChatAPI.getUserId());
                 url.searchParams.append('sessionId', ChatAPI.getSessionId());
-                url.searchParams.append('startIndex', startIndex);
+                url.searchParams.append('startIndex', currentIndex); // Use current index
+
+                console.log('Requesting message at index:', currentIndex);
 
                 const response = await fetch(url);
                 const data = await response.json();
                 const validatedData = ChatAPI.validateResponse(data);
 
                 if (validatedData.success) {
-                    await MessageHandler.addMessage('bot', validatedData.message);
+                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, false);
 
                     if (validatedData.options && validatedData.options.length) {
                         ChatButtons.insertButtons(validatedData.options);
@@ -58,6 +63,8 @@ export class AutoMessageLoader {
                         ChatButtons.updateButtons(validatedData.buttons);
                     }
                 }
+
+                currentIndex++; // Increment for next run
             } catch (error) {
                 console.error(`${config.errorContext} error:`, error);
             } finally {

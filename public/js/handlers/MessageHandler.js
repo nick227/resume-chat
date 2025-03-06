@@ -10,6 +10,9 @@ import { scrollService } from '../services/ScrollService.js';
  * Handles chat message UI operations and rendering
  */
 export class MessageHandler {
+    static isInitialized = false;
+    static container = null;
+
     // ============= Message Templates =============
     static templates = {
         message: (text, isBot = false, type = RESPONSE_TYPES.TEXT) => `<div class="message ${isBot ? 'bot' : 'user'} ${type}">${isBot ? text : utils.sanitizeHTML(text)}${isBot && type === RESPONSE_TYPES.ERROR ? '<button class="retry-button"><span class="material-icons">refresh</span></button>' : ''}</div>`.trim()
@@ -17,28 +20,57 @@ export class MessageHandler {
 
     // ============= Initialization =============
     static init() {
-        const container = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
-        if (!container) return;
+        this.container = document.getElementById('chat-messages');
+        if (!this.container) {
+            throw new Error('Chat messages container not found');
+        }
 
         // Initialize scroll service
         scrollService.init('chat-messages');
 
-        // Add permanent loading indicator using shared LoadingHandler
-        container.insertAdjacentHTML('beforeend', LoadingHandler.getLoadingHTML('AI is typing'));
+        // Add loading indicator
+        this.container.insertAdjacentHTML('beforeend', LoadingHandler.getLoadingHTML('AI is typing'));
 
-        container.addEventListener('click', this.handleMessageClick.bind(this));
+        // Setup click handler
+        this.container.addEventListener('click', this.handleMessageClick.bind(this));
+
+        this.isInitialized = true;
     }
 
     // ============= Core Message Operations =============
     /**
      * Adds a message to the chat
-     * @param {string} type - Message type ('user' or 'bot')
+     * @param {string} role - Message role ('user' or 'bot')
      * @param {string} content - Message content
-     * @param {string} responseType - Response type (TEXT or ERROR)
+     * @param {string} type - Response type (TEXT or ERROR)
+     * @param {boolean} autoScroll - Whether to automatically scroll to the bottom
      */
-    static async addMessage(type, content, responseType = RESPONSE_TYPES.TEXT) {
-        if (!this.validateMessage(content)) return;
-        await this.renderMessage(type, content.trim(), responseType);
+    static async addMessage(role, content, type = RESPONSE_TYPES.TEXT, autoScroll = true) {
+        console.log('Adding message:', { role, content, type, autoScroll });
+
+        if (!this.isInitialized) {
+            throw new Error('MessageHandler not initialized');
+        }
+
+        if (!content) {
+            console.warn('Empty message content');
+            return;
+        }
+
+        const messageEl = this.createMessageElement(role, content.trim(), type);
+        if (!messageEl) {
+            console.error('Failed to create message element');
+            return;
+        }
+
+        // Set scroll behavior before appending
+        console.log('Setting scroll behavior:', autoScroll);
+        await this.appendMessage(messageEl);
+
+        // Use current scroll settings
+        if (autoScroll) {
+            scrollService.scrollToBottom();
+        }
     }
 
     // Helper function to extract the correct HTML chunk without breaking tags
@@ -69,28 +101,21 @@ export class MessageHandler {
         return content && typeof content === 'string' && content.trim().length > 0;
     }
 
-    /**
-     * Renders a message in the chat
-     */
-    static async renderMessage(type, content, responseType) {
-        try {
-            const element = this.createMessageElement(content, type !== 'user', responseType);
-            if (!element) return;
-            this.appendMessage(element);
-        } catch (error) {
-            console.error('Error rendering message:', error);
-        }
-    }
-
     // ============= UI Operations =============
     /**
      * Creates a message DOM element
      */
-    static createMessageElement(content, isBot, type) {
+    static createMessageElement(role, content, type) {
         try {
             const wrapper = document.createElement('div');
-            wrapper.innerHTML = this.templates.message(content, isBot, type);
-            return wrapper.firstElementChild;
+            wrapper.className = `message ${role}`;
+
+            if (type === RESPONSE_TYPES.ERROR) {
+                wrapper.classList.add('error');
+            }
+
+            wrapper.innerHTML = content;
+            return wrapper;
         } catch (error) {
             console.error('Error creating message element:', error);
             return null;
@@ -100,29 +125,30 @@ export class MessageHandler {
     /**
      * Appends a message to the chat container
      */
-    static appendMessage(element) {
-        const container = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
-        if (!container || !element) return;
-
-        const loadingIndicator = container.querySelector('.message-loading');
-        if (loadingIndicator) {
-            container.insertBefore(element, loadingIndicator);
-        } else {
-            container.appendChild(element);
+    static async appendMessage(element) {
+        if (!this.isInitialized || !element) {
+            console.error('Cannot append message: Handler not initialized or invalid element');
+            return;
         }
 
-        // Scroll to the new message
-        this.scrollToBottom(container);
+        // Insert before loading indicator if present
+        const loadingIndicator = this.container.querySelector('.message-loading');
+        if (loadingIndicator) {
+            this.container.insertBefore(element, loadingIndicator);
+        } else {
+            this.container.appendChild(element);
+        }
     }
 
     /**
      * Toggles the loading indicator visibility
      */
     static toggleLoading(show) {
-        const loadingIndicator = document.querySelector('.message-loading');
+        if (!this.isInitialized) return;
+
+        const loadingIndicator = this.container.querySelector('.message-loading');
         if (loadingIndicator) {
             loadingIndicator.style.display = show ? 'flex' : 'none';
-            if (show) this.scrollToBottom(loadingIndicator.parentElement);
         }
     }
 

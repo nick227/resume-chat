@@ -1,0 +1,55 @@
+/* panel */
+
+.panel {
+    background: var(--light-gray);
+    padding: var(--spacing-base);
+    width: fit-content;
+    margin-bottom: 30px;
+    border-radius: var(--radius-md);
+}
+
+.panel.tabs {
+    width: 100%;
+}
+
+
+/* Style the tab header buttons */
+
+.tab-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+.tab-button {
+    padding: 8px 16px;
+    border: none;
+    background: var(--light-gray);
+    cursor: pointer;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tab-button.active {
+    background: var(--dark-gray);
+    color: white;
+}
+
+
+/* Hide all tab content by default */
+
+.tab-content-item {
+    display: none;
+}
+
+.tab-content-item:nth-child(1) {
+    display: block;
+}
+
+
+/* Style for visible tab content */
+
+.tab-content-item.active {
+    display: block;
+}

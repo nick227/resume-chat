@@ -3,35 +3,46 @@ import { MessageHandler } from './handlers/MessageHandler.js';
 import { InputHandler } from './handlers/InputHandler.js';
 import { VoiceHandler } from './handlers/VoiceHandler.js';
 import { ChatButtons } from './handlers/ChatButtons.js';
-import { SocketHandler } from './handlers/SocketHandler.js';
 import { autoMessageLoader } from './services/AutoMessageLoader.js';
+import { PanelHandler } from './handlers/PanelHandler.js';
 
 const initializeChat = () => {
     try {
         utils.elements.clear();
 
-        // Initialize core components first
+        // Initialize core components
         MessageHandler.init();
         ChatButtons.init();
+        PanelHandler.init();
 
-        // Initialize handlers that depend on UI elements
+        // Initialize input handler
         const input = new InputHandler();
         if (!input.isInitialized) {
-            throw new Error('Failed to initialize InputHandler: Required elements not found');
+            throw new Error('Failed to initialize InputHandler');
         }
 
-        // Initialize optional components
+        // Initialize voice handler
         new VoiceHandler();
-        //new SocketHandler();
 
-        // Setup message intervals
-        const intervals = setupMessageIntervals();
+        // Start auto messages
+        autoMessageLoader.init({
+            messages: [{
+                type: 'AUTO',
+                delay: 2,
+                maxRuns: 17,
+                startIndex: 0
+            }, {
+                type: 'RANDOM',
+                delay: 5 * 60 * 1000,
+                maxRuns: 1,
+                startIndex: 0
+            }]
+        });
 
-        // Setup cleanup
+        // Cleanup on unload
         window.addEventListener('unload', () => {
             utils.elements.clear();
             autoMessageLoader.destroy();
-            intervals.forEach(clearInterval);
         });
 
     } catch (error) {
@@ -40,64 +51,6 @@ const initializeChat = () => {
             MessageHandler.addMessage('bot', 'An error occurred while initializing the chat.', 'error');
         }
     }
-};
-
-const createMessageInterval = (config) => {
-    const { type, startIndex = 0, maxIndex, delay, initialDelay = 0 } = config;
-    let messageIndex = startIndex;
-
-    // Initial message if needed
-    if (initialDelay === 0) {
-        loadMessage(type, messageIndex);
-    }
-
-    // Setup interval
-    return setInterval(() => {
-        if (messageIndex >= maxIndex) {
-            clearInterval(interval);
-            return;
-        }
-        loadMessage(type, messageIndex);
-        messageIndex++;
-    }, delay);
-};
-
-const loadMessage = (type, startIndex) => {
-    autoMessageLoader.init({
-        messages: [{
-            type,
-            delay: 0,
-            maxRuns: 1,
-            startIndex
-        }]
-    });
-};
-
-const setupMessageIntervals = () => {
-    // Initial auto message
-    loadMessage('AUTO', 0);
-
-    // Setup intervals for different message types
-    const intervals = [
-        createMessageInterval({
-            type: 'AUTO',
-            startIndex: 2,
-            maxIndex: 20,
-            delay: 90 * 1000
-        }),
-        createMessageInterval({
-            type: 'RANDOM',
-            maxIndex: 6,
-            delay: 2 * 60 * 1000 // 1.5 minutes
-        }),
-        createMessageInterval({
-            type: 'RANDOM',
-            maxIndex: 1,
-            delay: 1.5 * 1000 // 1.5 minutes
-        })
-    ];
-
-    return intervals;
 };
 
 // Initialize when DOM is ready

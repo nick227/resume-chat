@@ -2,7 +2,8 @@
  * Handles scroll behavior across the application
  */
 export class ScrollService {
-    static SCROLL_DELAY = 3000; // 3 seconds delay
+    static SCROLL_DELAY = 200; // 3 seconds delay
+    static SCROLL_THRESHOLD = 100; // Pixels from bottom to trigger scroll
     static instance = null;
 
     constructor() {
@@ -13,7 +14,7 @@ export class ScrollService {
         this.container = null;
         this.isUserScrolling = false;
         this.scrollTimeout = null;
-        this.lastScrollTop = 0;
+        this.autoScrollEnabled = true;
 
         ScrollService.instance = this;
     }
@@ -23,18 +24,18 @@ export class ScrollService {
      */
     init(containerId) {
         this.container = document.getElementById(containerId);
-        if (!this.container) return;
+        if (!this.container) {
+            console.error('Scroll container not found:', containerId);
+            return;
+        }
 
-        // Setup scroll listener
+        // Track user scrolling
+        this.container.addEventListener('wheel', () => this.handleUserScroll(), { passive: true });
+        this.container.addEventListener('touchmove', () => this.handleUserScroll(), { passive: true });
+
+        // Check scroll position
         this.container.addEventListener('scroll', () => {
-            const currentScroll = this.container.scrollTop;
-
-            // Check if user scrolled up
-            if (currentScroll < this.lastScrollTop) {
-                this.handleUserScroll();
-            }
-
-            this.lastScrollTop = currentScroll;
+            this.handleUserScroll();
         });
     }
 
@@ -43,37 +44,45 @@ export class ScrollService {
      */
     handleUserScroll() {
         this.isUserScrolling = true;
-
-        // Clear any existing timeout
         if (this.scrollTimeout) {
             clearTimeout(this.scrollTimeout);
         }
-
-        // Set new timeout
         this.scrollTimeout = setTimeout(() => {
             this.isUserScrolling = false;
         }, ScrollService.SCROLL_DELAY);
+    }
+
+    setAutoScroll(enabled) {
+        this.autoScrollEnabled = enabled;
+        console.log('Auto scroll:', enabled ? 'enabled' : 'disabled');
     }
 
     /**
      * Scroll to bottom if allowed
      */
     scrollToBottom() {
-        if (!this.container || this.isUserScrolling) return;
+        if (!this.container) {
+            console.log('No container to scroll');
+            return;
+        }
+        if (this.isUserScrolling) {
+            console.log('Scroll prevented: User is scrolling');
+            return;
+        }
+        if (!this.autoScrollEnabled) {
+            console.log('Scroll prevented: Auto scroll disabled');
+            return;
+        }
 
-        // Use double requestAnimationFrame for reliability
+        console.log('Scrolling to bottom...');
+        const scrollHeight = this.container.scrollHeight;
+
         requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                try {
-                    this.container.scrollTo({
-                        top: this.container.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                } catch (error) {
-                    // Fallback for older browsers
-                    this.container.scrollTop = this.container.scrollHeight;
-                }
+            this.container.scrollTo({
+                top: scrollHeight,
+                behavior: 'smooth'
             });
+            console.log('Scroll complete');
         });
     }
 }

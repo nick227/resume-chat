@@ -26,7 +26,7 @@ class OpenAIService {
 
         // Config flags
         this.config = {
-            includeHistory: false, // Toggle chat history
+            includeHistory: true, // Toggle chat history
             maxHistoryLength: 5 // Max number of previous messages to include
         };
     }

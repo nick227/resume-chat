@@ -94,8 +94,7 @@ export class ChatAPI {
     static getSessionId() {
         const sessionId = localStorage.getItem('chatSessionId');
         if (!sessionId) {
-            console.warn('No WebSocket session ID found');
-            throw new Error('WebSocket session not established');
+            return null;
         }
         return sessionId;
     }

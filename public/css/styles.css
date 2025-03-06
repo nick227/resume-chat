@@ -80,6 +80,12 @@ img {
     max-width: 100%;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 
 /* Chat controls */
 
@@ -472,6 +478,7 @@ img {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .col {

@@ -1,65 +1,91 @@
-const AUTO_MESSAGES = [{
-        type: 'chat',
-        message: `<div>
+const AUTO_MESSAGES = [
+    /*{
+            type: 'chat',
+            message: `<div>
 
-  <!-- Single Column Section -->
-  <div class="panel">
-    <h1 style="">Hi there. I am Nick.</h1>
-    <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">Hello! I am <span style="font-weight: bold; color: #007BFF;">Nick</span>, a senior software solutions engineer. I specialize in creating innovative, fast, and beautiful solutions for organizations. I have a proven track record, including leading a product to market at <span style="font-weight: bold; color: #007BFF;">CISCO</span>. With a passion for doing things the right way, I am committed to delivering top-quality results. <a target="_blank" href="/uploads/nick-rios-resume.pdf"  class="chat-link">
-        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
-            <path fill="#dc3545" d="M12,16L19.36,10.27L21,9L12,2L3,9L4.63,10.27M12,18.54L4.62,12.81L3,14.07L12,21.07L21,14.07L19.37,12.8L12,18.54Z"/>
-        </svg>
-            Download Resume (PDF)
-        </a></p>
-  </div>
+      <!-- Single Column Section -->
+      <div class="panel">
+        <h1 style="">Hi there. I am Nick.</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">Hello! I am <span style="font-weight: bold; color: #007BFF;">Nick</span>, a senior software solutions engineer. I specialize in creating innovative, fast, and beautiful solutions for organizations. I have a proven track record, including leading a product to market at <span style="font-weight: bold; color: #007BFF;">CISCO</span>. With a passion for doing things the right way, I am committed to delivering top-quality results. <a target="_blank" href="/uploads/nick-rios-resume.pdf"  class="chat-link">
+            <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+                <path fill="#dc3545" d="M12,16L19.36,10.27L21,9L12,2L3,9L4.63,10.27M12,18.54L4.62,12.81L3,14.07L12,21.07L21,14.07L19.37,12.8L12,18.54Z"/>
+            </svg>
+                Download Resume (PDF)
+            </a></p>
+      </div>
 
-  <!-- Two Columns Section -->
-  <div style="display: flex; gap: 20px;">
-    <div class="panel">
-      <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Experience & Expertise</h2>
-      <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">As a <span style="font-weight: bold; color: #007BFF;">full-stack developer</span>, I bring a wealth of experience to the table. I have a solid IT background and real-world design experience. This blend of skills allows me to deliver comprehensive, well-rounded solutions that meet the needs of both technical and non-technical stakeholders.</p>
+      <!-- Two Columns Section -->
+      <div style="display: flex; gap: 20px;">
+        <div class="panel">
+          <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Experience & Expertise</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">As a <span style="font-weight: bold; color: #007BFF;">full-stack developer</span>, I bring a wealth of experience to the table. I have a solid IT background and real-world design experience. This blend of skills allows me to deliver comprehensive, well-rounded solutions that meet the needs of both technical and non-technical stakeholders.</p>
+        </div>
+        <div class="panel">
+          <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Automation & AI</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">I am all in on automation and AI. I use <span style="font-weight: bold; color: #007BFF;">n8n</span> regularly and have recently built AI automations in <span style="font-weight: bold; color: #007BFF;">Node.js</span>, <span style="font-weight: bold; color: #007BFF;">Python</span>, and even <span style="font-weight: bold; color: #007BFF;">PHP</span>. These tools help me streamline processes and create solutions that drive real value.</p>
+        </div>
+      </div>
+
+      <!-- Single Column Section -->
+      <div class="panel">
+        <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Try the "Start a Call" button to chat with my AI agent. </h2>
+        <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">It uses ElevenLabs API and it\s not bad!</p>
+      </div>
+
     </div>
-    <div class="panel">
-      <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Automation & AI</h2>
-      <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">I am all in on automation and AI. I use <span style="font-weight: bold; color: #007BFF;">n8n</span> regularly and have recently built AI automations in <span style="font-weight: bold; color: #007BFF;">Node.js</span>, <span style="font-weight: bold; color: #007BFF;">Python</span>, and even <span style="font-weight: bold; color: #007BFF;">PHP</span>. These tools help me streamline processes and create solutions that drive real value.</p>
-    </div>
-  </div>
-
-  <!-- Single Column Section -->
-  <div class="panel">
-    <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Try the "Start a Call" button to chat with my AI agent. </h2>
-    <p style="font-size: 1.1rem; margin-bottom: 20px; text-align: justify; line-height: 1.6;">It uses ElevenLabs API and it\s not bad!</p>
-  </div>
-
-</div>
-<p class="">I am seeking a company that embraces AI as a new part of their integrated systems. </p>
-`,
-        options: [],
-        options: ['I am hiring for an amazing opportunity!'],
-        buttons: ['Tell me about Nick', 'What are his strengths?', 'What is his favorite tech stack?'],
-    },
+    <p class="">I am seeking a company that embraces AI as a new part of their integrated systems. </p>
+    `,
+            options: [],
+            options: ['I am hiring for an amazing opportunity!'],
+            buttons: ['Tell me about Nick', 'What are his strengths?', 'What is his favorite tech stack?'],
+        },
+        {
+            type: 'chat',
+            message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
+            <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
+                <path fill="#dc3545" d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"/>
+            </svg>
+                Email Me
+        </div>
+            </a>`,
+            options: []
+        },
+        {
+            type: 'chat',
+            message: `<div class="row">
+        <div class="col col-25"><img src="https://picsum.photos/200/200" /></div>
+        <div class="col col-75">Amazing UI/UX design is simple. User experiences should be intuitive and fast. Reducing clicks and prioritizing core functionality is key to success. Great projects need great support. Ambiguity in the designs shows up in the code. Usability, alignment and consistency is my priority. I like using low-fidelity tools like Google Slides. A website is a tool to do something.</div>
+        </div>`,
+            options: []
+        },
+        {
+            type: 'chat',
+            message: '<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>',
+            options: []
+        },*/
     {
         type: 'chat',
-        message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
-        <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
-            <path fill="#dc3545" d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"/>
-        </svg>
-            Email Me
-    </div>
-        </a>`,
-        options: []
-    },
-    {
-        type: 'chat',
-        message: `<div class="row">
-    <div class="col col-25"><img src="https://picsum.photos/200/200" /></div>
-    <div class="col col-75">Amazing UI/UX design is simple. User experiences should be intuitive and fast. Reducing clicks and prioritizing core functionality is key to success. Great projects need great support. Ambiguity in the designs shows up in the code. Usability, alignment and consistency is my priority. I like using low-fidelity tools like Google Slides. A website is a tool to do something.</div>
-    </div>`,
-        options: []
-    },
-    {
-        type: 'chat',
-        message: '<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>',
+        message: `<h2>Some of my AI content projects:</h2><div class="panel row">
+        <ul class="col-50">
+<li><a href="https://ai-delphi.com">ai-delphi.com</a></li>
+<li><a href="https://ai-super-lizard.com">ai-super-lizard.com</a></li>
+<li><a href="https://ai-webdev.com">ai-webdev.com</a></li>
+<li><a href="https://ai-workflows.net">ai-workflows.net</a></li>
+<li><a href="https://autocontentstudio.com">autocontentstudio.com</a></li>
+<li><a href="https://backslash.cash">backslash.cash</a></li>
+<li><a href="https://dollar-stocks.com">dollar-stocks.com</a></li>
+</ul>
+<ul class="col-50">
+<li><a href="https://fanfic-history.com">fanfic-history.com</a></li>
+<li><a href="https://gizm0s.com">gizm0s.com</a></li>
+<li><a href="https://hatsyshirtsy.com">hatsyshirtsy.com</a></li>
+<li><a href="https://loikos.com">loikos.com</a></li>
+<li><a href="https://nicksprompts.com">nicksprompts.com</a></li>
+<li><a href="https://smartycourses.com">smartycourses.com</a></li>
+<li><a href="https://songdeconstruct.com">songdeconstruct.com</a></li>
+<li><a href="https://spoiledscripts.com">spoiledscripts.com</a></li>
+</ul>
+        </div>`,
         options: []
     },
     {

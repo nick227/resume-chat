@@ -63,12 +63,12 @@ export class InputHandler {
 
             // Update chat buttons if available
             if (response.options) {
-                ChatButtons.insertButtons(response.options);
+                ChatButtons.updateButtons(response.options);
             }
 
             // Update chat buttons if available
             if (response.buttons) {
-                ChatButtons.updateButtons(response.buttons);
+                ChatButtons.insertButtons(response.buttons);
             }
 
         } catch (error) {
@@ -91,6 +91,10 @@ export class InputHandler {
     updateUIState(processing) {
         this.inputElement.disabled = processing;
         this.sendButton.disabled = processing;
+        // disable ALL buttons on page
+        document.querySelectorAll('button').forEach(button => {
+            button.disabled = processing;
+        });
     }
 
     /**
@@ -125,7 +129,6 @@ export class InputHandler {
             try {
                 // Wait for message to be submitted
                 await this.submitMessage(e.detail.text);
-                console.log('Message submitted successfully');
             } catch (error) {
                 console.error('Error submitting message:', error);
             }

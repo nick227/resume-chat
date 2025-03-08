@@ -12,6 +12,7 @@ import { scrollService } from '../services/ScrollService.js';
 export class MessageHandler {
     static isInitialized = false;
     static container = null;
+    static buttonSet = null;
 
     // ============= Message Templates =============
     static templates = {
@@ -46,7 +47,6 @@ export class MessageHandler {
      * @param {boolean} autoScroll - Whether to automatically scroll to the bottom
      */
     static async addMessage(role, content, type = RESPONSE_TYPES.TEXT, autoScroll = true) {
-        console.log('Adding message:', { role, content, type, autoScroll });
 
         if (!this.isInitialized) {
             throw new Error('MessageHandler not initialized');
@@ -64,7 +64,6 @@ export class MessageHandler {
         }
 
         // Set scroll behavior before appending
-        console.log('Setting scroll behavior:', autoScroll);
         await this.appendMessage(messageEl);
 
         // Use current scroll settings
@@ -145,9 +144,13 @@ export class MessageHandler {
      */
     static toggleLoading(show) {
         if (!this.isInitialized) return;
+        this.buttonSet = this.container.querySelector('.buttons-set');
+        console.log('buttonSet');
+        console.log(this.buttonSet);
 
         const loadingIndicator = this.container.querySelector('.message-loading');
         if (loadingIndicator) {
+            this.buttonSet.style.display = show ? 'none' : 'flex';
             loadingIndicator.style.display = show ? 'flex' : 'none';
         }
     }

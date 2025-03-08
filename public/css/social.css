@@ -1,0 +1,39 @@
+.social-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    background-color: var(--chat-container-background-color);
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 0.5s;
+}
+
+.social-bar img {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+}
+
+.social-bar a img {
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.social-bar a:nth-child(2) img {
+    animation-delay: 0.3s;
+}
+
+.social-bar a:nth-child(3) img {
+    animation-delay: 0.1s;
+}
+
+.social-bar a:nth-child(4) img {
+    animation-delay: 0.6s;
+}
+
+.social-bar a:nth-child(5) img {
+    animation-delay: 0.8s;
+}

@@ -54,18 +54,6 @@ export class ChatButtons {
         return buttonSet;
     }
 
-    static animateButtonSet(buttonSet) {
-        requestAnimationFrame(() => {
-            buttonSet.style.opacity = '0';
-            buttonSet.style.transform = 'translateY(-20px)';
-
-            requestAnimationFrame(() => {
-                buttonSet.style.opacity = '1';
-                buttonSet.style.transform = 'translateY(0)';
-            });
-        });
-    }
-
     static insertButtons(options) {
         if (!this.chatMessagesContainer || !Array.isArray(options) || !options.length) return;
 
@@ -80,7 +68,6 @@ export class ChatButtons {
         }
 
         this.setupIntersectionObserver(buttonSet);
-        this.animateButtonSet(buttonSet);
     }
 
     static updateButtons(options) {
@@ -90,7 +77,6 @@ export class ChatButtons {
         this.container.innerHTML = '';
         this.container.appendChild(buttonSet);
         this.setupIntersectionObserver(buttonSet);
-        this.animateButtonSet(buttonSet);
     }
 
     static setupIntersectionObserver(container) {

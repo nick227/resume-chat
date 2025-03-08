@@ -125,9 +125,38 @@ Focus on building scalable, efficient systems that can adapt to growing demands.
 END NICK'S RESUME
 ---------------------------------------------------------------------------------------------------------
 
+
 ---------------------------------------------------------------------------------------------------------
 QA WITH NICK:
 ---------------------------------------------------------------------------------------------------------
+
+Nick - Senior Software Engineer
+
+I build fast, scalable solutions and have a strong record of leading and delivering large and small projects. I specialize in collaboration and producing great user experiences.
+Digital Harbor
+
+    Led the streamlining of multiple Angular projects into a single component library and monorepo, reducing build time and bugs.
+    Developed an API for image search, integrating Google, Unsplash, Giphy, Pixabay, and Pexels.
+    Built a Prompt Template Manager for launching bots as APIs, with OpenLlama for document indexing and Pinecone for vector search.
+    Developed a solution for generating and modifying HTML with natural language using Set-Forms' WYSIWYG editor.
+
+CISCO
+
+    First full-stack engineer for the Single Pane of Glass (SPOG) product, responsible for implementation of design and functionality.
+    Built robust front-end with Angular and Node.js REST APIs, integrating ElasticSearch and Neo4j with legacy systems.
+    Led offshore teams, and contributed to the company's UI component library, earning an award from Senior Leadership.
+    Conducted daily scrums, estimated features, and led development of a full Neo4j license with the company’s logo featured on Neo4j’s homepage.
+
+MultiView
+
+    Led the development of an award-winning homepage and high-fidelity mock-ups.
+    Streamlined processes by automating tasks like email campaigns and data analysis.
+    Developed a commercial HTML5 streaming platform for partner videos, conducted A/B testing, and led SEO analysis.
+
+Nexstar
+
+    Worked with 60+ local TV stations to integrate their websites into a unified PHP-based platform using Joomla.
+    Created an admin interface for content management and integrated ad management systems.
 
 Tell me about your experience leading development teams.
 "As a team lead at Digital Harbor, I led multiple teams, helping streamline Set Forms development and successfully launching a product that was struggling. I emphasized a culture of over-communication, shared ownership, and thorough planning, setting a strong example for my teams."
@@ -191,6 +220,58 @@ Balancing Speed & Quality
 How do you balance delivering fast with writing maintainable code ?
     "I deliver manageable, well-defined pieces and iterate on them. We avoid over-engineering and refactor as needed during the development process to ensure the code remains maintainable while meeting deadlines."
     Approach: Delivered manageable pieces, iterated on features, avoided over-engineering, and ensured that each piece was maintainable while meeting deadlines.
+
+Some of my AI content projects:
+
+    ai-delphi.com
+    ai-super-lizard.com
+    ai-webdev.com
+    ai-workflows.net
+    autocontentstudio.com
+    backslash.cash
+    dollar-stocks.com
+    promptgeometry.com
+    fanfic-history.com
+    gizm0s.com
+    hatsyshirtsy.com
+    loikos.com
+    nicksprompts.com
+    smartycourses.com
+    songdeconstruct.com
+    spoiledscripts.com
+
+Some of my AI services:
+
+    Image & Media Processing
+        AI Image Request
+        Image Analyze Bot
+        PDF Analysis Bot
+    Automation & Notifications
+        Teams Notification Bot
+        Conversation Summary Bot
+        Welcome Message Bot
+    Intent & Conversations
+        Intent Bots
+    Web Development & Code Generation
+        Page Edit Chatbot (Form Builder)
+        HTML Generator
+        Field HTML Generator
+        Sections Generator
+        Template Generator
+        Theme Generator
+        Idea to HTML Bot
+        Angular Component Generator
+        NgRx Script Generator
+    Translation & Language Processing
+        Translate to Spanish
+        Prompt Ideas Bot
+        Boost Prompt Bot
+    Code Review & Optimization
+        Code Review Bot
+        MR Review Bot
+    Utility
+        Example List Builder
+
 
 ---------------------------------------------------------------------------------------------------------
 END QA WITH NICK

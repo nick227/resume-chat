@@ -1,0 +1,76 @@
+button {
+    padding: var(--spacing-md);
+    color: var(--black);
+    outline: 2px solid var(--ultra-light-blue);
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    cursor: pointer;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-buttons {
+    height: var(--chat-buttons-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-set {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: var(--main-container-width);
+    margin: 10px auto;
+}
+
+.chat-controls .chat-button {
+    width: 32.5%;
+}
+
+.chat-messages .buttons-set {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+}
+
+.chat-messages .chat-button {
+    background-color: transparent;
+    color: var(--black);
+    width: auto;
+    width: 32.5%;
+}
+
+.chat-container .chat-button {
+    background-color: var(--light-gray);
+    color: var(--black);
+}
+
+.chat-microphone:hover,
+.chat-send:hover,
+.chat-button:hover {
+    outline-color: var(--green);
+}
+
+.chat-microphone:active,
+.chat-send:active,
+.chat-button:active {
+    background-color: var(--active-color);
+}
+
+.chat-button.animate-in {
+    animation: buttonSlideIn 0.5s ease-out forwards;
+}
+
+.more-button,
+.show-all-button {
+    outline: none;
+    background-color: var(--light-gray);
+    color: var(--black);
+    width: auto;
+}

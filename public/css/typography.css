@@ -1,0 +1,20 @@
+h1 {
+    font-family: Boogaloo;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 52px;
+    font-family: var(--m3-ui-family), "-apple-system", "BlinkMacSystemFont", sans-serif;
+    letter-spacing: normal;
+}
+
+p {
+    margin: 10px 0 !important;
+}
+
+.accent-text {
+    color: var(--accent-text);
+}
+
+.hidden {
+    display: none;
+}

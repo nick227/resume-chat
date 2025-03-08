@@ -18,7 +18,7 @@ export class AutoMessageLoader {
     constructor() {
         if (AutoMessageLoader.instance) return AutoMessageLoader.instance;
         this.taskGroups = new Map();
-        this.isLoading = false; // Add loading state
+        this.isLoading = false;
         AutoMessageLoader.instance = this;
     }
 
@@ -53,7 +53,7 @@ export class AutoMessageLoader {
                 const validatedData = ChatAPI.validateResponse(data);
 
                 if (validatedData.success) {
-                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, false);
+                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, true);
 
                     if (validatedData.options && validatedData.options.length) {
                         ChatButtons.insertButtons(validatedData.options);
@@ -75,70 +75,52 @@ export class AutoMessageLoader {
         };
     }
 
-    /**
-     * Initialize with message configurations
-     */
-    init(config = {
-        messages: [
-            { type: 'AUTO', delay: 3000, maxRuns: 3, startIndex: 0 }
-        ]
-    }) {
-        this.taskGroups.clear();
-
-        config.messages.forEach((messageConfig, groupIndex) => {
-            const { type, delay = 3000, maxRuns = 0, startIndex = 0 } = messageConfig;
-
-            // For infinite runs, just create one task that repeats
-            const task = this.createMessageTask(type, delay, startIndex);
-            if (task) {
-                this.taskGroups.set(`group-${type}-${groupIndex}`, {
-                    task,
-                    currentRuns: 0,
-                    maxRuns,
-                    delay
-                });
-            }
-        });
-
-        // Start all task groups
-        this.taskGroups.forEach((group, groupId) => {
-            this.runSequence(groupId);
-        });
-
-        return this;
-    }
-
-    /**
-     * Run tasks in sequence for a group
-     */
-    async runSequence(groupId) {
-        const group = this.taskGroups.get(groupId);
-        if (!group) return;
-
-        // Check if we should stop
-        if (group.maxRuns > 0 && group.currentRuns >= group.maxRuns) {
+    init({ messages }) {
+        if (!Array.isArray(messages)) {
+            console.error('Messages must be an array');
             return;
         }
 
-        try {
-            await group.task();
-            group.currentRuns++;
+        // Create separate task sequences for each message config
+        messages.forEach((config, index) => {
+            console.log(`Initializing message group ${index}:`, config);
 
-            // Continue if infinite or not reached max
-            if (group.maxRuns === 0 || group.currentRuns < group.maxRuns) {
-                this.runSequence(groupId);
-            }
-        } catch (error) {
-            console.error(`Sequence error for ${groupId}:`, error);
-        }
+            const { type, delay, maxRuns, startIndex = 0, startDelay = 0 } = config;
+
+            // Create task sequence
+            const task = this.createMessageTask(type, delay, startIndex);
+            if (!task) return;
+
+            // Setup task runner with its own counter
+            let runCount = 0;
+            const runner = async() => {
+                if (runCount >= maxRuns) {
+                    console.log(`Task group ${index} completed ${maxRuns} runs`);
+                    return;
+                }
+
+                await task();
+                runCount++;
+
+                // Schedule next run after delay
+                setTimeout(runner, delay);
+            };
+
+            // Store task group
+            this.taskGroups.set(index, {
+                config,
+                runner,
+                runCount: 0
+            });
+
+            // Start the sequence with initial delay
+            console.log(`Starting task group ${index} with initial delay ${startDelay}ms`);
+            setTimeout(runner, startDelay);
+        });
     }
 
-    /**
-     * Cleanup
-     */
     destroy() {
         this.taskGroups.clear();
-        this.isLoading = false;
     }
 }
 

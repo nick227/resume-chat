@@ -1,6 +1,7 @@
 const { OpenAI } = require('openai');
 const { buildConfig } = require('../config/prompts');
 const { AUTO_MESSAGES } = require('../config/AUTO_MESSAGES');
+const { Message, MessageType } = require('../models/Message');
 
 class OpenAIService {
     constructor() {
@@ -188,6 +189,17 @@ class OpenAIService {
             ...this.config,
             ...newConfig
         };
+    }
+
+    async saveMessage(userId, message, role, model, tokens, sessionId) {
+        await Message.saveMessage({
+            userId: userId,
+            message: message,
+            role: role,
+            model: model,
+            tokens: tokens,
+            sessionId: sessionId
+        });
     }
 }
 

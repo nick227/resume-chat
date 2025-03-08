@@ -12,7 +12,7 @@ export const CONSTANTS = {
     },
     MESSAGES: {
         ERROR: 'Sorry, there was an error processing your message.',
-        VOICE_ERROR: 'Voice recognition is not supported in your browser. Please use a modern browser like Chrome, Edge, or Safari for voice features.'
+        VOICE_ERROR: 'Voice recognition is not supported in your browser. Please try a browser like Chrome, Edge, or Safari for voice features. However voice assistant will work!'
     },
     CLASSES: {
         LISTENING: 'listening',

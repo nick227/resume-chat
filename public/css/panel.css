@@ -4,12 +4,13 @@
     background: var(--light-gray);
     padding: var(--spacing-base);
     width: fit-content;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border-radius: var(--radius-md);
 }
 
-.panel.tabs {
+.tabs {
     width: 100%;
+    transition: all 0.3s ease;
 }
 
 
@@ -27,8 +28,7 @@
     border: none;
     background: var(--light-gray);
     cursor: pointer;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
 }
 
 .tab-button.active {
@@ -52,4 +52,8 @@
 
 .tab-content-item.active {
     display: block;
+}
+
+.image-widget {
+    width: 100px;
 }

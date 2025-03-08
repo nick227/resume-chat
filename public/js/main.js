@@ -5,6 +5,7 @@ import { VoiceHandler } from './handlers/VoiceHandler.js';
 import { ChatButtons } from './handlers/ChatButtons.js';
 import { autoMessageLoader } from './services/AutoMessageLoader.js';
 import { PanelHandler } from './handlers/PanelHandler.js';
+import { ImageHandler } from './handlers/ImageHandler.js';
 
 const initializeChat = () => {
     try {
@@ -14,6 +15,7 @@ const initializeChat = () => {
         MessageHandler.init();
         ChatButtons.init();
         PanelHandler.init();
+        ImageHandler.init();
 
         // Initialize input handler
         const input = new InputHandler();
@@ -28,12 +30,14 @@ const initializeChat = () => {
         autoMessageLoader.init({
             messages: [{
                 type: 'AUTO',
-                delay: 2,
-                maxRuns: 17,
+                startDelay: 0,
+                delay: 0,
+                maxRuns: 1,
                 startIndex: 0
             }, {
                 type: 'RANDOM',
-                delay: 5 * 60 * 1000,
+                delay: 60 * 1000,
+                startDelay: 35000,
                 maxRuns: 1,
                 startIndex: 0
             }]

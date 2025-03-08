@@ -1,0 +1,53 @@
+:root {
+    /* Colors */
+    --primary-color: #fff;
+    --body-background-color: #fff;
+    --chat-container-background-color: #fff;
+    --header-background-color: #fff;
+    --chat-messages-background-color: #fff;
+    --chat-input-background-color: #f5f5f5;
+    --accent-color: #dc5d03;
+    --chat-bubble-user: #f5f5f5;
+    --chat-bubble-bot: #fff;
+    --text-primary: #263238;
+    --text-secondary: #546e7a;
+    --white: #ffffff;
+    --green: #09c009;
+    --light-gray: #f8f9fa;
+    --dark-gray: #333;
+    --mid-gray: hsla(0, 0%, 50%, 0.592);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-strong: rgba(0, 0, 0, 0.15);
+    --shadow-color-light: rgba(0, 0, 0, 0.05);
+    --button-background-color: #456555;
+    --semi-transparent-white: rgba(255, 255, 255, 0.35);
+    --ultra-light-blue: rgb(10, 206, 255);
+    --accent-text: #007BFF;
+    /* Shadows */
+    --shadow-default: 0 2px 6px var(--shadow-color);
+    --shadow-strong: 0 4px 12px var(--shadow-color-strong);
+    --shadow-light: 0 2px 4px var(--shadow-color-light);
+    /* Border radius */
+    --radius-full: 50%;
+    --radius-lg: 1.5rem;
+    --radius-md: 1rem;
+    --radius-sm: 0.25rem;
+    /* Font sizes */
+    --font-size-base: 1rem;
+    /* Transitions */
+    --transition-default: 0.2s;
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 0.8rem;
+    --spacing-base: 1rem;
+    --spacing-lg: 1.5rem;
+    /* Sizes */
+    --dot-size: 8px;
+    --main-container-width: 640px;
+    --header-height: 61.3px;
+    --chat-messages-height: 75vh;
+    --chat-buttons-height: 8vh;
+    --chat-input-height: 10vh;
+}

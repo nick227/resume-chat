@@ -1,0 +1,128 @@
+.chat-controls {
+    width: var(--main-container-width);
+    margin: 0 auto;
+}
+
+.chat-messages {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+    background-color: var(--chat-messages-background-color);
+    height: var(--chat-messages-height);
+    width: 100%;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.message {
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    width: var(--main-container-width);
+    max-width: 100%;
+    margin: 10px auto;
+}
+
+.message.user {
+    background-color: transparent;
+    white-space: pre;
+    font-size: 2em;
+    padding: 2em 0;
+    position: relative;
+}
+
+.message.user::before {
+    content: "You:";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    margin-top: 25px;
+}
+
+.message.bot {
+    background-color: var(--chat-bubble-bot);
+    align-self: flex-start;
+    border-radius: none;
+    box-shadow: none;
+    border: none;
+}
+
+.chat-input-section {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    height: var(--chat-input-height);
+}
+
+.chat-input-section:focus-within {
+    box-shadow: var(--shadow-default);
+}
+
+.chat-input {
+    flex: 1;
+    padding: var(--spacing-md) var(--spacing-base);
+    outline: none;
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-default);
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    border: none;
+    outline: none;
+    background: transparent;
+    resize: none;
+    box-shadow: var(--shadow-light);
+    background-color: var(--chat-input-background-color);
+    border: 1px solid var(--border-color);
+}
+
+.chat-input-buttons {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 20%;
+    justify-content: space-between;
+}
+
+.chat-microphone,
+.chat-send {
+    width: 100%;
+    border: none;
+    border-radius: var(--radius-sm);
+    background-color: var(--light-gray);
+    color: var(--black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-default);
+}
+
+.chat-send {
+    height: 70%;
+}
+
+.chat-microphone {
+    height: 25%;
+    transition: all var(--transition-default);
+}
+
+.chat-microphone.recording {
+    background-color: #dc3545;
+    animation: recordingPulse 2s infinite;
+}
+
+.chat-microphone.recording:hover {
+    background-color: #c82333;
+}
+
+.chat-microphone .material-icons {
+    transition: all var(--transition-default);
+}

@@ -1,10 +1,11 @@
 import { autoMessageLoader } from '../services/AutoMessageLoader.js';
+import { CONSTANTS } from '../constants.js';
 /**
  * Handles dynamic tab panels in chat messages
  */
 export class PanelHandler {
     static currentIndex = 2;
-    static maxIndex = 18;
+    static maxIndex = 14;
     static chatMessages = null;
     static panel = null;
     static showMoreButton = null;
@@ -25,6 +26,8 @@ export class PanelHandler {
         this.chatMessages.addEventListener('click', (event) => {
             const link = event.target.closest('.show-more-link');
             if (!link) return;
+
+            document.querySelector(CONSTANTS.SELECTORS.chatMessages).style.justifyContent = 'flex-start';
 
             const nextElement = link.nextElementSibling;
             if (!nextElement) return;

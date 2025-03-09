@@ -135,27 +135,22 @@ const AUTO_MESSAGES = [{
         message: `
       <!-- Two Columns Section -->
       <div style="display: flex; gap: 20px;">
-        <div class="panel">
-          <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Expertise</h2>
-          <p>As a <span style="font-weight: bold; color: #007BFF;">full-stack developer</span>, I bring a wealth of experience to the table. I have a solid IT background and real-world design experience. I have a track record of success delivering world-class solutions for organizations.</p>
-        </div>
-        <div class="panel">
-          <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #333;">Automation</h2>
-          <p>I am all in on automation and AI. I use <span style="font-weight: bold; color: #007BFF;">n8n</span> regularly and have recently built AI automations in <span style="font-weight: bold; color: #007BFF;">Node.js</span>, <span style="font-weight: bold; color: #007BFF;">Python</span>, and even <span style="font-weight: bold; color: #007BFF;">PHP</span>. These tools help me streamline processes and create solutions that drive real value.</p>
-        </div>
-      </div>
-
       <!-- Single Column Section -->
-      <div class="panel full-width">
-        <h2>Click "Start a Call" to talk to my AI assistant</h2>
-        <p>It uses ElevenLabs API and it\s not bad!</p>
+      <div class="full-width">
+        <h2 class="panel">Click "Start a Call"</h2>
+        <p>To talk to my AI assistant</p>
       </div>
-
     </div>
-    <p>I am seeking a company that embraces AI as a new part of their integrated systems. </p>
     `,
         options: [],
-    }, {
+    },
+    {
+        type: 'chat',
+        message: `
+<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>`,
+        options: []
+    },
+    {
         type: 'chat',
         message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
 <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
@@ -164,11 +159,6 @@ const AUTO_MESSAGES = [{
     Email Me
 </div>
 </a>`,
-        options: []
-    },
-    {
-        type: 'chat',
-        message: '<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>',
         options: []
     },
     {
@@ -454,11 +444,8 @@ const AUTO_MESSAGES = [{
         <div style="width: 70%; padding: 0 2%;">
         <p>The source code for this chat system:</p><a target="_blank" href="https://github.com/nick227/resume-chat">https://github.com/nick227/resume-chat</a>
         </div>
-        </div>`,
-        options: []
-    }, {
-        type: 'chat',
-        message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
+        </div>
+        <a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
 <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
     <path fill="#dc3545" d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"/>
 </svg>

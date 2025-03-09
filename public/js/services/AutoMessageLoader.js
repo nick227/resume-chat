@@ -53,7 +53,7 @@ export class AutoMessageLoader {
                 const validatedData = ChatAPI.validateResponse(data);
 
                 if (validatedData.success) {
-                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, true);
+                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, false);
 
                     if (validatedData.options && validatedData.options.length) {
                         ChatButtons.insertButtons(validatedData.options);

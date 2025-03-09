@@ -1,15 +1,15 @@
 button {
     padding: var(--spacing-md);
     color: var(--black);
-    outline: 2px solid var(--ultra-light-blue);
     border: none;
     border-radius: var(--radius-md);
-    background-color: transparent;
     cursor: pointer;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--light-gray);
+    color: var(--black);
 }
 
 .chat-buttons {
@@ -46,11 +46,6 @@ button {
     width: 32.5%;
 }
 
-.chat-container .chat-button {
-    background-color: var(--light-gray);
-    color: var(--black);
-}
-
 .chat-microphone:hover,
 .chat-send:hover,
 .chat-button:hover {
@@ -61,6 +56,7 @@ button {
 .chat-send:active,
 .chat-button:active {
     background-color: var(--active-color);
+    outline: 2px solid var(--ultra-light-blue);
 }
 
 .chat-button.animate-in {

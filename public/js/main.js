@@ -34,12 +34,6 @@ const initializeChat = () => {
                 delay: 0,
                 maxRuns: 1,
                 startIndex: 0
-            }, {
-                type: 'RANDOM',
-                delay: 60 * 1000,
-                startDelay: 35000,
-                maxRuns: 1,
-                startIndex: 0
             }]
         });
 

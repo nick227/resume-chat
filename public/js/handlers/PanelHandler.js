@@ -3,7 +3,7 @@ import { autoMessageLoader } from '../services/AutoMessageLoader.js';
  * Handles dynamic tab panels in chat messages
  */
 export class PanelHandler {
-    static currentIndex = 1;
+    static currentIndex = 2;
     static maxIndex = 18;
     static chatMessages = null;
     static panel = null;

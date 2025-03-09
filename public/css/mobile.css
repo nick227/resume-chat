@@ -13,6 +13,7 @@
         margin-top: 200px;
         overflow-x: hidden;
         width: 100%;
+        justify-content: flex-start;
     }
     .title {
         font-size: 30px;

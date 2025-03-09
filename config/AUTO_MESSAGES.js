@@ -8,7 +8,7 @@ const AUTO_MESSAGES = [{
         <p>
         Senior software solutions engineer with a strong record of leading and delivering innovative, fast, and scalable products. Experienced in launching large projects and dozens of smaller sites. Passionate about collaboration and creating great user experiences.
         </p>
-        <div style="max-width: 230px; margin-top: 20px;">
+        <div style="white-space: nowrap;">
         <a target="_blank" href="/uploads/nick-rios-resume.pdf"  class="chat-link">
             <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
                 <path fill="#dc3545" d="M12,16L19.36,10.27L21,9L12,2L3,9L4.63,10.27M12,18.54L4.62,12.81L3,14.07L12,21.07L21,14.07L19.37,12.8L12,18.54Z"/>

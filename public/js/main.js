@@ -32,7 +32,7 @@ const initializeChat = () => {
                 type: 'AUTO',
                 startDelay: 0,
                 delay: 0,
-                maxRuns: 1,
+                maxRuns: 2,
                 startIndex: 0
             }]
         });

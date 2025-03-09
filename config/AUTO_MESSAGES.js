@@ -141,18 +141,8 @@ const AUTO_MESSAGES = [{
         <p>To talk to my AI assistant</p>
       </div>
     </div>
-    `,
-        options: [],
-    },
-    {
-        type: 'chat',
-        message: `
-<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>`,
-        options: []
-    },
-    {
-        type: 'chat',
-        message: `<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
+<div class="panel">Why spend all day doing something, when you could spend all month automating it?</div>
+<a target="_blank" href="mailto:nicholas.jay.rios@gmail.com" class="chat-link"><div>
 <svg style="width: 24px; height: 24px;" viewBox="0 0 24 24">
     <path fill="#dc3545" d="M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"/>
 </svg>

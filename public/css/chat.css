@@ -12,6 +12,7 @@
     height: var(--chat-messages-height);
     width: 100%;
     align-items: center;
+    justify-content: center;
     padding: 20px 0;
 }
 

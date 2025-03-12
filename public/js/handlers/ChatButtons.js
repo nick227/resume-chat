@@ -35,12 +35,14 @@ export class ChatButtons {
         document.dispatchEvent(clickEvent);
     }
 
+    static toggleButtons(show) {
+        if (!this.container) return;
+        this.container.style.display = show ? 'flex' : 'none';
+    }
+
     static createButtonSet(options) {
         const buttonSet = document.createElement('div');
         buttonSet.className = 'buttons-set';
-
-        // Add transition styles for smoother animations
-        buttonSet.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
         const buttons = options
             .map((text, index) => `
@@ -99,4 +101,12 @@ export class ChatButtons {
             this.container.innerHTML = '';
         }
     }
+
+    static destroy() {
+        this.clearButtons();
+    }
 }
+
+export const chatButtons = new ChatButtons();
+
+window.addEventListener('unload', () => chatButtons.destroy());

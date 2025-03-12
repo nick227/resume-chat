@@ -46,8 +46,7 @@ export class MessageHandler {
      * @param {string} type - Response type (TEXT or ERROR)
      * @param {boolean} autoScroll - Whether to automatically scroll to the bottom
      */
-    static async addMessage(role, content, type = RESPONSE_TYPES.TEXT, autoScroll = true) {
-
+    static async addMessage(role, content, type = RESPONSE_TYPES.TEXT, autoScroll = true, clearContainer = true) {
         if (!this.isInitialized) {
             throw new Error('MessageHandler not initialized');
         }
@@ -64,7 +63,7 @@ export class MessageHandler {
         }
 
         // Set scroll behavior before appending
-        await this.appendMessage(messageEl);
+        await this.appendMessage(messageEl, clearContainer);
 
         // Use current scroll settings
         if (autoScroll) {
@@ -124,7 +123,7 @@ export class MessageHandler {
     /**
      * Appends a message to the chat container
      */
-    static async appendMessage(element) {
+    static async appendMessage(element, clearContainer) {
         if (!this.isInitialized || !element) {
             console.error('Cannot append message: Handler not initialized or invalid element');
             return;
@@ -132,11 +131,19 @@ export class MessageHandler {
 
         // Insert before loading indicator if present
         const loadingIndicator = this.container.querySelector('.message-loading');
+        if (clearContainer) {
+            this.clearContainer();
+        }
         if (loadingIndicator) {
             this.container.insertBefore(element, loadingIndicator);
         } else {
             this.container.appendChild(element);
         }
+    }
+
+    static clearContainer() {
+        const messages = this.container.querySelectorAll('.message:not(.message-loading)');
+        messages.forEach(message => message.remove());
     }
 
     /**
@@ -145,8 +152,6 @@ export class MessageHandler {
     static toggleLoading(show) {
         if (!this.isInitialized) return;
         this.buttonSet = this.container.querySelector('.buttons-set');
-        console.log('buttonSet');
-        console.log(this.buttonSet);
 
         const loadingIndicator = this.container.querySelector('.message-loading');
         if (loadingIndicator) {

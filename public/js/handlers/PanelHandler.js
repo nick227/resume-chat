@@ -1,5 +1,7 @@
 import { autoMessageLoader } from '../services/AutoMessageLoader.js';
 import { CONSTANTS } from '../constants.js';
+import { chatButtons } from './ChatButtons.js';
+
 /**
  * Handles dynamic tab panels in chat messages
  */
@@ -12,7 +14,7 @@ export class PanelHandler {
     static showAllButton = null;
     static buttonMessages = ['Very cool. Tell me more', 'What else you got?', 'Show me more', 'Keep going', 'Continue'];
     static init() {
-        this.chatMessages = document.querySelector('.chat-messages');
+        this.chatMessages = document.querySelector(CONSTANTS.SELECTORS.chatMessages);
         if (!this.chatMessages) {
             console.error('Chat messages container not found');
             return;
@@ -100,7 +102,8 @@ export class PanelHandler {
                     startDelay: 0,
                     delay: 200,
                     maxRuns: remainingItems,
-                    startIndex: this.currentIndex
+                    startIndex: this.currentIndex,
+                    clearContainer: false
                 }]
             });
         } catch (error) {

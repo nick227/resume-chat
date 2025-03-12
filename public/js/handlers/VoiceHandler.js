@@ -25,7 +25,6 @@ export class VoiceHandler {
         } else {
             // Just set up click handler to show alert when mic is clicked
             this.micButton.addEventListener('click', () => {
-                alert(CONSTANTS.MESSAGES.VOICE_ERROR);
                 MessageHandler.addMessage('bot', CONSTANTS.MESSAGES.VOICE_ERROR, RESPONSE_TYPES.ERROR);
             });
         }

@@ -20,12 +20,13 @@ export class AutoMessageLoader {
         this.taskGroups = new Map();
         this.isLoading = false;
         AutoMessageLoader.instance = this;
+        console.log('WTF');
     }
 
     /**
      * Create a single message task
      */
-    createMessageTask(type, delay, startIndex) {
+    createMessageTask(type, delay, startIndex, clearContainer) {
         const config = AutoMessageLoader.MESSAGE_TYPES[type];
         if (!config) {
             console.error(`Unknown message type: ${type}`);
@@ -41,7 +42,7 @@ export class AutoMessageLoader {
                 this.isLoading = true;
                 MessageHandler.toggleLoading(true);
 
-                document.querySelector(CONSTANTS.SELECTORS.chatMessages).style.justifyContent = 'flex-start';
+                //document.querySelector(CONSTANTS.SELECTORS.chatMessages).style.justifyContent = 'flex-start';
 
                 const url = new URL(`/api/chat/${config.endpoint}`, window.location.origin);
                 url.searchParams.append('userId', ChatAPI.getUserId());
@@ -53,9 +54,8 @@ export class AutoMessageLoader {
                 const response = await fetch(url);
                 const data = await response.json();
                 const validatedData = ChatAPI.validateResponse(data);
-
                 if (validatedData.success) {
-                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, true);
+                    await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, true, clearContainer);
 
                     if (validatedData.options && validatedData.options.length) {
                         ChatButtons.insertButtons(validatedData.options);
@@ -87,10 +87,10 @@ export class AutoMessageLoader {
         messages.forEach((config, index) => {
             console.log(`Initializing message group ${index}:`, config);
 
-            const { type, delay, maxRuns, startIndex = 0, startDelay = 0 } = config;
+            const { type, delay, maxRuns, startIndex = 0, startDelay = 0, clearContainer = true } = config;
 
             // Create task sequence
-            const task = this.createMessageTask(type, delay, startIndex);
+            const task = this.createMessageTask(type, delay, startIndex, clearContainer);
             if (!task) return;
 
             // Setup task runner with its own counter

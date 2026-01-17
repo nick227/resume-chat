@@ -1,7 +1,5 @@
-import { CONSTANTS } from '../constants.js';
 import { MessageHandler } from './MessageHandler.js';
 import { ChatButtons } from './ChatButtons.js';
-import { utils } from '../utils.js';
 import { scrollService } from '../services/ScrollService.js';
 
 /**

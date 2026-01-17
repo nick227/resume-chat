@@ -1,6 +1,5 @@
 import { autoMessageLoader } from '../services/AutoMessageLoader.js';
 import { CONSTANTS } from '../constants.js';
-import { chatButtons } from './ChatButtons.js';
 
 /**
  * Handles dynamic tab panels in chat messages

@@ -1,4 +1,3 @@
-import { CONSTANTS } from '../constants.js';
 import { utils } from '../utils.js';
 import { RESPONSE_TYPES } from '../schema.js';
 import { LoadingHandler } from './LoadingHandler.js';
@@ -163,7 +162,7 @@ export class MessageHandler {
     /**
      * Scrolls the chat to the bottom
      */
-    static scrollToBottom(container) {
+    static scrollToBottom() {
         scrollService.scrollToBottom();
     }
 

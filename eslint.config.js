@@ -15,7 +15,16 @@ module.exports = [
                 console: 'readonly',
                 navigator: 'readonly',
                 Image: 'readonly',
-                HTMLElement: 'readonly'
+                HTMLElement: 'readonly',
+                CustomEvent: 'readonly',
+                IntersectionObserver: 'readonly',
+                setTimeout: 'readonly',
+                clearTimeout: 'readonly',
+                Event: 'readonly',
+                NodeFilter: 'readonly',
+                WebSocket: 'readonly',
+                URL: 'readonly',
+                requestAnimationFrame: 'readonly'
             }
         },
         rules: {

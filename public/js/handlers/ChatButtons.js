@@ -1,6 +1,5 @@
 import { CONSTANTS } from '../constants.js';
 import { utils } from '../utils.js';
-import { LoadingHandler } from './LoadingHandler.js';
 
 export class ChatButtons {
     static init() {

@@ -1,4 +1,3 @@
-import { CONSTANTS } from '../constants.js';
 import { MessageHandler } from '../handlers/MessageHandler.js';
 import { ChatButtons } from '../handlers/ChatButtons.js';
 import { ChatAPI } from '../api/ChatAPI.js';
@@ -72,8 +71,9 @@ export class AutoMessageLoader {
             } finally {
                 this.isLoading = false;
                 MessageHandler.toggleLoading(false);
-                return new Promise(resolve => setTimeout(resolve, delay));
             }
+
+            return new Promise(resolve => setTimeout(resolve, delay));
         };
     }
 

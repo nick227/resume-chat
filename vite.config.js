@@ -1,0 +1,99 @@
+const path = require('path');
+const { defineConfig } = require('vite');
+const compression = require('vite-plugin-compression');
+const { viteStaticCopy } = require('vite-plugin-static-copy');
+const browserslistToEsbuild = require('browserslist-to-esbuild');
+
+const targets = browserslistToEsbuild();
+
+const htmlTransformPlugin = () => ({
+    name: 'html-transform',
+    enforce: 'post',
+    apply: 'build',
+    transformIndexHtml(html, ctx) {
+        const bundle = ctx && ctx.bundle ? ctx.bundle : null;
+        if (!bundle) {
+            return html;
+        }
+
+        const entryChunk = Object.values(bundle).find(
+            (item) => item.type === 'chunk' && item.isEntry
+        );
+
+        if (!entryChunk) {
+            return html;
+        }
+
+        const tags = [];
+        const importedCss = entryChunk.viteMetadata && entryChunk.viteMetadata.importedCss
+            ? Array.from(entryChunk.viteMetadata.importedCss)
+            : [];
+
+        importedCss.forEach((href) => {
+            tags.push({
+                tag: 'link',
+                attrs: {
+                    rel: 'preload',
+                    href: `/${href}`,
+                    as: 'style'
+                },
+                injectTo: 'head'
+            });
+        });
+
+        const preloadTargets = new Set([entryChunk.fileName, ...(entryChunk.imports || [])]);
+        preloadTargets.forEach((href) => {
+            tags.push({
+                tag: 'link',
+                attrs: {
+                    rel: 'modulepreload',
+                    href: `/${href}`
+                },
+                injectTo: 'head'
+            });
+        });
+
+        return { html, tags };
+    }
+});
+
+module.exports = defineConfig({
+    root: path.resolve(__dirname, 'public'),
+    publicDir: false,
+    build: {
+        outDir: path.resolve(__dirname, 'dist'),
+        emptyOutDir: true,
+        assetsDir: 'assets',
+        manifest: true,
+        modulePreload: false,
+        target: targets,
+        cssMinify: 'lightningcss'
+    },
+    css: {
+        transformer: 'lightningcss',
+        lightningcss: {
+            targets
+        }
+    },
+    plugins: [
+        htmlTransformPlugin(),
+        viteStaticCopy({
+            targets: [{
+                src: 'uploads/**/*',
+                dest: 'uploads'
+            }]
+        }),
+        compression({
+            algorithm: 'brotliCompress',
+            ext: '.br',
+            threshold: 1024,
+            filter: /\.(js|mjs|css|svg|json|txt|woff2?)$/i
+        }),
+        compression({
+            algorithm: 'gzip',
+            ext: '.gz',
+            threshold: 1024,
+            filter: /\.(js|mjs|css|svg|json|txt|woff2?)$/i
+        })
+    ]
+});

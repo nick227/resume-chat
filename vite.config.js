@@ -25,6 +25,33 @@ const htmlTransformPlugin = () => ({
         }
 
         const tags = [];
+        const fontStylesheets = [];
+        const fontLinkRegex = /<link[^>]+href=["'](https:\/\/fonts\.googleapis\.com\/[^"']+)["'][^>]*>/gi;
+        let fontMatch = fontLinkRegex.exec(html);
+        while (fontMatch) {
+            fontStylesheets.push(fontMatch[1]);
+            fontMatch = fontLinkRegex.exec(html);
+        }
+
+        if (fontStylesheets.length) {
+            tags.push({
+                tag: 'link',
+                attrs: {
+                    rel: 'preconnect',
+                    href: 'https://fonts.googleapis.com'
+                },
+                injectTo: 'head'
+            });
+            tags.push({
+                tag: 'link',
+                attrs: {
+                    rel: 'preconnect',
+                    href: 'https://fonts.gstatic.com',
+                    crossorigin: ''
+                },
+                injectTo: 'head'
+            });
+        }
         const importedCss = entryChunk.viteMetadata && entryChunk.viteMetadata.importedCss
             ? Array.from(entryChunk.viteMetadata.importedCss)
             : [];
@@ -35,6 +62,18 @@ const htmlTransformPlugin = () => ({
                 attrs: {
                     rel: 'preload',
                     href: `/${href}`,
+                    as: 'style'
+                },
+                injectTo: 'head'
+            });
+        });
+
+        fontStylesheets.forEach((href) => {
+            tags.push({
+                tag: 'link',
+                attrs: {
+                    rel: 'preload',
+                    href,
                     as: 'style'
                 },
                 injectTo: 'head'

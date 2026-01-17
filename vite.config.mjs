@@ -4,11 +4,14 @@ import { defineConfig } from 'vite';
 import compression from 'vite-plugin-compression';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import browserslistToEsbuild from 'browserslist-to-esbuild';
+import browserslist from 'browserslist';
+import { browserslistToTargets } from 'lightningcss';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const targets = browserslistToEsbuild();
+const esbuildTargets = browserslistToEsbuild();
+const lightningTargets = browserslistToTargets(browserslist());
 
 const htmlTransformPlugin = () => ({
     name: 'html-transform',
@@ -110,13 +113,13 @@ export default defineConfig({
         assetsDir: 'assets',
         manifest: true,
         modulePreload: false,
-        target: targets,
+        target: esbuildTargets,
         cssMinify: 'lightningcss'
     },
     css: {
         transformer: 'lightningcss',
         lightningcss: {
-            targets
+            targets: lightningTargets
         }
     },
     plugins: [

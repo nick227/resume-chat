@@ -7,7 +7,7 @@ class Message {
             const safeUserId = String(userId);
 
             // Use the limit directly in the query
-            const query = `SELECT message, role FROM chat_messages 
+            const query = `SELECT message, role, created_at FROM chat_messages 
                          WHERE user_id = ? 
                          ORDER BY created_at DESC 
                          LIMIT ${parseInt(limit, 10)}`;

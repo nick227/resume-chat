@@ -5,7 +5,6 @@ const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 3306,
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'resume-chat',
     waitForConnections: true,
     connectionLimit: 10,
@@ -44,12 +43,23 @@ const initializeDatabase = async() => {
             CREATE TABLE IF NOT EXISTS chat_messages (
                 id BIGINT PRIMARY KEY AUTO_INCREMENT,
                 user_id VARCHAR(255) NOT NULL,
+                session_id VARCHAR(255) NOT NULL DEFAULT 'default-session',
                 message TEXT NOT NULL,
                 role ENUM('user', 'assistant', 'system') NOT NULL DEFAULT 'user',
+                model VARCHAR(100) NOT NULL DEFAULT 'unknown',
+                tokens INT NOT NULL DEFAULT 0,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 INDEX idx_user_id (user_id),
+                INDEX idx_session_id (session_id),
                 INDEX idx_created_at (created_at)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        `);
+
+        await connection.query(`
+            ALTER TABLE chat_messages
+                ADD COLUMN IF NOT EXISTS session_id VARCHAR(255) NOT NULL DEFAULT 'default-session',
+                ADD COLUMN IF NOT EXISTS model VARCHAR(100) NOT NULL DEFAULT 'unknown',
+                ADD COLUMN IF NOT EXISTS tokens INT NOT NULL DEFAULT 0;
         `);
         connection.release();
 

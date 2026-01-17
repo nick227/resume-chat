@@ -55,12 +55,40 @@ const initializeDatabase = async() => {
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         `);
 
-        await connection.query(`
-            ALTER TABLE chat_messages
-                ADD COLUMN IF NOT EXISTS session_id VARCHAR(255) NOT NULL DEFAULT 'default-session',
-                ADD COLUMN IF NOT EXISTS model VARCHAR(100) NOT NULL DEFAULT 'unknown',
-                ADD COLUMN IF NOT EXISTS tokens INT NOT NULL DEFAULT 0;
-        `);
+        const [columnRows] = await connection.query(
+            `
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = ?
+              AND TABLE_NAME = 'chat_messages'
+            `,
+            [dbConfig.database]
+        );
+
+        const existingColumns = new Set(columnRows.map((row) => row.COLUMN_NAME));
+        const pendingColumnAdds = [];
+
+        if (!existingColumns.has('session_id')) {
+            pendingColumnAdds.push(
+                "ALTER TABLE chat_messages ADD COLUMN session_id VARCHAR(255) NOT NULL DEFAULT 'default-session'"
+            );
+        }
+
+        if (!existingColumns.has('model')) {
+            pendingColumnAdds.push(
+                "ALTER TABLE chat_messages ADD COLUMN model VARCHAR(100) NOT NULL DEFAULT 'unknown'"
+            );
+        }
+
+        if (!existingColumns.has('tokens')) {
+            pendingColumnAdds.push(
+                'ALTER TABLE chat_messages ADD COLUMN tokens INT NOT NULL DEFAULT 0'
+            );
+        }
+
+        for (const alterStatement of pendingColumnAdds) {
+            await connection.query(alterStatement);
+        }
         connection.release();
 
     } catch (err) {

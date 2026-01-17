@@ -72,9 +72,10 @@ const htmlTransformPlugin = () => ({
             tags.push({
                 tag: 'link',
                 attrs: {
-                    rel: 'preload',
+                    rel: 'stylesheet',
                     href,
-                    as: 'style'
+                    media: 'print',
+                    onload: "this.media='all'"
                 },
                 injectTo: 'head'
             });

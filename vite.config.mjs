@@ -1,8 +1,12 @@
-const path = require('path');
-const { defineConfig } = require('vite');
-const compression = require('vite-plugin-compression');
-const { viteStaticCopy } = require('vite-plugin-static-copy');
-const browserslistToEsbuild = require('browserslist-to-esbuild');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
+import compression from 'vite-plugin-compression';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import browserslistToEsbuild from 'browserslist-to-esbuild';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const targets = browserslistToEsbuild();
 
@@ -97,7 +101,7 @@ const htmlTransformPlugin = () => ({
     }
 });
 
-module.exports = defineConfig({
+export default defineConfig({
     root: path.resolve(__dirname, 'public'),
     publicDir: false,
     build: {

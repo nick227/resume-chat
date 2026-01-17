@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "lint": "eslint public/js",
     "build": "vite build",
+    "dev:build": "vite build --watch",
     "test:e2e": "playwright test"
     },
     "dependencies": {

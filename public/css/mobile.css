@@ -48,7 +48,7 @@
         right: auto !important;
         left: auto !important;
     }
-    elevenlabs-convai::part div {
+    elevenlabs-convai::part(div) {
         width: 100% !important;
         text-align: center !important;
         margin: 0 auto !important;

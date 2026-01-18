@@ -1,47 +1,29 @@
 const { OpenAI } = require('openai');
 const { buildConfig } = require('../config/prompts');
 const { AUTO_MESSAGES } = require('../config/AUTO_MESSAGES');
-const { Message, MessageType } = require('../models/Message');
+const { Message } = require('../models/Message');
+const dotenv = require('dotenv');
+dotenv.config();
 
 class OpenAIService {
     constructor() {
         this.client = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY
         });
-        this.requestCount = 0;
         this.requestLimit = 50;
-        this.resetInterval = 60000; // 1 minute
         this.autoMessages = AUTO_MESSAGES;
-        this.autoMessageIndex = 0;
 
-        // Use a more precise rate limiting mechanism
+        // Rate limiting state
         this.requestTimes = [];
         this.windowSize = 60000; // 1 minute window
 
-        setInterval(() => {
-            const now = Date.now();
-            this.requestTimes = this.requestTimes.filter(time =>
-                now - time < this.windowSize
-            );
-        }, 1000); // Clean up every second
-
-        // Config flags
-        this.config = {
+        this.messageConfig = Object.freeze({
             includeHistory: true, // Toggle chat history
             maxHistoryLength: 5 // Max number of previous messages to include
-        };
+        });
     }
 
     async getMessageByIndex(startIndex = 0) {
-        const now = Date.now();
-        this.requestTimes = this.requestTimes.filter(time =>
-            now - time < this.windowSize
-        );
-
-        if (this.requestTimes.length >= this.requestLimit) {
-            throw new Error('Rate limit exceeded. Please try again later.');
-        }
-
         // Validate index
         if (startIndex < 0 || startIndex >= this.autoMessages.length) {
             throw new Error('Invalid message index');
@@ -56,16 +38,7 @@ class OpenAIService {
     }
 
     async getRandomFact() {
-        const now = Date.now();
-        this.requestTimes = this.requestTimes.filter(time =>
-            now - time < this.windowSize
-        );
-
-        if (this.requestTimes.length >= this.requestLimit) {
-            throw new Error('Rate limit exceeded. Please try again later.');
-        }
-
-        this.requestTimes.push(now);
+        this.registerRequest();
         // Should use the same message config and processing as normal chat
         const message = 'Write a short fact about Nick. Be humble and low-key. Keep it short and concise. Wrap the entire response in a <div class="panel"> tag.';
         const history = []; // Empty history for random facts
@@ -81,16 +54,7 @@ class OpenAIService {
     }
 
     async generateResponse(message, history) {
-        const now = Date.now();
-        this.requestTimes = this.requestTimes.filter(time =>
-            now - time < this.windowSize
-        );
-
-        if (this.requestTimes.length >= this.requestLimit) {
-            throw new Error('Rate limit exceeded. Please try again later.');
-        }
-
-        this.requestTimes.push(now);
+        this.registerRequest();
         if (!message || typeof message !== 'string') {
             throw new Error('Invalid message format');
         }
@@ -123,14 +87,8 @@ class OpenAIService {
         // Start with system message from config
         const messages = [...config.messages];
 
-        // Add current user message next
-        messages.push({
-            role: 'user',
-            content: message
-        });
-
         // Only include history if enabled
-        if (this.config.includeHistory && history.length > 0) {
+        if (this.messageConfig.includeHistory && history.length > 0) {
             // Validate and sort history messages
             const validHistoryMessages = history
                 .filter(msg =>
@@ -140,13 +98,19 @@ class OpenAIService {
                     msg.created_at // Ensure timestamp exists
                 )
                 .sort((a, b) => new Date(a.created_at) - new Date(b.created_at)) // Sort by timestamp
-                .slice(-this.config.maxHistoryLength); // Limit history length
+                .slice(-this.messageConfig.maxHistoryLength); // Limit history length
 
             messages.push(...validHistoryMessages.map(msg => ({
                 role: msg.role,
                 content: msg.message
             })));
         }
+
+        // Add current user message last
+        messages.push({
+            role: 'user',
+            content: message
+        });
 
         config.messages = messages;
         return config;
@@ -155,9 +119,10 @@ class OpenAIService {
     parseResponse(completion) {
         const choice = completion.choices[0];
         let aiMessage, aiOptions, aiButtons;
-        if (choice.message.function_call) {
+        if (choice.message.tool_calls && choice.message.tool_calls.length > 0) {
             try {
-                const parsed = JSON.parse(choice.message.function_call.arguments);
+                const toolCall = choice.message.tool_calls[0];
+                const parsed = JSON.parse(toolCall.function.arguments);
                 aiMessage = parsed.message;
                 aiOptions = parsed.options;
                 aiButtons = parsed.buttons;
@@ -183,12 +148,17 @@ class OpenAIService {
         };
     }
 
-    // Method to update config
-    setConfig(newConfig) {
-        this.config = {
-            ...this.config,
-            ...newConfig
-        };
+    registerRequest() {
+        const now = Date.now();
+        this.requestTimes = this.requestTimes.filter(time =>
+            now - time < this.windowSize
+        );
+
+        if (this.requestTimes.length >= this.requestLimit) {
+            throw new Error('Rate limit exceeded. Please try again later.');
+        }
+
+        this.requestTimes.push(now);
     }
 
     async saveMessage(userId, message, role, model, tokens, sessionId) {

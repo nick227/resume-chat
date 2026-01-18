@@ -2,8 +2,6 @@ const { OpenAI } = require('openai');
 const { buildConfig } = require('../config/prompts');
 const { AUTO_MESSAGES } = require('../config/AUTO_MESSAGES');
 const { Message } = require('../models/Message');
-const dotenv = require('dotenv');
-dotenv.config();
 
 class OpenAIService {
     constructor() {
@@ -44,9 +42,9 @@ class OpenAIService {
         const history = []; // Empty history for random facts
 
         const config = this.buildMessageConfig(message, history);
-        const completion = await this.client.chat.completions.create(config);
+        const completion = await this.client.responses.create(config);
 
-        if (!completion.choices || !completion.choices[0]) {
+        if (!completion) {
             throw new Error('No response from OpenAI');
         }
 
@@ -63,9 +61,9 @@ class OpenAIService {
         }
 
         const config = this.buildMessageConfig(message, history);
-        const completion = await this.client.chat.completions.create(config);
+        const completion = await this.client.responses.create(config);
 
-        if (!completion.choices || !completion.choices[0]) {
+        if (!completion) {
             throw new Error('No response from OpenAI');
         }
 
@@ -85,7 +83,7 @@ class OpenAIService {
         }
 
         // Start with system message from config
-        const messages = [...config.messages];
+        const messages = [...config.input];
 
         // Only include history if enabled
         if (this.messageConfig.includeHistory && history.length > 0) {
@@ -94,6 +92,7 @@ class OpenAIService {
                 .filter(msg =>
                     msg &&
                     typeof msg.role === 'string' &&
+                    ['system', 'user', 'assistant'].includes(msg.role) &&
                     typeof msg.message === 'string' &&
                     msg.created_at // Ensure timestamp exists
                 )
@@ -112,17 +111,29 @@ class OpenAIService {
             content: message
         });
 
-        config.messages = messages;
+        config.input = messages;
         return config;
     }
 
     parseResponse(completion) {
-        const choice = completion.choices[0];
         let aiMessage, aiOptions, aiButtons;
-        if (choice.message.tool_calls && choice.message.tool_calls.length > 0) {
+        if (!completion.output || !Array.isArray(completion.output)) {
+            throw new Error('Invalid response format from OpenAI');
+        }
+
+        const toolCall = completion.output.find(item =>
+            item && item.type === 'tool_call'
+        );
+
+        if (toolCall) {
             try {
-                const toolCall = choice.message.tool_calls[0];
-                const parsed = JSON.parse(toolCall.function.arguments);
+                if (!toolCall.arguments || typeof toolCall.arguments !== 'string') {
+                    throw new Error('Missing tool call arguments');
+                }
+                const parsed = JSON.parse(toolCall.arguments);
+                if (typeof parsed.message !== 'string' || !Array.isArray(parsed.options)) {
+                    throw new Error('Invalid tool call payload');
+                }
                 aiMessage = parsed.message;
                 aiOptions = parsed.options;
                 aiButtons = parsed.buttons;
@@ -130,14 +141,22 @@ class OpenAIService {
                 console.error('Error parsing function call arguments:', error);
                 throw new Error('Invalid response format from OpenAI');
             }
-        } else if (choice.message.content) {
-            aiMessage = choice.message.content;
+        } else if (completion.output_text) {
+            aiMessage = completion.output_text;
             aiOptions = [];
             aiButtons = [];
         }
 
         if (!aiMessage) {
             throw new Error('Empty response from OpenAI');
+        }
+
+        if (completion.usage && completion.usage.total_tokens === undefined) {
+            const inputTokens = completion.usage.input_tokens;
+            const outputTokens = completion.usage.output_tokens;
+            if (typeof inputTokens === 'number' && typeof outputTokens === 'number') {
+                completion.usage.total_tokens = inputTokens + outputTokens;
+            }
         }
 
         return {
@@ -150,9 +169,10 @@ class OpenAIService {
 
     registerRequest() {
         const now = Date.now();
-        this.requestTimes = this.requestTimes.filter(time =>
-            now - time < this.windowSize
-        );
+        const cutoff = now - this.windowSize;
+        while (this.requestTimes.length > 0 && this.requestTimes[0] <= cutoff) {
+            this.requestTimes.shift();
+        }
 
         if (this.requestTimes.length >= this.requestLimit) {
             throw new Error('Rate limit exceeded. Please try again later.');

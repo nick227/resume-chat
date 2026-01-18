@@ -167,8 +167,8 @@ const buildConfig = (options = {}) => {
     const config = {
         model: 'gpt-4o',
         temperature,
-        max_tokens: maxTokens,
-        messages: [{
+        max_output_tokens: maxTokens,
+        input: [{
             role: 'system',
             content: [basePrompts.admin, customPrompt]
                 .filter(Boolean)

@@ -5,36 +5,36 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-    "dev": "nodemon server.js",
-    "lint": "eslint public/js",
-    "build": "vite build",
-    "dev:build": "vite build --watch",
-    "test:e2e": "playwright test"
+        "dev": "nodemon server.js",
+        "lint": "eslint public/js",
+        "build": "vite build",
+        "dev:build": "vite build --watch",
+        "test:e2e": "playwright test"
     },
     "dependencies": {
         "cors": "^2.8.5",
         "dotenv": "^16.6.1",
         "express": "^4.18.2",
-    "express-static-gzip": "^2.1.8",
+        "express-static-gzip": "^2.1.8",
         "mysql2": "^3.6.5",
-        "openai": "^4.24.1",
+        "openai": "^6.16.0",
         "punycode": "^2.3.1",
         "ws": "^8.16.0"
     },
     "devDependencies": {
-    "browserslist": "^4.23.3",
-    "browserslist-to-esbuild": "^2.1.1",
-    "@eslint/js": "^9.19.0",
-    "eslint": "^9.19.0",
-    "lightningcss": "^1.26.0",
-    "nodemon": "^3.0.2",
-    "vite": "^5.4.11",
-    "@playwright/test": "^1.49.1",
-    "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-static-copy": "^1.0.6"
-  },
-  "browserslist": [
-    "defaults",
-    "not IE 11"
-  ]
+        "@eslint/js": "^9.19.0",
+        "@playwright/test": "^1.49.1",
+        "browserslist": "^4.23.3",
+        "browserslist-to-esbuild": "^2.1.1",
+        "eslint": "^9.19.0",
+        "lightningcss": "^1.26.0",
+        "nodemon": "^3.0.2",
+        "vite": "^5.4.11",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-static-copy": "^1.0.6"
+    },
+    "browserslist": [
+        "defaults",
+        "not IE 11"
+    ]
 }

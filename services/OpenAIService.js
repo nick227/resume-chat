@@ -118,6 +118,14 @@ class OpenAIService {
     parseResponse(completion) {
         let aiMessage, aiOptions, aiButtons;
         if (!completion.output || !Array.isArray(completion.output)) {
+            if (completion.output_text) {
+                return {
+                    message: completion.output_text,
+                    options: [],
+                    buttons: [],
+                    completion
+                };
+            }
             throw new Error('Invalid response format from OpenAI');
         }
 
@@ -131,12 +139,13 @@ class OpenAIService {
                     throw new Error('Missing tool call arguments');
                 }
                 const parsed = JSON.parse(toolCall.arguments);
-                if (typeof parsed.message !== 'string' || !Array.isArray(parsed.options)) {
+                const parsedMessage = parsed.message || parsed.content || parsed.text;
+                if (typeof parsedMessage !== 'string') {
                     throw new Error('Invalid tool call payload');
                 }
-                aiMessage = parsed.message;
-                aiOptions = parsed.options;
-                aiButtons = parsed.buttons;
+                aiMessage = parsedMessage;
+                aiOptions = Array.isArray(parsed.options) ? parsed.options : [];
+                aiButtons = Array.isArray(parsed.buttons) ? parsed.buttons : [];
             } catch (error) {
                 console.error('Error parsing function call arguments:', error);
                 throw new Error('Invalid response format from OpenAI');
@@ -145,7 +154,11 @@ class OpenAIService {
             const outputText = completion.output_text || completion.output
                 .filter(item => item && item.type === 'message' && Array.isArray(item.content))
                 .flatMap(item => item.content)
-                .filter(part => part && part.type === 'output_text' && typeof part.text === 'string')
+                .filter(part =>
+                    part &&
+                    (part.type === 'output_text' || part.type === 'text') &&
+                    typeof part.text === 'string'
+                )
                 .map(part => part.text)
                 .join('\n')
                 .trim();

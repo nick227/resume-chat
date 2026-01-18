@@ -2,6 +2,8 @@ const { OpenAI } = require('openai');
 const { buildConfig } = require('../config/prompts');
 const { AUTO_MESSAGES } = require('../config/AUTO_MESSAGES');
 const { Message } = require('../models/Message');
+const { getMessageByIndex } = require('./openai/getMessageByIndex');
+const { getRandomFact } = require('./openai/getRandomFact');
 
 class OpenAIService {
     constructor() {
@@ -22,34 +24,16 @@ class OpenAIService {
     }
 
     async getMessageByIndex(startIndex = 0) {
-        // Validate index
-        if (startIndex < 0 || startIndex >= this.autoMessages.length) {
-            throw new Error('Invalid message index');
-        }
-
-        const message = this.autoMessages[startIndex];
-        if (!message) {
-            throw new Error('Message not found');
-        }
-
-        return message;
+        return getMessageByIndex(this.autoMessages, startIndex);
     }
 
     async getRandomFact() {
-        this.registerRequest();
-        // Should use the same message config and processing as normal chat
-        const message = 'Write a short fact about Nick. Be humble and low-key. Keep it short and concise. Wrap the entire response in a <div class="panel"> tag.';
-        const history = []; // Empty history for random facts
-
-        const config = this.buildMessageConfig(message, history);
-        console.log('OpenAI request (random fact):', JSON.stringify(config, null, 2));
-        const completion = await this.client.responses.create(config);
-
-        if (!completion) {
-            throw new Error('No response from OpenAI');
-        }
-
-        return this.parseResponse(completion);
+        return getRandomFact({
+            registerRequest: this.registerRequest.bind(this),
+            buildMessageConfig: this.buildMessageConfig.bind(this),
+            client: this.client,
+            parseResponse: this.parseResponse.bind(this)
+        });
     }
 
     async generateResponse(message, history) {
@@ -62,7 +46,6 @@ class OpenAIService {
         }
 
         const config = this.buildMessageConfig(message, history);
-        console.log('OpenAI request (chat):', JSON.stringify(config, null, 2));
         const completion = await this.client.responses.create(config);
 
         if (!completion) {
@@ -149,7 +132,6 @@ class OpenAIService {
                 aiOptions = Array.isArray(parsed.options) ? parsed.options : [];
                 aiButtons = Array.isArray(parsed.buttons) ? parsed.buttons : [];
             } catch (error) {
-                console.error('Error parsing function call arguments:', error);
                 throw new Error('Invalid response format from OpenAI');
             }
         } else {
@@ -191,7 +173,6 @@ class OpenAIService {
         }
 
         if (!aiMessage) {
-            console.error('OpenAI empty response:', JSON.stringify(completion, null, 2));
             throw new Error('Empty response from OpenAI');
         }
 

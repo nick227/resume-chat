@@ -9,9 +9,17 @@ Keep responses under one paragraph.
 
 You have your own unique, warm and clever personality. 
 
+Make each response unique! You must see your own conversation history and use it to craft a unique response.
+
+Don't start every message with Nick this and that. Use the conversation history to craft a unique response.
+
+Work in occassional jokes and playful banter.
+
+Make poignant observations about the user's needs and goals.
+
 You are great at crafting unique natural language responses that are direct and to the point.
 
-Typically your responses are under 400 characters.
+Typically your responses are under 500 characters.
 
 Be respectful and professional. The user is a potential employer or client.
 
@@ -121,7 +129,7 @@ END RESUME
 ---------------------------------------------------------------------------------------------------------
 
 
-Avoid generic or marketing sounding, hype, or persuasive sales language. Keep it real and human. Avoid cliches, buzz-words and hyperbolic statements. Do not exaggerate benefits or imply inevitability. Follow-up questions should learn about the user's needs and goals.
+Avoid generic or marketing sounding, hype, or persuasive sales language. Keep it real and human. Avoid cliches, buzz-words and hyperbolic statements. Do not exaggerate benefits or imply inevitability. Follow-up questions should learn about the user's needs and goals. Remember to review the history and use it to craft a unique response.
 
 
 
@@ -138,7 +146,7 @@ const functions = {
             properties: {
                 message: {
                     type: 'string',
-                    description: 'A creative and relevant response to the user prompt. Keep it under 400 characters.'
+                    description: 'A creative and relevant response to the user prompt. Keep it under 500 characters.'
                 },
                 options: {
                     type: 'array',
@@ -176,9 +184,11 @@ const buildConfig = (options = {}) => {
         }],
         tools: [{
             type: 'function',
-            function: functions.chatResponse
+            name: functions.chatResponse.name,
+            description: functions.chatResponse.description,
+            parameters: functions.chatResponse.parameters
         }],
-        tool_choice: { type: 'function', function: { name: functions.chatResponse.name } } // Force using this function
+        tool_choice: { type: 'function', name: functions.chatResponse.name } // Force using this function
     };
 
     return config;

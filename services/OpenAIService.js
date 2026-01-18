@@ -42,6 +42,7 @@ class OpenAIService {
         const history = []; // Empty history for random facts
 
         const config = this.buildMessageConfig(message, history);
+        console.log('OpenAI request (random fact):', JSON.stringify(config, null, 2));
         const completion = await this.client.responses.create(config);
 
         if (!completion) {
@@ -61,6 +62,7 @@ class OpenAIService {
         }
 
         const config = this.buildMessageConfig(message, history);
+        console.log('OpenAI request (chat):', JSON.stringify(config, null, 2));
         const completion = await this.client.responses.create(config);
 
         if (!completion) {
@@ -130,7 +132,7 @@ class OpenAIService {
         }
 
         const toolCall = completion.output.find(item =>
-            item && item.type === 'tool_call'
+            item && (item.type === 'tool_call' || item.type === 'function_call')
         );
 
         if (toolCall) {
@@ -162,14 +164,34 @@ class OpenAIService {
                 .map(part => part.text)
                 .join('\n')
                 .trim();
+            const fallbackText = completion.output
+                .filter(item => item && item.type === 'message')
+                .map(item => {
+                    if (typeof item.content === 'string') {
+                        return item.content;
+                    }
+                    if (Array.isArray(item.content)) {
+                        return item.content
+                            .map(part => part && typeof part.text === 'string' ? part.text : '')
+                            .join('\n');
+                    }
+                    return '';
+                })
+                .join('\n')
+                .trim();
             if (outputText) {
                 aiMessage = outputText;
+                aiOptions = [];
+                aiButtons = [];
+            } else if (fallbackText) {
+                aiMessage = fallbackText;
                 aiOptions = [];
                 aiButtons = [];
             }
         }
 
         if (!aiMessage) {
+            console.error('OpenAI empty response:', JSON.stringify(completion, null, 2));
             throw new Error('Empty response from OpenAI');
         }
 

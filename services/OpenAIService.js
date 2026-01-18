@@ -78,8 +78,8 @@ class OpenAIService {
             temperature: 0.7
         });
 
-        if (!config.messages || !Array.isArray(config.messages)) {
-            throw new Error('Invalid configuration: messages must be an array');
+        if (!config.input || !Array.isArray(config.input)) {
+            throw new Error('Invalid configuration: input must be an array');
         }
 
         // Start with system message from config
@@ -141,10 +141,19 @@ class OpenAIService {
                 console.error('Error parsing function call arguments:', error);
                 throw new Error('Invalid response format from OpenAI');
             }
-        } else if (completion.output_text) {
-            aiMessage = completion.output_text;
-            aiOptions = [];
-            aiButtons = [];
+        } else {
+            const outputText = completion.output_text || completion.output
+                .filter(item => item && item.type === 'message' && Array.isArray(item.content))
+                .flatMap(item => item.content)
+                .filter(part => part && part.type === 'output_text' && typeof part.text === 'string')
+                .map(part => part.text)
+                .join('\n')
+                .trim();
+            if (outputText) {
+                aiMessage = outputText;
+                aiOptions = [];
+                aiButtons = [];
+            }
         }
 
         if (!aiMessage) {

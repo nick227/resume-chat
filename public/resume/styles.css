@@ -1,0 +1,62 @@
+/*
+  Non-critical CSS: print-friendly, mobile-first, minimal.
+  No external fonts for speed.
+*/
+
+:root{
+  --bg:#fff;--fg:#0b0f17;--muted:#546070;--rule:#e7ebf0;--accent:#0b4bd4;
+  --max:920px;--pad:18px;--lh:1.38;
+  --h1:28px;--h2:12px;--small:13px;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0b0f17;--fg:#eaf0ff;--muted:#b6c0d1;--rule:#253046;--accent:#7aa6ff;}
+}
+
+/* Header */
+.header{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px;}
+.name{margin:0;font-weight:800;letter-spacing:.04em;font-size:var(--h1);}
+.title{margin-top:4px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px;}
+
+.contact{display:flex;flex-direction:column;gap:6px;align-items:flex-end;min-width:min(360px,100%);}
+.contact__item{font-size:var(--small);color:var(--muted);white-space:nowrap;}
+.contact__item a{color:inherit}
+
+/* Sections */
+.section{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);}
+.section__title{margin:0 0 10px;font-size:var(--h2);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* Roles */
+.role{margin:0 0 16px;}
+.role__header{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;}
+.role__org{font-weight:800;letter-spacing:.02em;}
+.role__sep{color:var(--muted);font-weight:700;}
+.role__dates{color:var(--muted);font-size:var(--small);white-space:nowrap;}
+
+/* Bullets */
+.bullets{margin:8px 0 0;padding-left:18px;}
+.bullets li{margin:6px 0;}
+.bullets--compact li{margin:5px 0;}
+
+/* Footer */
+.footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:var(--small);
+}
+.footer a{color:inherit}
+
+/* Mobile tweaks */
+@media (max-width: 640px){
+  .wrap{padding:18px 14px 34px;}
+  .name{font-size:24px;}
+  .contact{align-items:flex-start;}
+}
+
+/* Print */
+@media print{
+  :root{--bg:#fff;--fg:#000;--muted:#333;--rule:#bbb;--accent:#000;}
+  body{background:#fff;color:#000;}
+  a{text-decoration:none;color:#000;}
+  .preload,.footer__right{display:none !important;}
+  .wrap{max-width:none;padding:0;}
+  .section{break-inside:avoid;}
+  .role{break-inside:avoid;}
+}

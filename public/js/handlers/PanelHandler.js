@@ -1,17 +1,17 @@
 import { autoMessageLoader } from '../services/AutoMessageLoader.js';
+import { ChatButtons } from './ChatButtons.js';
 import { CONSTANTS } from '../constants.js';
 
 /**
  * Handles dynamic tab panels in chat messages
  */
 export class PanelHandler {
-    static currentIndex = 2;
+    static currentIndex = 1;
     static maxIndex = 14;
     static chatMessages = null;
     static panel = null;
     static showMoreButton = null;
-    static showAllButton = null;
-    static buttonMessages = ['Very cool. Tell me more', 'What else you got?', 'Show me more', 'Keep going', 'Continue'];
+    static buttonMessages = ['Very cool. What else?', 'What else you got?', 'Tell me more', 'Keep going', 'Nice continue'];
     static init() {
         this.chatMessages = document.querySelector(CONSTANTS.SELECTORS.chatMessages);
         if (!this.chatMessages) {
@@ -64,50 +64,17 @@ export class PanelHandler {
         });
     }
     static addButtons() {
-        // Create Show All button
-        const container = document.createElement('div');
-        container.classList.add('buttons-set');
-        this.showAllButton = document.createElement('button');
-        this.showAllButton.classList.add('show-all-button');
-        this.showAllButton.textContent = 'Show All';
-
         // Create More button
         this.showMoreButton = document.createElement('button');
-        this.showMoreButton.classList.add('more-button');
+        this.showMoreButton.classList.add('chat-button');
+        this.showMoreButton.dataset.chatAction = 'more';
         this.showMoreButton.textContent = this.buttonMessages[0];
 
-        // Add buttons to container
-        container.appendChild(this.showAllButton);
-        container.appendChild(this.showMoreButton);
-        this.chatMessages.appendChild(container);
+        // Add button to the top rail slot
+        ChatButtons.setMoreButton(this.showMoreButton);
 
         // Add click handlers
         this.showMoreButton.addEventListener('click', () => this.addItem());
-        this.showAllButton.addEventListener('click', () => this.showAll());
-    }
-    static async showAll() {
-        if (!this.showAllButton || !this.showMoreButton) return;
-
-        this.showAllButton.remove();
-        this.showMoreButton.remove();
-
-        const remainingItems = this.maxIndex - this.currentIndex;
-        if (remainingItems <= 0) return;
-
-        try {
-            await autoMessageLoader.init({
-                messages: [{
-                    type: 'AUTO',
-                    startDelay: 0,
-                    delay: 200,
-                    maxRuns: remainingItems,
-                    startIndex: this.currentIndex,
-                    clearContainer: false
-                }]
-            });
-        } catch (error) {
-            console.error('Error loading all content:', error);
-        }
     }
     static async addItem() {
         if (!this.showMoreButton) return;
@@ -138,7 +105,6 @@ export class PanelHandler {
             // Hide buttons if we've reached the end
             if (this.currentIndex >= this.maxIndex) {
                 this.showMoreButton.remove();
-                this.showAllButton.remove();
             }
 
         } catch (error) {

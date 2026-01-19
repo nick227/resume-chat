@@ -38,20 +38,3 @@
     color: var(--text-secondary);
 }
 
-#chat-buttons .message-loading {
-    background: none;
-    padding: 8px;
-    margin: 4px 0;
-}
-
-#chat-buttons .loading-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-}
-
-#chat-buttons .loading-text {
-    font-size: 0.9em;
-    color: var(--text-muted);
-}

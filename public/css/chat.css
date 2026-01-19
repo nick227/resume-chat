@@ -16,6 +16,10 @@
     padding: 20px 0;
 }
 
+.chat-messages.bottom {
+    justify-content: flex-end;
+}
+
 .message {
     position: relative;
     animation: fadeIn 0.5s ease-in-out;

@@ -12,24 +12,27 @@ button {
     color: var(--black);
 }
 
-.chat-buttons {
-    height: var(--chat-buttons-height);
-    position: relative;
+.chat-controls {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
 .buttons-set {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
     width: var(--main-container-width);
     margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.buttons-set:empty {
+    display: none;
 }
 
 .chat-controls .chat-button {
-    width: 32.5%;
+    width: 100%;
+    margin: 10px auto;
 }
 
 .chat-messages .buttons-set {
@@ -40,10 +43,9 @@ button {
 }
 
 .chat-messages .chat-button {
-    background-color: transparent;
+    background-color: var(--light-gray);
     color: var(--black);
     width: auto;
-    width: 32.5%;
 }
 
 .chat-microphone:hover,
@@ -63,10 +65,3 @@ button {
     animation: buttonSlideIn 0.5s ease-out forwards;
 }
 
-.more-button,
-.show-all-button {
-    outline: none;
-    background-color: var(--light-gray);
-    color: var(--black);
-    width: auto;
-}

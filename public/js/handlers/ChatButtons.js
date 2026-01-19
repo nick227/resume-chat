@@ -1,30 +1,33 @@
 import { CONSTANTS } from '../constants.js';
 import { utils } from '../utils.js';
+import { scrollService } from '../services/ScrollService.js';
 
 export class ChatButtons {
+    static initialized = false;
+    static currentOptions = [];
+    static moreButton = null;
+    static observer = null;
     static init() {
+        if (this.initialized) return;
         this.chatMessagesContainer = utils.elements.get(CONSTANTS.SELECTORS.chatMessages);
-        this.container = utils.elements.get(CONSTANTS.SELECTORS.chatButtonsContainer);
+        this.container = this.getButtonSet();
         if (!this.container) return;
 
         this.setupIntersectionObserver(this.container);
         this.setupEventListeners(this.container);
+        this.initialized = true;
     }
 
     static setupEventListeners(container) {
         container.addEventListener('click', this.handleButtonClick.bind(this));
-        // Add listener to chat messages container for inserted buttons
-        if (this.chatMessagesContainer) {
-            this.chatMessagesContainer.addEventListener('click', this.handleButtonClick.bind(this));
-        }
     }
 
     static handleButtonClick(event) {
         const button = event.target.closest('.chat-button');
         if (!button) return;
+        if (button.dataset.chatAction === 'more') return;
 
         const text = button.textContent.trim();
-        console.log('ChatButton clicked:', text);
 
         // Dispatch chat button click event
         const clickEvent = new CustomEvent('chatButtonClick', {
@@ -39,49 +42,87 @@ export class ChatButtons {
         this.container.style.display = show ? 'flex' : 'none';
     }
 
-    static createButtonSet(options) {
+    static getButtonSet() {
+        if (!this.chatMessagesContainer) return null;
+
+        const existingSet = this.chatMessagesContainer.querySelector(CONSTANTS.SELECTORS.chatButtonsContainer);
+        if (existingSet) return existingSet;
+
         const buttonSet = document.createElement('div');
         buttonSet.className = 'buttons-set';
+        buttonSet.dataset.buttonRail = 'true';
 
-        const buttons = options
-            .map((text, index) => `
-                <button class="chat-button animate-in" 
-                    style="animation-delay: ${index * 100}ms"
-                >${utils.sanitizeHTML(text.trim())}</button>
-            `)
-            .join('');
-
-        buttonSet.innerHTML = buttons;
-        return buttonSet;
-    }
-
-    static insertButtons(options) {
-        if (!this.chatMessagesContainer || !Array.isArray(options) || !options.length) return;
-
-        const buttonSet = this.createButtonSet(options);
-
-        // Insert before loading indicator like MessageHandler does
         const loadingIndicator = this.chatMessagesContainer.querySelector('.message-loading');
         if (loadingIndicator) {
-            this.chatMessagesContainer.insertBefore(buttonSet, loadingIndicator);
+            this.chatMessagesContainer.insertBefore(buttonSet, loadingIndicator.nextSibling);
         } else {
             this.chatMessagesContainer.appendChild(buttonSet);
         }
 
-        this.setupIntersectionObserver(buttonSet);
+        return buttonSet;
+    }
+
+    static createButtonsFragment(options) {
+        const fragment = document.createDocumentFragment();
+        let renderedCount = 0;
+        options.forEach((text, index) => {
+            const label = typeof text === 'string' ? text : `${text ?? ''}`;
+            const trimmedLabel = label.trim();
+            if (!trimmedLabel) return;
+            const button = document.createElement('button');
+            button.className = 'chat-button animate-in';
+            button.style.animationDelay = `${index * 100}ms`;
+            button.textContent = trimmedLabel;
+            fragment.appendChild(button);
+            renderedCount += 1;
+        });
+        console.log('Rendered option buttons:', renderedCount);
+        return fragment;
+    }
+
+    static updateFromResponse(options = [], buttons = []) {
+        const combined = [...options, ...buttons];
+        if (combined.length) {
+            this.updateButtons(combined);
+        } else {
+            this.clearButtons();
+        }
     }
 
     static updateButtons(options) {
-        if (!this.container || !Array.isArray(options) || !options.length) return;
+        if (!this.container || !Array.isArray(options)) return;
+        this.currentOptions = options;
+        this.renderButtons();
+    }
 
-        const buttonSet = this.createButtonSet(options);
-        this.container.innerHTML = '';
-        this.container.appendChild(buttonSet);
-        this.setupIntersectionObserver(buttonSet);
+    static setMoreButton(button) {
+        if (!button) return;
+        this.moreButton = button;
+        this.renderButtons();
+    }
+
+    static renderButtons() {
+        if (!this.container) return;
+
+        this.container.replaceChildren();
+
+        if (this.moreButton) {
+            this.container.appendChild(this.moreButton);
+        }
+
+        if (this.currentOptions.length) {
+            this.container.appendChild(this.createButtonsFragment(this.currentOptions));
+        }
+
+        this.setupIntersectionObserver(this.container);
+        scrollService.scrollToBottom();
     }
 
     static setupIntersectionObserver(container) {
-        const observer = new IntersectionObserver(
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+        this.observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -92,20 +133,21 @@ export class ChatButtons {
         );
 
         container.querySelectorAll(CONSTANTS.SELECTORS.chatButtons)
-            .forEach(button => observer.observe(button));
+            .forEach(button => this.observer.observe(button));
     }
 
     static clearButtons() {
-        if (this.container) {
-            this.container.innerHTML = '';
-        }
+        if (!this.container) return;
+        this.currentOptions = [];
+        this.renderButtons();
     }
 
     static destroy() {
+        if (this.observer) {
+            this.observer.disconnect();
+            this.observer = null;
+        }
         this.clearButtons();
+        this.initialized = false;
     }
 }
-
-export const chatButtons = new ChatButtons();
-
-window.addEventListener('unload', () => chatButtons.destroy());

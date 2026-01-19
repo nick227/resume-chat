@@ -54,15 +54,10 @@ export class AutoMessageLoader {
                 const data = await response.json();
                 const validatedData = ChatAPI.validateResponse(data);
                 if (validatedData.success) {
+                    console.log('Auto message options:', Array.isArray(validatedData.options) ? validatedData.options : validatedData.options);
                     await MessageHandler.addMessage('bot', validatedData.message, RESPONSE_TYPES.TEXT, true, clearContainer);
 
-                    if (validatedData.options && validatedData.options.length) {
-                        ChatButtons.insertButtons(validatedData.options);
-                    }
-
-                    if (validatedData.buttons && validatedData.buttons.length) {
-                        ChatButtons.updateButtons(validatedData.buttons);
-                    }
+                    ChatButtons.updateFromResponse(validatedData.options, validatedData.buttons);
                 }
 
                 currentIndex++; // Increment for next run

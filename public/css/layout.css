@@ -1,3 +1,38 @@
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main > .chat-messages {
+    min-height: 85vh;
+    flex-grow: 1;
+}
+.main > .chat-controls {
+    height: 15vh;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;    
+    margin-top: 20px;
+}
+
+.navigation a { 
+    width: 44%;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    background: var(--light-gray);
+    text-align: center;
+    outline: 1px solid var(--border-color);
+}
+
 .row {
     display: flex;
     flex-direction: row;

@@ -3,7 +3,7 @@ export const CONSTANTS = {
         chatMessages: '#chat-messages',
         chatInput: '#chat-input',
         sendButton: '#send-button',
-        chatButtonsContainer: '#chat-buttons',
+        chatButtonsContainer: '.buttons-set[data-button-rail="true"]',
         chatButtons: '.chat-button',
         micButton: '.chat-microphone',
         avatarContainer: '.avatar',

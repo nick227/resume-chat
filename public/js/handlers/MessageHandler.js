@@ -31,10 +31,30 @@ export class MessageHandler {
         // Add loading indicator
         this.container.insertAdjacentHTML('beforeend', LoadingHandler.getLoadingHTML('AI is typing'));
 
+        // Keep short/long state in sync with message changes
+        this.updateCharacterLengthClass();
+        const messageObserver = new window.MutationObserver(() => {
+            this.updateCharacterLengthClass();
+        });
+        messageObserver.observe(this.container, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+
         // Setup click handler
         this.container.addEventListener('click', this.handleMessageClick.bind(this));
 
         this.isInitialized = true;
+    }
+
+    static updateCharacterLengthClass() {
+        const message = this.container.querySelector('.message');
+        if (message) {
+            const parentElement = message.parentElement;
+            parentElement.classList.toggle('bottom', message.textContent.length > 1000);
+            console.log('# message.textContent.length', message.textContent.length, parentElement.classList);
+        }
     }
 
     // ============= Core Message Operations =============
@@ -154,7 +174,9 @@ export class MessageHandler {
 
         const loadingIndicator = this.container.querySelector('.message-loading');
         if (loadingIndicator) {
-            this.buttonSet.style.display = show ? 'none' : 'flex';
+            if (this.buttonSet) {
+                this.buttonSet.style.display = show ? 'none' : 'flex';
+            }
             loadingIndicator.style.display = show ? 'flex' : 'none';
         }
     }

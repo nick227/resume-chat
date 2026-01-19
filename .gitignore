@@ -2,3 +2,9 @@
 node_modules
 logs
 private
+docs
+test-results
+dist/
+playwright-report/
+public/.gpt-runner/
+.vscode/

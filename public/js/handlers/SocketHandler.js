@@ -93,12 +93,8 @@ export class SocketHandler {
                 // Use scroll service
                 scrollService.scrollToBottom();
 
-                // Update chat buttons if options are available
-                if (Array.isArray(data.options)) {
-                    ChatButtons.updateButtons(data.options);
-                } else {
-                    ChatButtons.clearButtons();
-                }
+                // Options and buttons render together in the same rail
+                ChatButtons.updateFromResponse(data.options, data.buttons);
             } catch (error) {
                 console.error('Error handling socket message:', error);
             }

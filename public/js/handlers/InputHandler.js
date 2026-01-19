@@ -61,15 +61,10 @@ export class InputHandler {
                 await MessageHandler.addMessage('bot', response.message);
             }
 
-            // Update chat buttons if available
-            if (response.options) {
-                ChatButtons.updateButtons(response.options);
-            }
+            console.log('Chat response options:', Array.isArray(response.options) ? response.options : response.options);
 
-            // Update chat buttons if available
-            if (response.buttons) {
-                ChatButtons.insertButtons(response.buttons);
-            }
+            // Options and buttons render together in the same rail
+            ChatButtons.updateFromResponse(response.options, response.buttons);
 
         } catch (error) {
             console.error('Chat error:', error);

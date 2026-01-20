@@ -31,7 +31,6 @@ export const resume = `
           <li>Mass generated stylized text treatments and layouts with AI</li>
           <li>Stabilized codebases reducing bugs and improving developer experience</li>
           <li>Launched AI token management system for content usage tracking</li>
-          <li>Built image API aggregating major providers with filters</li>
           <li>Integrated AI code review in GitLab; auto-posted to Teams</li>
           <li>Launched company-wide stock image search and filter api system.</li>
           <li>Led demos, onboarding, and cross-team collaboration</li>

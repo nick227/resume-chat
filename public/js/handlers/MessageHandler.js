@@ -163,6 +163,7 @@ export class MessageHandler {
     static clearContainer() {
         const messages = this.container.querySelectorAll('.message:not(.message-loading)');
         messages.forEach(message => message.remove());
+        this.clearNavButtons();
     }
 
     /**
@@ -193,7 +194,6 @@ export class MessageHandler {
      * Handles message click events
      */
     static handleMessageClick(event) {
-        this.clearNavButtons();
         const retryButton = event.target.closest('.retry-button');
         if (!retryButton) return;
 

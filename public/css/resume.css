@@ -1,0 +1,28 @@
+
+
+:root{--bg:#fff;--fg:#0b0f17;--muted:#546070;--rule:#e7ebf0;--accent:#0b4bd4;--max:920px;--pad:18px;--lh:1.38;}
+:root{
+--bg:#fff;--fg:#0b0f17;--muted:#546070;--rule:#e7ebf0;--accent:#0b4bd4;
+--max:920px;--pad:18px;--lh:1.38;
+--h1:28px;--h2:12px;--small:13px;
+}
+
+/* Header */
+#resume-container .header{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px;}
+#resume-container .name{margin:0;font-weight:800;letter-spacing:.04em;font-size:var(--h1);}
+#resume-container .title{margin-top:4px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px;}
+
+#resume-container .contact{display:flex;flex-direction:column;gap:6px;align-items:flex-end;min-width:min(360px,100%);}
+#resume-container .contact__item{font-size:var(--small);color:var(--muted);white-space:nowrap;}
+#resume-container .contact__item a{color:inherit}
+
+/* Sections */
+#resume-container .section{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);}
+#resume-container .section__title{margin:0 0 10px;font-size:var(--h2);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* Roles */
+#resume-container .role{margin:0 0 16px;}
+#resume-container .role__header{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;}
+#resume-container .role__org{font-weight:800;letter-spacing:.02em;}
+#resume-container .role__sep{color:var(--muted);font-weight:700;}
+#resume-container .role__dates{color:var(--muted);font-size:var(--small);white-space:nowrap;}

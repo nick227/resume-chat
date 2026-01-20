@@ -7,7 +7,11 @@
         height: 200px;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .side-bar h4 {
+        display: none;
     }
     .chat-messages {
         margin-top: 200px;
@@ -21,7 +25,8 @@
         margin: 0;
     }
     .avatar {
-        width: 150px;
+        width: 55px;
+        height: 55px;
         margin-top: 0;
     }
     .chat-controls {
@@ -33,12 +38,27 @@
         width: 98%;
         padding: 0 1%;
     }
+
+    .links,
+    .contact {
+        width: auto;
+        display: block;
+    }
+
+    .links a{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
+    }
+
+    .contact-link {
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
     .elevenlabs-section {
-        width: 80%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
+        width: 100%;
         position: absolute;
         top: 70%;
         box-shadow: none;
@@ -46,15 +66,17 @@
     elevenlabs-convai {
         position: relative !important;
         width: 100% !important;
-        text-align: center !important;
-        margin: 0 auto !important;
-        text-align: center !important;
-        right: auto !important;
-        left: auto !important;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    elevenlabs-convai::part(div) {
+    elevenlabs-convai div {
         width: 100% !important;
         text-align: center !important;
         margin: 0 auto !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 }

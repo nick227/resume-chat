@@ -6,6 +6,9 @@ import { ChatButtons } from './handlers/ChatButtons.js';
 import { autoMessageLoader } from './services/AutoMessageLoader.js';
 import { PanelHandler } from './handlers/PanelHandler.js';
 import { ImageHandler } from './handlers/ImageHandler.js';
+import { NavigationHandler } from './handlers/NavigationHandler.js';
+import { setupQr } from './handlers/setupQr.js';
+import { setupAvatar } from './handlers/setupAvatar.js';
 
 const initializeChat = () => {
     try {
@@ -16,6 +19,11 @@ const initializeChat = () => {
         ChatButtons.init();
         PanelHandler.init();
         ImageHandler.init();
+        NavigationHandler.init();
+
+        // Initialize setup handlers
+        setupQr();
+        setupAvatar();
 
         // Initialize input handler
         const input = new InputHandler();

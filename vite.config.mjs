@@ -126,6 +126,9 @@ export default defineConfig({
         htmlTransformPlugin(),
         viteStaticCopy({
             targets: [{
+                src: 'images/**/*',
+                dest: 'images'
+            }, {
                 src: 'uploads/**/*',
                 dest: 'uploads'
             }]

@@ -52,7 +52,7 @@ export class MessageHandler {
         const message = this.container.querySelector('.message');
         if (message) {
             const parentElement = message.parentElement;
-            parentElement.classList.toggle('bottom', message.textContent.length > 1000);
+            parentElement.classList.toggle('top', message.textContent.length > 1000);
             console.log('# message.textContent.length', message.textContent.length, parentElement.classList);
         }
     }
@@ -193,6 +193,7 @@ export class MessageHandler {
      * Handles message click events
      */
     static handleMessageClick(event) {
+        this.clearNavButtons();
         const retryButton = event.target.closest('.retry-button');
         if (!retryButton) return;
 
@@ -205,5 +206,10 @@ export class MessageHandler {
         document.dispatchEvent(new CustomEvent('retryMessage', {
             detail: { message: messageText }
         }));
+    }
+
+    static clearNavButtons() {
+        const navButtons = document.querySelectorAll('.page-buttons button');
+        navButtons.forEach(button => button.classList.remove('active'));
     }
 }

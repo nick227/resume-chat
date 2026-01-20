@@ -45,8 +45,9 @@ const setStaticHeaders = (res, filePath) => {
         return;
     }
 
-    if (relativePath.startsWith('assets/')) {
+    if (relativePath.startsWith('images/')) {
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         return;
     }
 };

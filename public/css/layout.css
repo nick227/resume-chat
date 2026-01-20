@@ -4,34 +4,54 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
+#resume-container {
+    width: var(--main-container-width);
+    margin: 0 auto;
+}
 .main > .chat-messages {
-    min-height: 85vh;
-    flex-grow: 1;
+    height: 79vh;
 }
 .main > .chat-controls {
     height: 15vh;
 }
 
-.navigation {
+.page-buttons {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
-    width: 100%;    
-    margin-top: 20px;
+    width: var(--main-container-width);
+    overflow-x: auto;
+    height: 6vh;
+    margin: 0 auto;
+    flex-wrap: nowrap;
 }
 
-.navigation a { 
-    width: 44%;
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 16px;
-    font-weight: 600;
-    padding: 10px;
-    background: var(--light-gray);
-    text-align: center;
-    outline: 1px solid var(--border-color);
+.top {
+    justify-content: flex-start !important;
 }
+
+#qr {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0,0,0,.5);
+    z-index: 10000;
+    text-align: center;
+  }
+
+  .qr-content {
+    text-align: center;
+    background: white;
+  border-radius: 12px;
+  padding-top: 30px;
+  }
+  
+  #qr img {
+    background: #fff;
+    padding: 12px;
+  }
+  
 
 .row {
     display: flex;
@@ -98,4 +118,8 @@
 
 .full-width {
     width: 100% !important;
+}
+
+.hidden {
+    display: none !important;
 }

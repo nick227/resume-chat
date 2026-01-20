@@ -6,31 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick's AI Resume Assistant</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" href="images/favicon.png">
 
 </head>
 
 <body>
+    <div id="qr" class="hidden">
+        <div class="qr-content">
+        <h6>Take a photo of this QR code to text me</h6>
+        <img src="/uploads/text-nick.png" width="260" />
+        <p>(737)207-2022</p>
+        </div>
+      </div>
     <div class="side-bar">
         <a href="/"><img src="images/nick.png" alt="AI Assistant Avatar" class="avatar" /></a>
+        <h2 class="title">Nick Rios</h2>
+        <h4 style="margin-top: 20px;">links</h4>
         <div class="links">
-            <h2 class="title">Nick Rios</h2>
             <a href="https://github.com/nick227" title="Nick's GitHub" target="_blank">github/nick227</a>
-            <a href="https://www.linkedin.com/in/nick-rios/" title="Nick's LinkedIn" target="_blank">linkedin/in/nick...</a>
-            <a href="https://medium.com/@nick.rios" title="Nick's Medium" target="_blank">medium/@nick...</a>
-            <a href="mailto:nicholas.jay.rios@gmail.com" title="Email Nick Rios" aria-label="Email Nick Rios">✉ email me here</a>
+            <a href="https://www.linkedin.com/in/nick-rios/" title="Nick's LinkedIn" target="_blank">linkedin/in/nick-rios</a>
+            <a href="https://medium.com/@nick.rios" title="Nick's Medium" target="_blank">medium/@nick-rios</a>
         </div>
-        <div class="navigation">
-            <a href="" title="" target="_blank">Chat</a>
-            <a href="" title="" target="_blank">Resume</a>
+        <div class="contact">
+            <h4 style="margin-top: 20px;">contact</h4>
+            <a
+            id="text-nick"
+            href="sms:+17372072022?body=Hey%20Nick%20%E2%80%94%20I%20just%20scanned%20your%20QR%20code%20and%20wanted%20to%20reach%20out."
+            class="contact-link"
+            >📟 send text</a>
+            <a href="mailto:nicholas.jay.rios@gmail.com" class="contact-link" target="_blank" title="Email Nick Rios" aria-label="Email Nick Rios">📫send email</a>
+            <a href="uploads/nick-rios-resume.pdf" class="contact-link" download target="_blank" title="Download Nick's Resume" aria-label="Nick's Resume">🡇 my resume</a>
+
         </div>
     </div>
+    <div class="page-buttons"><button>resume</button><button>projects</button><button>stack</button><button>about</button></div>
     <section class="main">
     <div id="chat-messages" class="chat-messages"></div>
         <div class="chat-controls">
@@ -53,6 +63,11 @@
         <elevenlabs-convai agent-id="vPAutX7qYW7jpzSBTTIK"></elevenlabs-convai>
     </div>
     <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="module" src="js/main.js"></script>
 </body>
 

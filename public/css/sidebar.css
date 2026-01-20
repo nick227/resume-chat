@@ -20,16 +20,16 @@
 }
 
 .title {
-    font-family: Sora;
-    font-size: 57.6px;
-    font-weight: bold;
-    line-height: 1.2;
     margin: 20px 0 10px 0;
 }
 
-.links {
+.side-bar h4,
+.title,
+.links,
+.contact {
     display: flex;
     flex-direction: column;
     width: 190px;
-    padding-left: 20px;
+    justify-content: flex-start;
+    text-align: left;
 }

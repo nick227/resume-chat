@@ -43,11 +43,11 @@ export const projects = `
         <a href="https://github.com/nick227/ssot-generator" target="_blank" title="SSOT Generator" aria-label="SSOT Generator"><strong>SSOT Generator</strong></a>
         <span>Prisma scaffold: DB, endpoints, SDK, auth, billing</span>
       </li>
-      <li><a href="https://autoimage.up.railway.app/"><strong>AutoImage</strong></a><span>Bulk AI image pipeline with queueing</span></li>
-      <li><a href="https://flashcard-client-phi.vercel.app/"><strong>Flashcard Academy</strong></a><span>AI flashcard portal</span></li>
-      <li><a href="https://internet-dating-production.up.railway.app/"><strong>Internet Date</strong></a><span>Social graph jobs + prebuilt feeds</span></li>
-      <li><a href="https://ai-script-writer.up.railway.app/"><strong>AI Script Writer</strong></a><span>Screenplay assistant</span></li>
-      <li><a href="https://gdrive-to-youtube-production.up.railway.app/"><strong>YouTube Upload Manager</strong></a><span>Links Google Drive and YouTube API with upload tracking</span></li>
+      <li><a href="https://autoimage.up.railway.app/" target="_blank"><strong>AutoImage</strong></a><span>Bulk AI image pipeline with queueing</span></li>
+      <li><a href="https://flashcard-client-phi.vercel.app/" target="_blank"><strong>Flashcard Academy</strong></a><span>AI flashcard portal</span></li>
+      <li><a href="https://internet-dating-production.up.railway.app/" target="_blank"><strong>Internet Date</strong></a><span>Social graph jobs + prebuilt feeds</span></li>
+      <li><a href="https://ai-script-writer.up.railway.app/" target="_blank"><strong>AI Script Writer</strong></a><span>Screenplay assistant</span></li>
+      <li><a href="https://gdrive-to-youtube-production.up.railway.app/" target="_blank"><strong>YouTube Upload Manager</strong></a><span>Links Google Drive and YouTube API with upload tracking</span></li>
     </ul>
   </section>
 

@@ -11,7 +11,7 @@ Make each response unique! You must see your own conversation history and use it
 
 Don't start every message with Nick this and that. Use the conversation history to craft unique responses.
 
-Return maximum 400 characters. So short but interesting.
+Return maximum 500 characters. So short but interesting.
 
 ---------------------------------------------------------------------------------------------------------
 NICK'S RESUME:
@@ -256,7 +256,7 @@ Be technical and direct. The user is a potential employer or client.
 - Do not speculate or make up information.
 - Do not make up information.
 - Keep responses and questions short and relevant.
-- Maximum 400 characters per response.
+- Maximum 500 characters per response.
 
 `
 };
@@ -271,7 +271,7 @@ const functions = {
             properties: {
                 message: {
                     type: 'string',
-                    description: 'A creative and unique response to the user prompt. Maximum 400 characters.'
+                    description: 'A creative and unique response to the user prompt. Maximum 500 characters.'
                 },
                 options: {
                     type: 'array',

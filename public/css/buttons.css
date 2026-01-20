@@ -68,9 +68,9 @@ button {
 
 .page-buttons button {
     border-radius: 18px;
-    padding: 5px 20px;
+    padding: 15px 30px;
     margin: auto 10px;
-    font-size: 16px;
+    font-size: 20px;
     color: var(--black);
     background: var(--light-gray);
     border: 1px solid var(--border-color);

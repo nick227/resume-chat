@@ -25,12 +25,15 @@ export const resume = `
         </header>
         <ul class="bullets">
           <li>Led three teams delivering WYSIWYG platform across orgs</li>
-          <li>Built Angular design system; cut time to production 80%</li>
+          <li>Built Angular component library pipeline; cut time to production significantly</li>
           <li>Launched AI agent platform; shipped 100+ services</li>
           <li>Designed RAG pipelines for structured and unstructured data</li>
-          <li>Shipped NL UI builder rendering screens from LLM schemas</li>
+          <li>Mass generated stylized text treatments and layouts with AI</li>
+          <li>Stabilized codebases reducing bugs and improving developer experience</li>
+          <li>Launched AI token management system for content usage tracking</li>
           <li>Built image API aggregating major providers with filters</li>
           <li>Integrated AI code review in GitLab; auto-posted to Teams</li>
+          <li>Launched company-wide stock image search and filter api system.</li>
           <li>Led demos, onboarding, and cross-team collaboration</li>
         </ul>
       </article>
@@ -44,9 +47,10 @@ export const resume = `
           <li>Led distributed teams for redundant alerts and ticketing</li>
           <li>Owned cross-functional interface with product and design</li>
           <li>Built search pipelines on Node with Elasticsearch and Neo4j</li>
-          <li>Defined API contracts and data flow standards across teams</li>
+          <li>Synchronized Neo4j data with Elasticsearch for search and reporting</li>
           <li>Improved scale for high-volume event ingestion and correlation</li>
           <li>Built Angular UI component adopted in Cisco corporate library</li>
+          <li>Defined API contracts and data flow standards for external teams</li>
           <li>Led hiring screens and improved team delivery process</li>
           <li>Launched product internally, then released publicly</li>
         </ul>

@@ -47,8 +47,4 @@
     /* Sizes */
     --dot-size: 8px;
     --main-container-width: 640px;
-    --header-height: 61.3px;
-    --chat-messages-height: 80vh;
-    --chat-input-height: 10vh;
-    --side-bar-width: 400px;
 }

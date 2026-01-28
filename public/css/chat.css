@@ -9,7 +9,7 @@
     flex-direction: column;
     gap: var(--spacing-base);
     background-color: var(--chat-messages-background-color);
-    height: var(--chat-messages-height);
+    height: 80vh;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -63,7 +63,7 @@
     display: flex;
     gap: var(--spacing-sm);
     align-items: center;
-    height: var(--chat-input-height);
+    height: 100%;
 }
 
 .chat-input-section:focus-within {

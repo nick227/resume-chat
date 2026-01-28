@@ -66,14 +66,14 @@ button {
 }
 
 
-.page-buttons button {
+.site-navigation button {
     height: 50px;
  width: auto;
   flex-grow: 1;
   outline: 1px solid white;
   outline-offset: -2px;
 }
-.page-buttons button.active {
+.site-navigation button.active {
     background-color: var(--ultra-light-blue);
     color: white;
 

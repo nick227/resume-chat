@@ -1,46 +1,60 @@
-.main {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.masthead {
+    width: var(--main-container-width);
+    margin: 0 auto;
+    height: 16vh;
+    background-image: url(../images/nr2.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    content: "";
+    top: 0;
 }
-#resume-container {
+
+.site-navigation {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 4vh;
     width: var(--main-container-width);
     margin: 0 auto;
 }
 .main > .chat-messages {
-    height: 79vh;
+    height: 65vh;
 }
 .main > .chat-controls {
-    height: 15vh;
+    height: 10vh;
 }
 
-.page-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.links.row {
+    justify-content: flex-start;
+    height: 5vh;
+    gap: 12px;
     align-items: center;
-    height: 6vh;
+    width: var(--main-container-width);
     margin: 0 auto;
-    flex-wrap: nowrap;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#resume-container {
+    width: var(--main-container-width);
+    margin: 0 auto;
 }
 
 .top {
     justify-content: flex-start !important;
 }
 
-.page-buttons,
-.links.row,
 .contact.row {
     width: var(--main-container-width);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-}
-
-.links.row {
-    justify-content: flex-start;
-    gap: 12px;
 }
 
 #qr {

@@ -12,6 +12,7 @@ export const resume = `
           <span class="contact__item"><a target="_blank" href="https://linkedin.com/in/nick-rios" rel="noopener">linkedin.com/in/nick-rios</a></span>
           <span class="contact__item"><a target="_blank" href="https://github.com/nick227" rel="noopener">github.com/nick227</a></span>
           <span class="contact__item"><a target="_blank" href="https://medium.com/@nick.rios" rel="noopener">medium.com/@nick.rios</a></span>
+          <a href="uploads/nick-rios-resume.pdf" class="" download="" target="_blank" title="Download Nick's Resume" aria-label="Nick's Resume">download resume</a>
         </div>
       </div>
     </header>

@@ -209,7 +209,7 @@ export class MessageHandler {
     }
 
     static clearNavButtons() {
-        const navButtons = document.querySelectorAll('.page-buttons button');
+        const navButtons = document.querySelectorAll('.site-navigation button');
         navButtons.forEach(button => button.classList.remove('active'));
     }
 }

@@ -6,7 +6,7 @@ export class NavigationHandler {
     static currentPage = null;
   
     static init() {
-      this.pages = [...document.querySelectorAll('.page-buttons button')];
+      this.pages = [...document.querySelectorAll('.site-navigation button')];
       if (!this.pages.length) return;
       this.currentPage = document.querySelector('.chat-messages');
   

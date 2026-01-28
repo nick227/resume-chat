@@ -23,6 +23,7 @@ export const resume = `
           <div class="role__org">DIGITAL HARBOR <span class="role__sep">—</span> Team Lead &amp; AI Developer</div>
           <div class="role__dates">Sep 2020 – Mar 2025</div>
         </header>
+        <p>Digital Harbor was a great team to be on because it was all research and prototyping. I was allowed to start multiple initiatives and main time was spent on strategy and innovation meetings.</p>
         <ul class="bullets">
           <li>Led three teams delivering WYSIWYG platform across orgs</li>
           <li>Built Angular component library pipeline; cut time to production significantly</li>
@@ -42,8 +43,9 @@ export const resume = `
           <div class="role__org">CISCO SYSTEMS <span class="role__sep">—</span> Senior Engineer</div>
           <div class="role__dates">Dec 2012 – Mar 2020</div>
         </header>
+        <p>Cisco is an amazing company for engineers. I got to hire and build my own local team and branch out to managing projects with off-shore teams.</p>
         <ul class="bullets">
-          <li>Led distributed teams for redundant alerts and ticketing</li>
+          <li>Led distributed teams for big data alerts and ticketing platform</li>
           <li>Owned cross-functional interface with product and design</li>
           <li>Built search pipelines on Node with Elasticsearch and Neo4j</li>
           <li>Synchronized Neo4j data with Elasticsearch for search and reporting</li>
@@ -60,6 +62,7 @@ export const resume = `
           <div class="role__org">MULTIVIEW <span class="role__sep">—</span> Corporate Developer</div>
           <div class="role__dates">Mar 2009 – Jan 2012</div>
         </header>
+        <p>I cross-functioned between all department officially working within their design team. This is a small aggressive company that moves fast.</p>
         <ul class="bullets">
           <li>Embedded engineer partnering with executives, design, sales</li>
           <li>Built award-winning B2B sites and custom video platform</li>
@@ -75,6 +78,7 @@ export const resume = `
           <div class="role__org">NEXSTAR BROADCASTING <span class="role__sep">—</span> SWE</div>
           <div class="role__dates">Jun 2005 – Mar 2009</div>
         </header>
+        <p>Like many of my positions I got to start this one from ground-zero. I have a 20 year track record of closing projects.</p>
         <ul class="bullets">
           <li>Migrated 60+ station sites to shared multi-tenant CMS</li>
           <li>Built ingestion pipelines for legacy content migration</li>

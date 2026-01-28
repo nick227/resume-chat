@@ -3,7 +3,7 @@ export const stack = `
   <section class="projects-group">
     <h3 class="projects-title">
       <span class="projects-shape" aria-hidden="true"></span>
-      <span>Standard</span>
+      <span>Preferred</span>
     </h3>
     <p>Railway, MySQL, Node.js, React, Tailwind, Vite</p>
   </section>

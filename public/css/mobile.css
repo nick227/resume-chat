@@ -41,21 +41,6 @@
         justify-content: center;
         padding-bottom: 20px;
     }
-    .page-buttons {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        z-index: 1000;
-        height: 6vh;
-    }
-
-    .page-buttons button {
-        padding: 6px 16px;
-        font-size: 18px;
-        min-width: 0px;
-    }
     .chat-controls {
         width: 100%;
     }

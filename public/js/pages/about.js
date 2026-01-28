@@ -5,7 +5,7 @@ export const about = `
 <p>
 At this stage of my career, I’m looking for a role where I can materially influence technical direction and product outcomes. I bring deep hands-on experience, strong execution bias, and the ability to turn complex ideas into maintainable systems.
 </p>
-<img src="images/234234.png" alt="Nick Rios" />
+<img src="images/234234.png" class="square-image" alt="Nick Rios" />
     <p>
 For the last 20 years, I’ve worked in senior engineering roles at the cross-point between teams and departments. I specialize in breaking through silos and shipping systems that move the business. I’ve delivered three large-scale platforms, dozens of mid-sized systems, and a long tail of production features all <i>without</i> AI. Since 2022, I have been building RAG systems, agent-based pipelines, and automation for content generation, code development, and testing.
 </p>

@@ -1,0 +1,37 @@
+*** Begin Patch
+*** Update File: vite.config.mjs
+@@
+-import path from 'node:path';
+-import { fileURLToPath } from 'node:url';
+-import { defineConfig } from 'vite';
+-import compression from 'vite-plugin-compression';
+-import { viteStaticCopy } from 'vite-plugin-static-copy';
+-import browserslistToEsbuild from 'browserslist-to-esbuild';
+-import browserslist from 'browserslist';
+-import { browserslistToTargets } from 'lightningcss';
++import path from 'node:path';
++import { fileURLToPath } from 'node:url';
++import { defineConfig } from 'vite';
++import compression from 'vite-plugin-compression';
++import { viteStaticCopy } from 'vite-plugin-static-copy';
++import browserslistToEsbuild from 'browserslist-to-esbuild';
++import browserslist from 'browserslist';
++import { browserslistToTargets } from 'lightningcss';
++
++const API_PORT = process.env.API_PORT || 3001;
++const API_TARGET = `http://localhost:${API_PORT}`;
+@@
+   server: {
+     open: true,
+     strictPort: true,
++    proxy: {
++      '/api': {
++        target: API_TARGET,
++        changeOrigin: true
++      }
++    },
+     watch: {
+       usePolling: true // important on Windows / WSL / network FS
+     }
+   },
+*** End Patch

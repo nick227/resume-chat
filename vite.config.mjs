@@ -7,6 +7,9 @@ import browserslistToEsbuild from 'browserslist-to-esbuild';
 import browserslist from 'browserslist';
 import { browserslistToTargets } from 'lightningcss';
 
+const API_PORT = process.env.API_PORT || 3001;
+const API_TARGET = `http://localhost:${API_PORT}`;
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -105,45 +108,59 @@ const htmlTransformPlugin = () => ({
 });
 
 export default defineConfig({
-    root: path.resolve(__dirname, 'public'),
-    publicDir: false,
-    build: {
-        outDir: path.resolve(__dirname, 'dist'),
-        emptyOutDir: true,
-        assetsDir: 'assets',
-        manifest: true,
-        modulePreload: false,
-        target: esbuildTargets,
-        cssMinify: 'lightningcss'
+  root: path.resolve(__dirname, 'public'),
+  publicDir: false,
+
+  server: {
+    open: true,
+    strictPort: true,
+    proxy: {
+      '/api': {
+        target: API_TARGET,
+        changeOrigin: true
+      }
     },
-    css: {
-        transformer: 'lightningcss',
-        lightningcss: {
-            targets: lightningTargets
-        }
-    },
-    plugins: [
-        htmlTransformPlugin(),
-        viteStaticCopy({
-            targets: [{
+    watch: {
+      usePolling: true // important on Windows / WSL / network FS
+    }
+  },
+
+  build: {
+    outDir: path.resolve(__dirname, 'dist'),
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    manifest: true,
+    modulePreload: false,
+    target: esbuildTargets,
+    cssMinify: 'lightningcss'
+  },
+
+  css: {
+    transformer: 'lightningcss',
+    lightningcss: {
+      targets: lightningTargets
+    }
+  },
+
+  plugins: [
+    htmlTransformPlugin(), // build-only, safe
+    viteStaticCopy({
+        targets: [
+            {
+                src: 'css/**/*',
+                dest: 'css'
+            },
+            {
                 src: 'images/**/*',
                 dest: 'images'
-            }, {
+            },
+            {
                 src: 'uploads/**/*',
                 dest: 'uploads'
-            }]
-        }),
-        compression({
-            algorithm: 'brotliCompress',
-            ext: '.br',
-            threshold: 1024,
-            filter: /\.(js|mjs|css|svg|json|txt|woff2?)$/i
-        }),
-        compression({
-            algorithm: 'gzip',
-            ext: '.gz',
-            threshold: 1024,
-            filter: /\.(js|mjs|css|svg|json|txt|woff2?)$/i
-        })
-    ]
+            }
+        ]
+    }),
+    compression({ /* … */ }),
+    compression({ /* … */ })
+  ]
 });

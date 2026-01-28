@@ -41,8 +41,6 @@ export class AutoMessageLoader {
                 this.isLoading = true;
                 MessageHandler.toggleLoading(true);
 
-                //document.querySelector(CONSTANTS.SELECTORS.chatMessages).style.justifyContent = 'flex-start';
-
                 const url = new URL(`/api/chat/${config.endpoint}`, window.location.origin);
                 url.searchParams.append('userId', ChatAPI.getUserId());
                 url.searchParams.append('sessionId', ChatAPI.getSessionId());

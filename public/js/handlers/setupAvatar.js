@@ -1,7 +1,5 @@
 export function setupAvatar()  {
-    setTimeout(() => {
-        animateAvatar();
-    }, random(1000, 2500));
+    return;
 }
 
 function animateAvatar() {

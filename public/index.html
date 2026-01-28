@@ -23,7 +23,7 @@
 
 </head>
 
-<body>
+<body style="opacity: 0;">
     <div id="qr" class="hidden">
         <div class="qr-content">
             <h6>Take a photo of this QR code to text me</h6>
@@ -31,31 +31,30 @@
             <p>(737)207-2022</p>
         </div>
     </div>
-    <div class="side-bar">
+    <div class="side-bar hidden">
         <a href="/"><img src="images/nick.png" alt="AI Assistant Avatar" class="avatar" /></a>
         <h2 class="title">Nick Rios</h2>
         <h4 style="margin-top: 20px;">links</h4>
-        <div class="links">
-            <a href="https://github.com/nick227" title="Nick's GitHub" target="_blank">github/nick227</a>
-            <a href="https://www.linkedin.com/in/nick-rios/" title="Nick's LinkedIn"
-                target="_blank">linkedin/in/nick-rios</a>
-            <a href="https://medium.com/@nick.rios" title="Nick's Medium" target="_blank">medium/@nick-rios</a>
-        </div>
-        <div class="contact">
-            <h4 style="margin-top: 20px;">contact</h4>
-            <a id="text-nick" href="sms:+17372072022?body=Hey%20Nick%20%E2%80%94%20I%20just%20reaching%20out."
-                class="contact-link">📟 send text</a>
-            <a href="mailto:nicholas.jay.rios@gmail.com" class="contact-link" target="_blank" title="Email Nick Rios"
-                aria-label="Email Nick Rios">📫send email</a>
-            <a href="uploads/nick-rios-resume.pdf" class="contact-link" download target="_blank"
-                title="Download Nick's Resume" aria-label="Nick's Resume">🡇 my resume</a>
-
-        </div>
     </div>
     <div class="page-buttons">
-        <button>resume</button><button>projects</button><button>stack</button><button>about</button></div>
+        <button>resume</button><button>projects</button><button>stack</button><button>about</button>
+    </div>
     <section class="main">
         <div id="chat-messages" class="chat-messages"></div>
+<div class="row links">
+        
+            <a id="text-nick" href="sms:+17372072022?body=Hey%20Nick%20%E2%80%94%20I%20just%20reaching%20out."
+                class="">text</a>
+            <a href="mailto:nicholas.jay.rios@gmail.com" class="" target="_blank" title="Email Nick Rios"
+                aria-label="Email Nick Rios">email</a>
+            <a href="uploads/nick-rios-resume.pdf" class="" download target="_blank"
+                title="Download Nick's Resume" aria-label="Nick's Resume">🡇 resume</a>
+            <a href="https://github.com/nick227" title="Nick's GitHub" target="_blank">github</a>
+            <a href="https://www.linkedin.com/in/nick-rios/" title="Nick's LinkedIn"
+                target="_blank">linkedin</a>
+            <a href="https://medium.com/@nick.rios" title="Nick's Medium" target="_blank">medium</a>
+
+    </div>
         <div class="chat-controls">
 
             <div class="chat-input-section">
@@ -77,6 +76,7 @@
     </div>
     <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
     <script type="module" src="js/main.js"></script>
+    <link rel="preload" href="images/234234.png" as="image">
 </body>
 
 </html>

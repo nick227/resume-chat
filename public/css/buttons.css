@@ -67,37 +67,14 @@ button {
 
 
 .page-buttons button {
-    border-radius: 18px;
-    padding: 15px 30px;
-    margin: auto 10px;
-    font-size: 20px;
-    color: var(--black);
-    background: var(--light-gray);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    min-width: 100px;
+    height: 50px;
+ width: auto;
+  flex-grow: 1;
+  outline: 1px solid white;
+  outline-offset: -2px;
 }
-.page-buttons button:active,
 .page-buttons button.active {
-    border-color: var(--green) !important;
-    background: var(--white) !important;
-    color: var(--green) !important;
-}
+    background-color: var(--ultra-light-blue);
+    color: white;
 
-.contact-link {
-    text-decoration: none;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-md);
-    margin: 0;
-    display: inline-block;
-    font-size: 16px;
-    color: var(--black);
-    background: var(--light-gray);
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
 }

@@ -13,6 +13,8 @@ import { setupAvatar } from './handlers/setupAvatar.js';
 const initializeChat = () => {
     try {
         utils.elements.clear();
+        const body = document.querySelector('body');
+        body.style.opacity = 1;
 
         // Initialize core components
         MessageHandler.init();

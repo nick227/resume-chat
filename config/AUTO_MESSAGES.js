@@ -1,6 +1,9 @@
 const AUTO_MESSAGES = [{
         type: 'chat',
-        message: 'Nick Rios is a principal-level engineer who specializes in turning vague ideas into shipped systems. He focuses on solving real business problems end-to-end, not just writing code, and consistently delivers platforms that teams can scale, extend, and rely on.',
+        message: `<div class="row">
+        <img src="images/nick.png" alt="AI Assistant Avatar" class="avatar" />
+        <p>Nick Rios is a senior technical leader with 20+ years experience delivering enterprise software solutions. He loves blue-sky projects. He builds reliable systems that scale and actually get out the door. Seeking leadership position with a forward thinking innovate team.</p>
+        </div>`,
         buttons: ['Talk about his front-end experience', 'Talk about his back-end experience']
     },{
         type: 'chat',
@@ -43,7 +46,7 @@ const AUTO_MESSAGES = [{
     },
     {
         type: 'chat',
-        message: '<div><p>The code that can be written is not the eternal code.</p><h5>~Tao of Programming</h5></div>',
+        message: '<p>Nick is a driving force. He is proactive not reactive and moves projects from concept to operational. He specializes in designing clean architectures, aligning stakeholders, and guiding engineers through high-impact situations.</p>',
         buttons: ['What else does Nick do besides build amazing software?']
     }
 ];

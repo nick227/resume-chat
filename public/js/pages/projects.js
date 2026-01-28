@@ -3,32 +3,32 @@ export const projects = `
   <section class="projects-group">
     <h3 class="projects-title">
       <span class="projects-shape" aria-hidden="true"></span>
-      <span>Launched Platforms</span>
+      <span>Digital Harbor</span>
     </h3>
     <ul class="projects-list">
       <li>
-        <strong>Form Builder</strong>
-        <span>Node.js backend with Angular WYSIWYG multi-tenant smart form builder. Designed versioned schemas, reusable components, and a publish pipeline that turns drafts into production pages.</span>
+        <strong>Set Forms</strong>
+        <span>A multi-tentant page publishing platform. We built a large collection of ui/ux components and widgets for this cross between Wix and Typeform product.</span>
       </li>
       <li>
         <strong>AI Agent Platform</strong>
-        <span>Node.js orchestration for AI agents. Built shared tooling, routing, and deployable apis with custom data shaping, agent routing, and function calling.</span>
+        <span>Basically a CMS for managing, testing and deploying AI agents. This was our jumping off point for launching dozens of AI powered services. New agents instantly became API's accessible to organization.</span>
       </li>
+      <li>
+        <strong>AI Agent WYSIWG</strong>
+        <span>A natural language editor for crafting beautiful user experiences and standardized usable html. Giving the AI a command language and structured function calling we got consistent usable results.</span>
+      </li>
+      </ul>
+      </section>
+      <section class="projects-group">
+    <h3 class="projects-title">
+      <span class="projects-shape" aria-hidden="true"></span>
+      <span>CISCO</span>
+    </h3>
+      <ul class="projects-list">
       <li>
         <a href="https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-platform/index.html" target="_blank" title="Cisco SPOG" aria-label="Cisco SPOG"><strong>Cisco SPOG</strong></a>
-        <span>Elasticsearch and Neo4j synchronized ssot for big data telemetry alerting and ticketing platform. Built search, correlation, and workflows to unify events, triage, and resolution.</span>
-      </li>
-      <li>
-        <a href="https://laopinion.com/" target="_blank" title="impre.com" aria-label="impre.com"><strong>impre.com</strong></a>
-        <span>Large news portal at scale. Built ingestion pipelines, smart caching, and multilingual delivery to keep pages fast while handling continuous content updates.</span>
-      </li>
-      <li>
-        <a href="https://drakomotors.com/" target="_blank" title="drakomotors.com" aria-label="drakomotors.com"><strong>drakomotors.com</strong></a>
-        <span>Webflow build with custom integrations and bespoke UX. Tuned performance, handled CMS structure, and delivered a polished premium brand experience.</span>
-      </li>
-      <li>
-        <a href="https://weareaustin.com/" target="_blank" title="weareaustin.com" aria-label="weareaustin.com"><strong>weareaustin.com</strong></a>
-        <span>Consolidated 60+ stations into a single CMS. Built reusable templates, streamlined content workflows, and optimized performance for high-traffic editorial updates.</span>
+        <span>Elasticsearch and Neo4j single source of truth event platform. Built search, correlation, and apis to ingest normalize and interact with data.</span>
       </li>
     </ul>
   </section>
@@ -36,18 +36,18 @@ export const projects = `
   <section class="projects-group">
     <h3 class="projects-title">
       <span class="projects-shape" aria-hidden="true"></span>
-      <span>Prototypes + MVPs</span>
+      <span>Experiments</span>
     </h3>
     <ul class="projects-list">
-      <li>
-        <a href="https://github.com/nick227/ssot-generator" target="_blank" title="SSOT Generator" aria-label="SSOT Generator"><strong>SSOT Generator</strong></a>
-        <span>Prisma scaffold: DB, endpoints, SDK, auth, billing</span>
-      </li>
       <li><a href="https://autoimage.up.railway.app/" target="_blank"><strong>AutoImage</strong></a><span>Bulk AI image pipeline with queueing</span></li>
       <li><a href="https://flashcard-client-phi.vercel.app/" target="_blank"><strong>Flashcard Academy</strong></a><span>AI flashcard portal</span></li>
       <li><a href="https://internet-dating-production.up.railway.app/" target="_blank"><strong>Internet Date</strong></a><span>Social graph jobs + prebuilt feeds</span></li>
       <li><a href="https://ai-script-writer.up.railway.app/" target="_blank"><strong>AI Script Writer</strong></a><span>Screenplay assistant</span></li>
       <li><a href="https://gdrive-to-youtube-production.up.railway.app/" target="_blank"><strong>YouTube Upload Manager</strong></a><span>Links Google Drive and YouTube API with upload tracking</span></li>
+      <li>
+        <a href="https://github.com/nick227/ssot-generator" target="_blank" title="SSOT Generator" aria-label="SSOT Generator"><strong>SSOT Generator</strong></a>
+        <span>Prisma scaffold: DB, endpoints, SDK, auth, billing</span>
+      </li>
     </ul>
   </section>
 
@@ -57,6 +57,18 @@ export const projects = `
       <span>Early work</span>
     </h3>
     <ul class="projects-list">
+      <li>
+        <a href="https://drakomotors.com/" target="_blank" title="drakomotors.com" aria-label="drakomotors.com"><strong>drakomotors.com</strong></a>
+        <span>Webflow build with custom integrations and bespoke UX. Tuned performance, handled CMS structure, and delivered a polished premium brand experience.</span>
+      </li>
+      <li>
+        <a href="https://weareaustin.com/" target="_blank" title="weareaustin.com" aria-label="weareaustin.com"><strong>weareaustin.com</strong></a>
+        <span>Consolidated 60+ stations into a single CMS. Built reusable templates, streamlined content workflows, and optimized performance for high-traffic editorial updates.</span>
+      </li>
+      <li>
+        <a href="https://laopinion.com/" target="_blank" title="impre.com" aria-label="impre.com"><strong>impre.com</strong></a>
+        <span>Large news portal at scale. Built ingestion pipelines, smart caching, and multilingual delivery to keep pages fast while handling continuous content updates.</span>
+      </li>
       <li><strong>multiview.com</strong><span>Corporate site and marketing pages</span></li>
       <li><strong>southshoresoldiers.com</strong><span>Site designs and development</span></li>
       <li><strong>schoolandboard.com</strong><span>Education/community site launch</span></li>

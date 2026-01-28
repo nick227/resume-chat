@@ -24,6 +24,7 @@
     --semi-transparent-white: rgba(255, 255, 255, 0.35);
     --ultra-light-blue: rgb(10, 206, 255);
     --accent-text: #007BFF;
+    --accent: beige;
     /* Shadows */
     --shadow-default: 0 2px 6px var(--shadow-color);
     --shadow-strong: 0 4px 12px var(--shadow-color-strong);

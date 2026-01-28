@@ -9,6 +9,7 @@
 .avatar {
     border-radius: var(--radius-full);
     cursor: pointer;
-    width: 219px;
-    height: 219px;
+    width: auto;
+    height: 174px;
+    padding-right: 5px;
 }

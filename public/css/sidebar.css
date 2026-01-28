@@ -12,21 +12,21 @@
     align-items: center;
 }
 
-.avatar {
+.side-bar .avatar {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     margin-top: 50px;
 }
 
-.title {
+.side-bar .title {
     margin: 20px 0 10px 0;
 }
 
 .side-bar h4,
-.title,
-.links,
-.contact {
+.side-bar .title,
+.side-bar .links,
+.side-bar .contact {
     display: flex;
     flex-direction: column;
     width: 190px;

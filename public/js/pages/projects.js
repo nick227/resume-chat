@@ -52,6 +52,7 @@ export const projects = `
         <a href="https://github.com/nick227/ssot-generator" target="_blank" title="SSOT Generator" aria-label="SSOT Generator"><strong>SSOT Generator</strong></a>
         <span>Prisma scaffold: DB, endpoints, SDK, auth, billing</span>
       </li>
+      <li><a href="https://github.com/nick227/resume-chat" target="_blank"><strong>Nick's resume</strong></a><span>The AI enhanced site you are using right now</span></li>
     </ul>
   </section>
 
@@ -73,7 +74,6 @@ export const projects = `
         <a href="https://laopinion.com/" target="_blank" title="impre.com" aria-label="impre.com"><strong>impre.com</strong></a>
         <span>Large news portal at scale. Built ingestion pipelines, smart caching, and multilingual delivery to keep pages fast while handling continuous content updates.</span>
       </li>
-      <li><a href="https://github.com/nick227/resume-chat" title="_blank"><strong>resume-chat</strong></a><span>This site you are using right now</span></li>
       <li><strong>multiview.com</strong><span>Corporate site and marketing pages</span></li>
       <li><strong>southshoresoldiers.com</strong><span>Site designs and development</span></li>
       <li><strong>schoolandboard.com</strong><span>Education/community site launch</span></li>

@@ -14,7 +14,7 @@ export class ScrollService {
         this.container = null;
         this.isUserScrolling = false;
         this.scrollTimeout = null;
-        this.autoScrollEnabled = true;
+        this.autoScrollEnabled = false;
 
         ScrollService.instance = this;
     }

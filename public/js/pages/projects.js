@@ -8,15 +8,18 @@ export const projects = `
     <ul class="projects-list">
       <li>
         <strong>Set Forms</strong>
-        <span>A multi-tentant page publishing platform. We built a large collection of ui/ux components and widgets for this cross between Wix and Typeform product.</span>
+        <p>A multi-tentant page publishing platform.</p>
+        <p>We built a large collection of ui/ux components and widgets for this cross between Wix and Typeform product. And we built a lot of components for this page builder product. Going so far to create a detached library for rapidly producing consistent snap in components. I was part of an initiative for next generation components and theming.</p>
       </li>
       <li>
         <strong>AI Agent Platform</strong>
-        <span>Basically a CMS for managing, testing and deploying AI agents. This was our jumping off point for launching dozens of AI powered services. New agents instantly became API's accessible to organization.</span>
+        <p>Basically a CMS for managing, testing and deploying AI agents.</p>
+        <p>This was our jumping off point for launching dozens of AI powered services. New agents instantly became API's accessible to organization. Nick proactively introduced AI where it created leverage. He launched an AI agent managment platform, then used it as the foundation to deploy over 100 AI services spanning chat, content generation, automation, and development workflows.</p>
       </li>
       <li>
         <strong>AI Agent WYSIWG</strong>
-        <span>A natural language editor for crafting beautiful user experiences and standardized usable html. Giving the AI a command language and structured function calling we got consistent usable results.</span>
+        <p>A natural language editor for crafting beautiful user experiences.</p>
+        <p>Giving the AI a command language and structured function calling we got consistent usable results. I designed natural-language WYSIWYG systems where users describe intent and the platform renders UI through structured commands and LLMs. These systems reduced friction for non-technical users while preserving strong architectural boundaries.</p>
       </li>
       </ul>
       </section>
@@ -28,7 +31,8 @@ export const projects = `
       <ul class="projects-list">
       <li>
         <a href="https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-platform/index.html" target="_blank" title="Cisco SPOG" aria-label="Cisco SPOG"><strong>Cisco SPOG</strong></a>
-        <span>Elasticsearch and Neo4j single source of truth event platform. Built search, correlation, and apis to ingest normalize and interact with data.</span>
+        <p>Elasticsearch and Neo4j single source of truth event platform.</p>
+        <p>At Cisco, I led teams building enterprise alerting and ticketing platforms for large-scale networks. I was a bridge between engineering, product, and stakeholders, translating system constraints into clear, executable plans and schedules. We implemented high-volume ingestion and search using Elasticsearch and Neo4j, defined durable API contracts, and shipped UI components adopted into Cisco’s official corporate Angular library. </p>
       </li>
     </ul>
   </section>

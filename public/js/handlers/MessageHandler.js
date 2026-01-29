@@ -84,8 +84,9 @@ export class MessageHandler {
         // Set scroll behavior before appending
         await this.appendMessage(messageEl, clearContainer);
 
-        // Use current scroll settings
-        if (autoScroll) {
+        // Use current scroll settings, but avoid jumping when a routed page is visible
+        const hasPageView = this.container?.querySelector('.page-view');
+        if (autoScroll && !hasPageView) {
             scrollService.scrollToBottom();
         }
     }
@@ -161,9 +162,21 @@ export class MessageHandler {
     }
 
     static clearContainer() {
+        if (!this.container) return;
         const messages = this.container.querySelectorAll('.message:not(.message-loading)');
-        messages.forEach(message => message.remove());
-        this.clearNavButtons();
+        let hasPageView = false;
+
+        messages.forEach(message => {
+            if (message.classList.contains('page-view')) {
+                hasPageView = true;
+                return;
+            }
+            message.remove();
+        });
+
+        if (!hasPageView) {
+            this.clearNavButtons();
+        }
     }
 
     /**

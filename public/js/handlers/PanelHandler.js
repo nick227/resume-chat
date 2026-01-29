@@ -11,7 +11,8 @@ export class PanelHandler {
     static chatMessages = null;
     static panel = null;
     static showMoreButton = null;
-    static buttonMessages = ['Very cool. What else?', 'What else you got?', 'Tell me more', 'Keep going', 'Nice continue'];
+    static resumeButton = null;
+    static buttonMessages = ['Very cool. What else?', 'What else you got?', 'Tell me more', 'Keep going'];
     static init() {
         this.chatMessages = document.querySelector(CONSTANTS.SELECTORS.chatMessages);
         if (!this.chatMessages) {
@@ -95,6 +96,11 @@ export class PanelHandler {
 
             this.currentIndex++;
 
+            if (this.currentIndex >= this.buttonMessages.length) {
+                this.renderResumeButton();
+                return;
+            }
+
             // Update button text
             this.showMoreButton.textContent = this.currentIndex < this.buttonMessages.length ?
                 this.buttonMessages[this.currentIndex] :
@@ -112,5 +118,26 @@ export class PanelHandler {
             this.showMoreButton.textContent = 'Error loading content';
             this.showMoreButton.disabled = false;
         }
+    }
+
+    static renderResumeButton() {
+        if (this.resumeButton) return;
+
+        if (this.showMoreButton) {
+            this.showMoreButton.remove();
+            this.showMoreButton = null;
+        }
+
+        const button = document.createElement('button');
+        button.classList.add('chat-button', 'animate-in', 'visible');
+        button.textContent = "Nick's resume";
+        button.setAttribute('aria-label', 'View resume');
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.location.hash = 'resume';
+        });
+
+        this.resumeButton = button;
+        ChatButtons.setMoreButton(button);
     }
 }

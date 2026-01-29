@@ -1,7 +1,7 @@
 .masthead {
     width: var(--main-container-width);
     margin: 0 auto;
-    height: 16vh;
+    height: 8vh;
     background-image: url(../images/nr2.webp);
     background-repeat: no-repeat;
     background-size: cover;

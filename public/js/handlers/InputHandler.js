@@ -3,6 +3,7 @@ import { utils } from '../utils.js';
 import { MessageHandler } from './MessageHandler.js';
 import { ChatAPI } from '../api/ChatAPI.js';
 import { ChatButtons } from './ChatButtons.js';
+import { NavigationHandler } from './NavigationHandler.js';
 import { RESPONSE_TYPES } from '../constants.js';
 
 /**
@@ -98,6 +99,9 @@ export class InputHandler {
     setupEventListeners() {
         // Create bound version of submitMessage for event listeners
         const submitHandler = () => {
+            if (document.querySelector('.page-view')) {
+                NavigationHandler.clearRoute();
+            }
             const text = this.inputElement.value.trim();
             if (text) {
                 this.submitMessage(text);
@@ -116,6 +120,10 @@ export class InputHandler {
         // Listen for chat button clicks
         document.addEventListener('chatButtonClick', async(e) => {
             console.log('ChatButtonClick received:', e.detail.text);
+
+            if (document.querySelector('.page-view')) {
+                NavigationHandler.clearRoute();
+            }
 
             this.inputElement.value = e.detail.text;
             this.inputElement.dispatchEvent(new Event('input'));

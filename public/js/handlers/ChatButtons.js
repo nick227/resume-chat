@@ -1,4 +1,5 @@
 import { CONSTANTS } from '../constants.js';
+import { NavigationHandler } from './NavigationHandler.js';
 import { utils } from '../utils.js';
 import { scrollService } from '../services/ScrollService.js';
 
@@ -26,6 +27,10 @@ export class ChatButtons {
         const button = event.target.closest('.chat-button');
         if (!button) return;
         if (button.dataset.chatAction === 'more') return;
+
+        if (document.querySelector('.page-view')) {
+            NavigationHandler.clearRoute();
+        }
 
         const text = button.textContent.trim();
 
@@ -115,7 +120,9 @@ export class ChatButtons {
         }
 
         this.setupIntersectionObserver(this.container);
-        scrollService.scrollToBottom();
+        if (this.shouldAutoScroll()) {
+            scrollService.scrollToBottom();
+        }
     }
 
     static setupIntersectionObserver(container) {
@@ -149,5 +156,9 @@ export class ChatButtons {
         }
         this.clearButtons();
         this.initialized = false;
+    }
+
+    static shouldAutoScroll() {
+        return !document.querySelector('.chat-messages .page-view');
     }
 }

@@ -17,6 +17,8 @@ export const resume = `
       </div>
     </header>
 
+    <p>Nick is a driving force. He is proactive not reactive and moves projects from concept to operational. He specializes in designing clean architectures, aligning stakeholders, and guiding engineers through high-impact situations.</p>
+
     <section class="section" aria-label="Professional history">
 
       <article class="role">
@@ -24,7 +26,7 @@ export const resume = `
           <div class="role__org">DIGITAL HARBOR <span class="role__sep">—</span> Team Lead &amp; AI Developer</div>
           <div class="role__dates">Sep 2020 – Mar 2025</div>
         </header>
-        <p>Digital Harbor was a great team to be on because it was all research and prototyping. I was allowed to start multiple initiatives and main time was spent on strategy and innovation meetings.</p>
+        <p>Most recently, I was a leader at Digital Harbor, leading three initiatives, driving AI adoption, and maintaining core systems. I stabilized two non-functional products through major simplification and Angular rebuilds, collaborated closely with product management, and was selected for a company-wide leadership retreat as a top contributor.</p>
         <ul class="bullets">
           <li>Led three teams delivering WYSIWYG platform across orgs</li>
           <li>Built Angular component library pipeline; cut time to production significantly</li>
@@ -44,7 +46,7 @@ export const resume = `
           <div class="role__org">CISCO SYSTEMS <span class="role__sep">—</span> Senior Engineer</div>
           <div class="role__dates">Dec 2012 – Mar 2020</div>
         </header>
-        <p>Cisco is an amazing company for engineers. I got to hire and build my own local team and branch out to managing projects with off-shore teams.</p>
+        <p>At Cisco, I built and led a local team while coordinating offshore projects. I helped ingest legacy MySQL and Nexus alert data into Elasticsearch, later introducing Neo4j, and launched the integrated product. Our Angular components were adopted company-wide, and I worked closely with design, PMG, and engineering on delivery, estimates, and team leadership.</p>
         <ul class="bullets">
           <li>Led distributed teams for big data alerts and ticketing platform</li>
           <li>Owned cross-functional interface with product and design</li>

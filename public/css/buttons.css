@@ -19,7 +19,7 @@ button {
 }
 
 .buttons-set {
-    width: var(--main-container-width);
+    width: 100%;
     margin: 10px auto;
     display: flex;
     justify-content: space-between;

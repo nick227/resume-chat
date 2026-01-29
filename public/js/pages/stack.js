@@ -5,7 +5,7 @@ export const stack = `
       <span class="projects-shape" aria-hidden="true"></span>
       <span>Preferred</span>
     </h3>
-    <p>Railway, MySQL, Node.js, React, Tailwind, Vite</p>
+    <h2>Railway, MySQL, Node.js, React, Typescript, Vite</h2>
   </section>
 
   <section class="projects-group">

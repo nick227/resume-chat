@@ -1,6 +1,7 @@
 @media (max-width: 1268px) {
-    h1 {
-        font-size: 33px;
+    h1,
+    .title {
+        font-size: 25px;
     }
     .side-bar {
         width: 100%;
@@ -14,35 +15,45 @@
         display: none;
     }
     .chat-messages {
-        margin-top: 200px;
         overflow-x: hidden;
         width: 100%;
         justify-content: flex-start;
         min-height: 0 !important;
     }
-    .title {
-        font-size: 30px;
-        margin: 0;
+    .chat-messages .row {
+        flex-direction: column !important;
+    }
+    .chat-messages img {
+        display: none;
     }
     .avatar {
         width: 55px;
         height: 55px;
         margin-top: 0;
     }
-    #resume-container {
-        width: var(--main-container-width);
-        margin: 0 auto;
-    }
     .main > .chat-messages {
-        height: 50vh;
+        height: 72vh;
     }
     .main > .chat-controls {
-        height: 20vh;
+        height: 9vh;
         justify-content: center;
         padding-bottom: 20px;
     }
     .chat-controls {
         width: 100%;
+    }
+    .site-navigation button {
+        height: 21px;
+    }
+    .row.links {
+        display: flex;
+        justify-content: center;
+    }
+    .chat-microphone {
+        display: none;
+    }
+    .chat-send {
+        height: 100%;
     }
     .message,
     .buttons-set,
@@ -87,6 +98,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        display: none;
     }
     elevenlabs-convai div {
         width: 100% !important;

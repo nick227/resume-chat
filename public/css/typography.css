@@ -21,9 +21,13 @@ p {
     font-size: 57.6px;
     font-weight: bold;
     line-height: 1.2;
-    margin: 20px 0 10px 0;
+    text-decoration: none;
 }
 
-.extra-lg {
-    
+.title:hover {
+    color: black;
+}
+
+.masthead a {
+    text-decoration: none;
 }

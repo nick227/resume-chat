@@ -23,3 +23,7 @@
 #resume-container p {
     background-color: var(--accent);
 }
+
+.header__right {
+    justify-content: flex-end;
+}

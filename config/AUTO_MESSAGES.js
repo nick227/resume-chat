@@ -1,8 +1,11 @@
 const AUTO_MESSAGES = [{
         type: 'chat',
-        message: `<div class="row" style="">
+        message: `<div class="row">
         <img src="images/nick.png" alt="AI Assistant Avatar" class="avatar" style="padding-right: 25px;" />
-        <p>Hello my name is Nick a senior technical leader with 20+ years experience delivering enterprise software solutions. I love blue-sky projects and have been lucky enough to see quite a few launch and mature. I build reliable and developer friendly systems that scale and extend fast.</p>
+        <div>
+        <h1>Hello my name is Nick</h1>
+        <p>Senior technical leader with 20+ years experience delivering enterprise software solutions. I love blue-sky projects and have been lucky enough to see quite a few launch and mature. I build reliable and developer friendly systems that scale and extend fast.</p>
+        </div>
         </div>
         `,
         buttons: ['Talk about his front-end experience', 'Talk about his back-end experience']

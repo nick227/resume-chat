@@ -31,12 +31,7 @@ export const resume = `
           <li>Led three teams delivering WYSIWYG platform across orgs</li>
           <li>Built Angular component library pipeline; cut time to production significantly</li>
           <li>Launched AI agent platform; shipped 100+ services</li>
-          <li>Designed RAG pipelines for structured and unstructured data</li>
-          <li>Mass generated stylized text treatments and layouts with AI</li>
           <li>Stabilized codebases reducing bugs and improving developer experience</li>
-          <li>Launched AI token management system for content usage tracking</li>
-          <li>Integrated AI code review in GitLab; auto-posted to Teams</li>
-          <li>Launched company-wide stock image search and filter api system.</li>
           <li>Led demos, onboarding, and cross-team collaboration</li>
         </ul>
       </article>
@@ -49,14 +44,9 @@ export const resume = `
         <p>At Cisco, I built and led a local team while coordinating offshore projects. I helped ingest legacy MySQL and Nexus alert data into Elasticsearch, later introducing Neo4j, and launched the integrated product. Our Angular components were adopted company-wide, and I worked closely with design, PMG, and engineering on delivery, estimates, and team leadership.</p>
         <ul class="bullets">
           <li>Led distributed teams for big data alerts and ticketing platform</li>
-          <li>Owned cross-functional interface with product and design</li>
           <li>Built search pipelines on Node with Elasticsearch and Neo4j</li>
-          <li>Synchronized Neo4j data with Elasticsearch for search and reporting</li>
-          <li>Improved scale for high-volume event ingestion and correlation</li>
-          <li>Built Angular UI component adopted in Cisco corporate library</li>
           <li>Defined API contracts and data flow standards for external teams</li>
           <li>Led hiring screens and improved team delivery process</li>
-          <li>Launched product internally, then released publicly</li>
         </ul>
       </article>
 
@@ -67,12 +57,9 @@ export const resume = `
         </header>
         <p>I cross-functioned between all department officially working within their design team. This is a small aggressive company that moves fast.</p>
         <ul class="bullets">
-          <li>Embedded engineer partnering with executives, design, sales</li>
           <li>Built award-winning B2B sites and custom video platform</li>
-          <li>Owned end-to-end delivery from wireframe to production</li>
           <li>Integrated ads and analytics across hundreds of sites</li>
           <li>Automated sales workflows and marketing data collection</li>
-          <li>Ran A/B tests; shipped systems from ambiguous needs</li>
         </ul>
       </article>
 
@@ -85,7 +72,6 @@ export const resume = `
         <ul class="bullets">
           <li>Migrated 60+ station sites to shared multi-tenant CMS</li>
           <li>Built ingestion pipelines for legacy content migration</li>
-          <li>Delivered ad systems supporting partner monetization</li>
           <li>Launched unified CMS used nationwide; supported 1M+ DAU</li>
         </ul>
       </article>
@@ -96,10 +82,9 @@ export const resume = `
         </header>
       <ul class="bullets bullets--compact">
         <li>Lead by example on complex, cross-cutting work</li>
-        <li>Run transparent stand-ups and unblock teams quickly</li>
+        <li>Run transparent systems and unblock teams quickly</li>
         <li>Set clear architecture, data contracts, delivery standards</li>
         <li>Favor model-driven systems with single source of truth</li>
-        <li>Design performance-first UIs with scoped bundles, lazy load</li>
         <li>Ship fast proofs of concept; scale the winners</li>
       </ul>
       </article>

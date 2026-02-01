@@ -9,17 +9,16 @@ export const projects = `
       <li>
         <strong>Set Forms</strong>
         <p>A multi-tentant page publishing platform.</p>
-        <p>We built a large collection of ui/ux components and widgets for this cross between Wix and Typeform product. And we built a lot of components for this page builder product. Going so far to create a detached library for rapidly producing consistent snap in components. I was part of an initiative for next generation components and theming.</p>
+        <p>We built a large collection of ui/ux components and widgets for this cross between Wix and Typeform product. I was part of an initiative for next generation components and theming.</p>
       </li>
       <li>
         <strong>AI Agent Platform</strong>
         <p>Basically a CMS for managing, testing and deploying AI agents.</p>
-        <p>This was our jumping off point for launching dozens of AI powered services. New agents instantly became API's accessible to organization. Nick proactively introduced AI where it created leverage. He launched an AI agent managment platform, then used it as the foundation to deploy over 100 AI services spanning chat, content generation, automation, and development workflows.</p>
+        <p>This was our jumping off point for launching dozens of AI powered services. New agents instantly became API's accessible to organization. The foundation to deploy AI services for chat, content generation, automation, and development workflows.</p>
       </li>
       <li>
         <strong>AI Agent WYSIWG</strong>
         <p>A natural language editor for crafting beautiful user experiences.</p>
-        <p>Giving the AI a command language and structured function calling we got consistent usable results. I designed natural-language WYSIWYG systems where users describe intent and the platform renders UI through structured commands and LLMs. These systems reduced friction for non-technical users while preserving strong architectural boundaries.</p>
       </li>
       </ul>
       </section>

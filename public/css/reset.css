@@ -3,22 +3,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body,
-html {
-    background-color: var(--body-background-color);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-}
-
-img {
-    max-width: 100%;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-}

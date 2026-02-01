@@ -2,7 +2,7 @@
     width: var(--main-container-width);
     max-width: 100%;
     margin: 0 auto;
-    height: 8vh;
+    height: 11vh;
     top: 0;
     display: flex;
     flex-direction: column;
@@ -26,9 +26,6 @@
     max-width: 100%;
     margin: 0 auto;
     gap: 5px;
-}
-.main > .chat-messages {
-    height: 65vh;
 }
 .main > .chat-controls {
     height: 10vh;

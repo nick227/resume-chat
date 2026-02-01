@@ -19,11 +19,6 @@
 #resume-container .role__sep{color:var(--muted);font-weight:700;}
 #resume-container .role__dates{color:var(--muted);font-size:var(--small);white-space:nowrap;}
 
-
-#resume-container p {
-    background-color: var(--accent);
-}
-
 .header__right {
     justify-content: flex-end;
 }

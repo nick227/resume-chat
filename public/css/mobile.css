@@ -19,9 +19,6 @@
         width: 176px;
         height: 176px;
     }
-    .main > .chat-messages {
-        height: 72vh;
-    }
     .main > .chat-controls {
         height: 9vh;
         justify-content: center;

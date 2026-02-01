@@ -6,7 +6,7 @@ export function setupQr() {
 
   if (isMobile) {
     link.href =
-      'sms:+17372072022?body=Hey%20Nick%20%E2%80%94%20I%20just%20reaching%20out.';
+      'sms:+17372072022?body=Hey%20Nick%20%E2%80%94%20';
     link.target = '_blank';
   } else {
     link.href = '#';

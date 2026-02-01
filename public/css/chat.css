@@ -10,7 +10,6 @@
     flex-direction: column;
     gap: var(--spacing-base);
     background-color: var(--chat-messages-background-color);
-    height: 80vh;
     width: 100%;
     align-items: center;
     justify-content: center;

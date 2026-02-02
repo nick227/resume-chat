@@ -1,5 +1,8 @@
 export const projects = `
 <div class="projects">
+<p>I am a premium subscriber to Cursor and OpenAI.</p>
+<p>I am comfortable with all the big AI providers API's especially OpenAI. And launched several RAG systems including bare-bones system to loaded out LangChain. I have worked at two organizations using Angular, but I have used Vue and React, I think they are both great and we may as well use React. It has the best tooling integration.</p>
+<p>I pushed code for years without AI but now that it exists it is a game-changer.</p> 
   <section class="projects-group">
     <h3 class="projects-title">
       <span class="projects-shape" aria-hidden="true"></span>

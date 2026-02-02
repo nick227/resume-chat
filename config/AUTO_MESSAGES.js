@@ -7,24 +7,6 @@ const AUTO_MESSAGES = [{
         <p>Senior technical leader with 20+ years experience delivering enterprise software solutions. I love blue-sky projects and have launched a few. I build reliable and developer friendly systems.</p>
         </div>
         </div>
-        <div class="row">
-        
-<div style="margin-top: 20px;">
-      <h3 class="">Digital Harbor</h3>
-      <p class="">
-        Engineering lead on three new development initiatives. Frequent product + concept demo presenter,
-        with regular team demos and bi-monthly presentations. Shipped a shared repo adopted across teams to reduce dev time and bugs. High-autonomy role centered
-        on communication and fast iteration.
-      </p>
-      <h3 class="">Cisco Systems</h3>
-      <p class="">
-        Helped build and lead a team creating a large-scale Elasticsearch repository and dashboards for Nexus
-        device metrics. Early users were an on-site support team, enabling rapid feedback. Ran daily stand-ups, partnered closely with design and PM, and helped deliver a global all-hands demo
-        recognized by SVP leadership. I deliver immediate value: clear ownership, calm execution, and results.
-      </p>
-</div>
-        </div>
-<a href="#resume">read more...</a>
         `,
         buttons: ['Talk about his front-end experience', 'Talk about his back-end experience']
     }   , {

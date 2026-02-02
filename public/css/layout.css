@@ -2,7 +2,7 @@
     width: var(--main-container-width);
     max-width: 100%;
     margin: 0 auto;
-    height: 11vh;
+    height: 6vh;
     top: 0;
     display: flex;
     flex-direction: column;

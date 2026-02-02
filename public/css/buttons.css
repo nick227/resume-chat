@@ -58,7 +58,7 @@ button {
 .chat-send:active,
 .chat-button:active {
     background-color: var(--active-color);
-    outline: 2px solid var(--ultra-light-blue);
+    outline: 2px solid var(--border-color);
 }
 
 .chat-button.animate-in {
@@ -74,7 +74,7 @@ button {
   outline-offset: -2px;
 }
 .site-navigation button.active {
-    background-color: var(--ultra-light-blue);
+    background-color: var(--dark-gray);
     color: white;
 
 }

@@ -19,6 +19,7 @@ export const projects = `
       <li>
         <strong>AI Agent WYSIWG</strong>
         <p>A natural language editor for crafting beautiful user experiences.</p>
+        <p>This app used a multi-step intent router and structured function calling to execute page commands like add, style, remove and replace. The system was integrated into token tracking and the larger company AI service management solution.</p>
       </li>
       </ul>
       </section>
@@ -29,9 +30,13 @@ export const projects = `
     </h3>
       <ul class="projects-list">
       <li>
-        <a href="https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-platform/index.html" target="_blank" title="Cisco SPOG" aria-label="Cisco SPOG"><strong>Cisco SPOG</strong></a>
+        <a href="https://www.cisco.com/site/us/en/products/networking/cloud-networking/nexus-platform/index.html" target="_blank" title="Cisco SPOG" aria-label="Cisco SPOG"><strong>Nexus</strong></a>
         <p>Elasticsearch and Neo4j single source of truth event platform.</p>
-        <p>At Cisco, I led teams building enterprise alerting and ticketing platforms for large-scale networks. I was a bridge between engineering, product, and stakeholders, translating system constraints into clear, executable plans and schedules. We implemented high-volume ingestion and search using Elasticsearch and Neo4j, defined durable API contracts, and shipped UI components adopted into Cisco’s official corporate Angular library. </p>
+        <p>This is a major enterprise alerting and ticketing platforms for large-scale networks. I was a bridge between engineering, product, and stakeholders, translating system constraints into clear, executable plans and schedules. We implemented high-volume ingestion and search using Elasticsearch and Neo4j, defined durable API contracts.</p>
+      </li>
+      <li>
+      <strong>SPOG</strong>
+      <p>We built management dashboards for viewing and interacting with the data. Spog was the ticketing front-end used by our support team for profiling devices based on alarm history and issuing tickets to our integrated systems. Our UI components were eventually adopted into Cisco’s official corporate Angular library.</p>
       </li>
     </ul>
   </section>
@@ -45,7 +50,7 @@ export const projects = `
       <li><a href="https://autoimage.up.railway.app/" target="_blank"><strong>AutoImage</strong></a><span>Bulk AI image pipeline with queueing</span></li>
       <li><a href="https://flashcard-client-phi.vercel.app/" target="_blank"><strong>Flashcard Academy</strong></a><span>AI flashcard portal</span></li>
       <li><a href="https://internet-dating-production.up.railway.app/" target="_blank"><strong>Internet Date</strong></a><span>Social graph jobs + prebuilt feeds</span></li>
-      <li><a href="https://ai-script-writer.up.railway.app/" target="_blank"><strong>AI Script Writer</strong></a><span>Screenplay assistant</span></li>
+      <li><a href="https://scriptpal-production.up.railway.app/" target="_blank"><strong>AI Script Writer</strong></a><span>Screenplay assistant</span></li>
       <li><a href="https://gdrive-to-youtube-production.up.railway.app/" target="_blank"><strong>YouTube Upload Manager</strong></a><span>Links Google Drive and YouTube API with upload tracking</span></li>
       <li>
         <a href="https://github.com/nick227/ssot-generator" target="_blank" title="SSOT Generator" aria-label="SSOT Generator"><strong>SSOT Generator</strong></a>
